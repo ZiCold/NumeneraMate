@@ -27,12 +27,11 @@ namespace NumeneraMate.Libs.DataAccess
 		public override string ToString()
 		{
 			string result = "";
-			var props = this.GetType().GetProperties();
-			foreach (var p in props)
+			foreach (var p in this.GetType().GetProperties())
 			{
 				var name = p.Name;
 				var value = p.GetValue(this, null);
-				if (value != null) result += $"{p.Name}: {value.ToString()}\n";
+				if (value != null) result += $"{name}: {value.ToString()}\n";
 			}
 			return result;
 		}
