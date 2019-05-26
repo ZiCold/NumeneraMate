@@ -15,6 +15,9 @@ namespace NumeneraMate.Apps.Console
 			var dir = @"E:\Documents\Tabletop RPGs\Numenera\APPs\XMLFilesFinal\";
 			var fileName = "Cyphers_Discovery.xml";
 			ViewUniqueAttributes(dir + fileName, "Cypher");
+			var repo = new XMLRepo(dir + fileName);
+			var cyphersList = repo.LoadItems();
+			cyphersList.ForEach(x => System.Console.WriteLine(x.ToString()));
 		}
 
 		/// <summary>

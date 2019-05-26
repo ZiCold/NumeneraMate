@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cypher.cs" />
     <Compile Include="XMLRepo.cs" />
     <Compile Include="IRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
