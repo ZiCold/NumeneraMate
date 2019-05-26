@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace NumeneraMate.Libs.DataAccess
 {
-    public class Class1
+    public class XMLRepo
     {
+		public XMLRepo()
+		{
+
+		}
     }
 }
