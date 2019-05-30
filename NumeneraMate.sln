@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.WPF", "NumeneraMate.Apps.WPF\NumeneraMate.Apps.WPF.csproj", "{CDC5951E-F7A0-4DA2-B663-A54BF8A3E708}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.Console", "NumeneraMate.Apps.Console\NumeneraMate.Apps.Console.csproj", "{37A602B3-48CA-4681-B0E4-594752FA15C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.ConsoleApp", "NumeneraMate.Apps.ConsoleApp\NumeneraMate.Apps.ConsoleApp.csproj", "{37A602B3-48CA-4681-B0E4-594752FA15C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Libs.DataAccess", "NumeneraMate.Libs.DataAccess\NumeneraMate.Libs.DataAccess.csproj", "{36A23079-79B8-405D-A8A4-FBCF0325D613}"
 EndProject

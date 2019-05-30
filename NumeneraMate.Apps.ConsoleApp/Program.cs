@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace NumeneraMate.Apps.Console
+namespace NumeneraMate.Apps.ConsoleApp
 {
 	class Program
 	{

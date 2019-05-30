@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{37A602B3-48CA-4681-B0E4-594752FA15C5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>NumeneraMate.Apps.Console</RootNamespace>
-    <AssemblyName>NumeneraMate.Apps.Console</AssemblyName>
+    <RootNamespace>NumeneraMate.Apps.ConsoleApp</RootNamespace>
+    <AssemblyName>NumeneraMate.Apps.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
