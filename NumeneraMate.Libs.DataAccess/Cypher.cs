@@ -13,6 +13,12 @@ namespace NumeneraMate.Libs.DataAccess
 	{
 		[XmlElement("Cypher")]
 		public List<Cypher> Cyphers { get; set; }
+
+		[XmlAttribute("source")]
+		public string Source { get; set; }
+
+		[XmlAttribute("quantity")]
+		public string Quantity { get; set; }
 	}
 
 	//[Serializable, XmlRoot("Cypher")]
@@ -31,8 +37,9 @@ namespace NumeneraMate.Libs.DataAccess
 		public string Effect { get; set; }
 
 		// need to be structure
-		[XmlArrayItem("Row")]
-		public RollTableRow[] RollTable { get; set; }
+		//[XmlArrayItem("Row")]
+		//public RollTableRow[] RollTable { get; set; }
+		public RollTable RollTable { get; set; }
 
 		public override string ToString()
 		{
@@ -47,7 +54,21 @@ namespace NumeneraMate.Libs.DataAccess
 		}
 	}
 
-	//[XmlRoot("Row")]
+	[XmlRoot("RollTable")]
+	public class RollTable
+	{
+		[XmlElement("Row")]
+		public List<RollTableRow> RollTableRows { get; set; }
+
+		public override string ToString()
+		{
+			var result = "";
+			foreach (var r in RollTableRows)
+				result += $"\n{r.Roll}: {r.Result}";
+			return result;
+		}
+	}
+
 	public class RollTableRow
 	{
 		public string Roll { get; set; }
