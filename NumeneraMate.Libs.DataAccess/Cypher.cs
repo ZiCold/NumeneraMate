@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,14 @@ using System.Xml.Serialization;
 
 namespace NumeneraMate.Libs.DataAccess
 {
+	[Serializable, XmlRoot("Cyphers")]
+	public class CyphersList
+	{
+		[XmlElement("Cypher")]
+		public List<Cypher> Cyphers { get; set; }
+	}
+
+	//[Serializable, XmlRoot("Cypher")]
 	public class Cypher
 	{
 		public string Name { get; set; }
@@ -19,10 +28,11 @@ namespace NumeneraMate.Libs.DataAccess
 		public string Usable { get; set; }
 		public string Internal { get; set; }
 
-		// need to be structure
-		public string RollTable { get; set; }
-
 		public string Effect { get; set; }
+
+		// need to be structure
+		[XmlArrayItem("Row")]
+		public RollTableRow[] RollTable { get; set; }
 
 		public override string ToString()
 		{
@@ -35,5 +45,12 @@ namespace NumeneraMate.Libs.DataAccess
 			}
 			return result;
 		}
+	}
+
+	//[XmlRoot("Row")]
+	public class RollTableRow
+	{
+		public string Roll { get; set; }
+		public string Result { get; set; }
 	}
 }

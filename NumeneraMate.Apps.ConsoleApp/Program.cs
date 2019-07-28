@@ -16,7 +16,9 @@ namespace NumeneraMate.Apps.ConsoleApp
 			var fileName = "Cyphers_Discovery.xml";
 			ViewUniqueAttributes(dir + fileName, "Cypher");
 			var repo = new XMLRepo(dir + fileName);
-			var cyphersList = repo.LoadItems();
+			//var cyphersList = repo.LoadItems();
+			//var cyphersList = repo.DeserializeXmlFile();
+			var cyphersList = repo.DeserializeXmlToList();
 			cyphersList.ForEach(x => System.Console.WriteLine(x.ToString()));
 		}
 

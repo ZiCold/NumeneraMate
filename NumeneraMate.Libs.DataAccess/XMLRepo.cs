@@ -36,16 +36,29 @@ namespace NumeneraMate.Libs.DataAccess
 						   Wearable = (string)c.Element("Wearable"),
 						   Usable = (string)c.Element("Wearable"),
 						   Internal = (string)c.Element("Internal"),
-						   RollTable = (string)c.Element("RollTable"),
 						   Effect = (string)c.Element("Effect")
 					   };
 			var cyphersList = smth.ToList();
 			return cyphersList;
 		}
 
+		public CyphersList DeserializeXmlFile()
+		{
+			var cyphersXml = File.ReadAllText(xmlFileName);
+			var cyphersList = DeserializeObject<CyphersList>(cyphersXml);
+			return cyphersList;
+		}
+
+		public List<Cypher> DeserializeXmlToList()
+		{
+			var cyphersXml = File.ReadAllText(xmlFileName);
+			var cyphersList = DeserializeObject<List<Cypher>>(cyphersXml);
+			return cyphersList;
+		}
+
 		public static T DeserializeObject<T>(string xml)
 		{
-			var serializer = new XmlSerializer(typeof(T));
+			var serializer = new XmlSerializer(typeof(T), new XmlRootAttribute("Cyphers"));
 			using (var tr = new StringReader(xml))
 			{
 				return (T)serializer.Deserialize(tr);
