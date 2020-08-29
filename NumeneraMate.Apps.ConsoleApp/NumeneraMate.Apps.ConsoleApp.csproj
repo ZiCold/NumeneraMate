@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NumeneraMate.Libs.DataAccess\NumeneraMate.Libs.DataAccess.csproj">
-      <Project>{36a23079-79b8-405d-a8a4-fbcf0325d613}</Project>
-      <Name>NumeneraMate.Libs.DataAccess</Name>
+    <ProjectReference Include="..\NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj">
+      <Project>{a296f225-153b-4967-a52c-0526b81cb16f}</Project>
+      <Name>NumeneraMate.Libs.Devices</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
