@@ -16,34 +16,50 @@ namespace NumeneraMate.Apps.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			//ParseCyphersToXML();
-			//CombineAllCyphers();
-
-			ParseArtefactsToXML();
-
 			//HTMLTableFromXLSXCreator.Transform();
-			//GenerateDevices();
-
+			GenerateDevices();
 
 			Console.WriteLine();
             Console.WriteLine("Press anykey man");
             Console.ReadLine();
 		}
 
+		private static void GenerateDevices()
+        {
+			var cyphersList = new List<Cypher>();
+
+			ConsoleKeyInfo c = new ConsoleKeyInfo();
+            while (c.Key != ConsoleKey.Escape)
+            {
+                Console.WriteLine($"Generate from {cyphersList.Count}!");
+				Console.WriteLine("Press G to generate or ESC to exit");
+				c = Console.ReadKey();
+                if (c.KeyChar == 'g')
+                {
+                    var rand = new Random(Guid.NewGuid().GetHashCode());
+                    var rndInt = rand.Next(cyphersList.Count);
+                    Console.WriteLine($"1d6 = {rand.Next(1, 6)}");
+                    Console.WriteLine(cyphersList[rndInt].ToString());
+                }
+            }
+        }
+
+		#region TestMethods
+
 		public static void ParseArtefactsToXML()
 		{
 			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Artefacts\";
-			var name = "RAW_Artefacts_Discovery.txt";
+			var name = "RAW_Artefacts_Compendium.txt";
 			var fileName = Path.Combine(directory, name);
 			var fileNameXml = fileName + "_xml.xml";
-			var deviceParser = new DevicesParser("Discovery", DeviceType.Artefact);
+			var deviceParser = new DevicesParser("Compendium", DeviceType.Artefact);
 			deviceParser.CreateXMLFromRawArtefactsText(fileName, fileNameXml);
 			var cyphers = NumeneraXML.DeserializeArtefactsListFromXML(fileNameXml);
 			cyphers.ForEach(x => Console.WriteLine(x));
 		}
 
 		public static void ParseCyphersToXML()
-        {
+		{
 			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\";
 			var name = "RAW_Cyphers_Discovery.txt";
 			var fileName = Path.Combine(directory, name);
@@ -55,12 +71,12 @@ namespace NumeneraMate.Apps.ConsoleApp
 		}
 
 		public static void CombineAllCyphers()
-        {
+		{
 			// combine them all
 			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\NumeneraDevicesXML\Cyphers_";
 			var files = new List<string>() { "Discovery.xml", "Destiny.xml", "Compendium.xml" };
 
-			var allCyphers = new NumeneraCyphers() { Cyphers = new List<Cypher>() };
+			var allCyphers = new NumeneraDevices() { Cyphers = new List<Cypher>() };
 			foreach (var file in files)
 			{
 				var filename = directory + file;
@@ -71,67 +87,23 @@ namespace NumeneraMate.Apps.ConsoleApp
 			//DevicesParser.SerializeCyphersToXml(allCyphers.Cyphers, directory + $"_All_{allCyphers.Cyphers.Count}.xml");
 		}
 
-		private static void GenerateDevices()
-        {
-			var dir = @"E:\Documents\Tabletop RPGs\Numenera\APPs\XMLFilesFinal\";
-
-			var cyphersFilenames = new List<string>() { "Cyphers_Discovery", "Cyphers_Destiny", "Cyphers_Compendium" };
-			var artefactsFilenames = new List<string> { "Artefacts_Discovery", "Artefacts_Destiny", "Artefacts_Compendium" };
-			var odditiesFilenames = new List<string> { "Oddities_Discovery", "Oddities_Compendium" };
-
-			var cyphersList = new List<Cypher>();
-			foreach (var cyphersFile in cyphersFilenames)
-			{
-				var repo = new XMLRepo(dir + cyphersFile + ".xml");
-				var currentCyphersList = repo.DeserializeXmlFile().Cyphers;
-				cyphersList.AddRange(currentCyphersList);
-				Console.WriteLine($"{cyphersFile} cyphers loaded: {currentCyphersList.Count}");
-				//cyphersList.ForEach(x => System.Console.WriteLine(x.ToString()));
-			}
-            Console.WriteLine($"Total cyphers count: {cyphersList.Count}");
-
-			//ViewUniqueAttributes(dir + fileName, "Oddity");
-			//var cyphersList = repo.LoadItems();
-			//var cyphersList = repo.DeserializeXmlToList();
-			ConsoleKeyInfo c = new ConsoleKeyInfo();
-            while (c.Key != ConsoleKey.Escape)
-            {
-				Console.WriteLine("Press G to generate or ESC to exit");
-				c = Console.ReadKey();
-                if (c.KeyChar == 'g')
-                {
-                    //Console.WriteLine($"Generate from {cyphersList.Count}!");
-                    //var rand = new Random((int)DateTime.UtcNow.Ticks);
-                    var rand = new Random(Guid.NewGuid().GetHashCode());
-                    var rndInt = rand.Next(cyphersList.Count);
-                    Console.WriteLine($"1d6 = {rand.Next(1, 6)}");
-                    Console.WriteLine(cyphersList[rndInt].ToString());
-                }
-				//c = Console.ReadKey();
-            }
-        }
-
-		/// <summary>
-		/// View all unique attributes to create specific class
-		/// </summary>
-		/// <param name="xmlFile"></param>
-		/// <param name="element"></param>
-		private static void ViewUniqueAttributes(string xmlFile, string element)
+		public static void CombineAllArtefacts()
 		{
-			XDocument doc = XDocument.Load(xmlFile);
-			var uniqueElements = new List<string>();
-			foreach(var elem in doc.Elements().First().Elements(element))
+			// combine them all
+			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\NumeneraDevicesXML\Artefacts_";
+			var files = new List<string>() { "Discovery.xml", "Destiny.xml", "Compendium.xml" };
+
+			var allCyphers = new NumeneraDevices() { Artefacts = new List<Artefact>() };
+			foreach (var file in files)
 			{
-				// elements() returns direct children
-				// descendants() recurses
-				foreach(var attr in elem.Elements())
-				{
-					var name = attr.Name.ToString();
-					if (!uniqueElements.Contains(name))
-						uniqueElements.Add(name);
-				}
+				var filename = directory + file;
+				var artefacts = NumeneraXML.DeserializeArtefactsListFromXML(filename);
+				allCyphers.Artefacts.AddRange(artefacts);
 			}
-			uniqueElements.ForEach(x => System.Console.WriteLine(x + " "));
+
+			NumeneraXML.SerializeToXml(allCyphers.Artefacts, directory + $"All_{allCyphers.Artefacts.Count}.xml");
 		}
+
+		#endregion TestMethods
 	}
 }

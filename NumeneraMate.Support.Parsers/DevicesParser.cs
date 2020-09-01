@@ -42,13 +42,7 @@ namespace NumeneraMate.Support.Parsers
         /// <param name="xmlFileName">created xml file</param>
         public void CreateXMLFromRawCyphersText(string fileName, string xmlFileName)
         {
-            var linesArray = File.ReadAllLines(fileName);
-            var textLines = linesArray.Where(x => !string.IsNullOrEmpty(x)).ToList();
-            textLines = TextFromPdfWordsFixer.ClearText(textLines);
-
-            var keywordsLines = RemoveMoreThanOneKeyWordOccurrences(textLines);
-            
-            List<Dictionary<string, string>> devicesAsDictionariesList = GetDevicesDictionaries(textLines);
+            var devicesAsDictionariesList = ParseFileToDeviceDictionaries(fileName);
 
             List<Cypher> cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
 
@@ -58,19 +52,23 @@ namespace NumeneraMate.Support.Parsers
 
         public void CreateXMLFromRawArtefactsText(string fileName, string xmlFileName)
         {
-            var linesArray = File.ReadAllLines(fileName);
-            var textLines = linesArray.Where(x => !string.IsNullOrEmpty(x)).ToList();
-            textLines = TextFromPdfWordsFixer.ClearText(textLines);
-
-            var keywordsLines = RemoveMoreThanOneKeyWordOccurrences(textLines);
-
-            List<Dictionary<string, string>> devicesAsDictionariesList = GetDevicesDictionaries(textLines);
+            var devicesAsDictionariesList = ParseFileToDeviceDictionaries(fileName);
 
             List<Artefact> artefactsList = GetArtefactsListFromDictionaries(devicesAsDictionariesList);
 
             NumeneraXML.SerializeToXml(artefactsList, xmlFileName);
         }
 
+        public List<Dictionary<string, string>> ParseFileToDeviceDictionaries(string fileName)
+        {
+            var linesArray = File.ReadAllLines(fileName);
+            var textLines = linesArray.Where(x => !string.IsNullOrEmpty(x)).ToList();
+            textLines = TextFromPdfWordsFixer.ClearText(textLines);
+
+            var keywordsLines = RemoveMoreThanOneKeyWordOccurrences(textLines);
+
+            return GetDevicesDictionaries(textLines);
+        }
 
         private List<Cypher> GetCyphersListFromDictionaries(List<Dictionary<string, string>> devicesAsDictionariesList)
         {
@@ -227,8 +225,6 @@ namespace NumeneraMate.Support.Parsers
 
                 if (currentKeyword == tableKeyword)
                 {
-                    if (curObj["Name:"] == "Fearmaker")
-                        Console.WriteLine();
                     curObj.Add(currentKeyword, "");
                     j = BuildTable(lines, j, out var tableLine);
                     curObj[currentKeyword] = tableLine;
@@ -289,11 +285,11 @@ namespace NumeneraMate.Support.Parsers
             // start build table from the next string after Table keyword
             for (int k = index + 1; k < lines.Length; k++)
             {
-                if (string.IsNullOrEmpty(lines[k])) 
+                if (string.IsNullOrEmpty(lines[k]))
                     continue;
                 if (KeywordsList.Any(s => lines[k].StartsWith(s)))
                     return k - 1;
-                
+
                 // if next line is not the end
                 if (k + 1 < lines.Length)
                 {
@@ -304,7 +300,7 @@ namespace NumeneraMate.Support.Parsers
                         tableLine += "#" + lines[k];
                         return k;
                     }
-                    
+
                     // for the case if this lines contains line for last roll result
                     if (k + 2 < lines.Length && lines[k + 2].StartsWith(KeywordsList.First()))
                     {

@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace NumeneraMate.Support.Parsers
@@ -37,16 +39,16 @@ namespace NumeneraMate.Support.Parsers
         public static void SerializeToXml(List<Cypher> cyphersList, string fileName)
         {
             var xmlDevices = new NumeneraDevices() { Cyphers = cyphersList };
-            SerializeToXML(xmlDevices, fileName);
+            SerializeToXml(xmlDevices, fileName);
         }
 
         public static void SerializeToXml(List<Artefact> aratefactsList, string fileName)
         {
             var xmlDevices = new NumeneraDevices() { Artefacts = aratefactsList };
-            SerializeToXML(xmlDevices, fileName);
+            SerializeToXml(xmlDevices, fileName);
         }
 
-        public static void SerializeToXML(NumeneraDevices xmlDevices, string fileName)
+        public static void SerializeToXml(NumeneraDevices xmlDevices, string fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraDevices));
             using (FileStream writer = new FileStream(fileName, FileMode.Create))
@@ -54,6 +56,29 @@ namespace NumeneraMate.Support.Parsers
             {
                 ser.Serialize(writer, xmlDevices);
             }
+        }
+
+        /// <summary>
+        /// View all unique attributes to create specific class
+        /// </summary>
+        /// <param name="xmlFile"></param>
+        /// <param name="elementName"></param>
+        private static void ViewUniqueAttributes(string xmlFile, string elementName)
+        {
+            XDocument doc = XDocument.Load(xmlFile);
+            var uniqueElements = new List<string>();
+            foreach (var elem in doc.Elements().First().Elements(elementName))
+            {
+                // elements() returns direct children
+                // descendants() recurses
+                foreach (var attr in elem.Elements())
+                {
+                    var name = attr.Name.ToString();
+                    if (!uniqueElements.Contains(name))
+                        uniqueElements.Add(name);
+                }
+            }
+            uniqueElements.ForEach(x => System.Console.WriteLine(x + " "));
         }
     }
 }
