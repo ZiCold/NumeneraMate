@@ -36,10 +36,10 @@ namespace NumeneraMate.Libs.Devices
 			return cyphersList;
 		}
 
-		public CyphersList DeserializeXmlFile()
+		public NumeneraCyphers DeserializeXmlFile()
 		{
 			var cyphersXml = File.ReadAllText(_xmlFileName);
-			var cyphersList = DeserializeObject<CyphersList>(cyphersXml);
+			var cyphersList = DeserializeObject<NumeneraCyphers>(cyphersXml);
 			return cyphersList;
 		}
 

@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace NumeneraMate.Support.Parsers
 {
@@ -16,14 +17,12 @@ namespace NumeneraMate.Support.Parsers
     /// </summary>
     public class DevicesParser
     {
-        public string FileName { get; set; }
         public string Source { get; set; }
         public List<string> KeywordsList { get; set; }
         public string NameKeyword { get; set; } = "Name:";
 
-        public DevicesParser(string fileName, string sourceBook, DeviceType numeneraDeviceType)
+        public DevicesParser(string sourceBook, DeviceType numeneraDeviceType)
         {
-            FileName = fileName;
             Source = sourceBook;
             switch (numeneraDeviceType)
             {
@@ -36,35 +35,40 @@ namespace NumeneraMate.Support.Parsers
             }
         }
 
-        public void Run()
+        public void CreateXMLFromRawCyphersText(string fileName, string xmlFileName)
         {
-            var linesArray = File.ReadAllLines(FileName);
+            var linesArray = File.ReadAllLines(fileName);
             var textLines = linesArray.Where(x => !string.IsNullOrEmpty(x)).ToList();
             textLines = TextFromPdfWordsFixer.ClearText(textLines);
 
-            // if in a single line more then one keyword
-            var keywordsLines = RemoveMoreThanOneKeyWordoccurrences(textLines);
-
-            // Get List of cyphers dictionary List<Dictionary<keyword, string>>
-            // cause next we can create XML, CSV, Excel table or return specific objects
+            var keywordsLines = RemoveMoreThanOneKeyWordOccurrences(textLines);
+            
             List<Dictionary<string, string>> devicesAsDictionariesList = GetDevicesDictionaries(textLines);
 
+            List<Cypher> cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
 
+            SerializeCyphersToXml(cyphersList, xmlFileName);
+        }
 
-            foreach (var device in devicesAsDictionariesList)
+        public List<Cypher> GetCyphersListFromXML(string fileName)
+        {
+            XmlSerializer ser = new XmlSerializer(typeof(NumeneraCyphers));
+            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
-                foreach (var key in device.Keys)
-                {
-                    Console.WriteLine(key + " " + device[key]);
-                }
-                Console.WriteLine();
+                var xmlWrapper = (NumeneraCyphers)ser.Deserialize(fs);
+                return xmlWrapper.Cyphers.ToList();
             }
+        }
 
-            var cyphersList = new List<Cypher>();
-            cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
-
-            cyphersList.ForEach(x => Console.WriteLine(x));
-
+        public void SerializeCyphersToXml(List<Cypher> cyphersList, string fileName)
+        {
+            var xmlDevices = new NumeneraCyphers() { Cyphers = cyphersList };
+            XmlSerializer ser = new XmlSerializer(typeof(NumeneraCyphers));
+            // using (FileStream fs = new FileStream(FileName + "_Output.xml", FileMode.Create))
+            using (TextWriter writer = new StreamWriter(fileName))
+            {
+                ser.Serialize(writer, xmlDevices);
+            }
         }
 
         private List<Cypher> GetCyphersListFromDictionaries(List<Dictionary<string, string>> devicesAsDictionariesList)
@@ -124,6 +128,7 @@ namespace NumeneraMate.Support.Parsers
 
         /// <summary>
         /// Create list of Numenera Devices as List of Dictionaries
+        /// Dictionaries are chosen cause next we can create XML, CSV, Excel table or return specific objects
         /// </summary>
         /// <param name="textLines"></param>
         /// <returns></returns>
@@ -254,7 +259,7 @@ namespace NumeneraMate.Support.Parsers
         /// </summary>
         /// <param name="itemsLines"></param>
         /// <returns></returns>
-        public List<string> RemoveMoreThanOneKeyWordoccurrences(List<string> itemsLines)
+        public List<string> RemoveMoreThanOneKeyWordOccurrences(List<string> itemsLines)
         {
             var result = new List<string>();
             foreach (var line in itemsLines)

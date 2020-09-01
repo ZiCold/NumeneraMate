@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace NumeneraMate.Libs.Devices
 {
-    [Serializable, XmlRoot("Cyphers")]
-    public class CyphersList
+    public class NumeneraCyphers
     {
         [XmlElement("Cypher")]
         public List<Cypher> Cyphers { get; set; }
@@ -15,6 +12,6 @@ namespace NumeneraMate.Libs.Devices
         public string Source { get; set; }
 
         [XmlAttribute("quantity")]
-        public string Quantity { get; set; }
+        public int Quantity { get => Cyphers.Count; }
     }
 }

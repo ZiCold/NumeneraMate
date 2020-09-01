@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace NumeneraMate.Libs.Devices
 {
-    //[Serializable, XmlRoot("Cypher")]
+    [Serializable, XmlRoot("Cypher")]
     public class Cypher
     {
         private int minimumCraftingLevel;
@@ -25,18 +25,14 @@ namespace NumeneraMate.Libs.Devices
             set => minimumCraftingLevel = value;
         }
 
-        // sum property
-        //public string Appearance { get; set; }
         public string Wearable { get; set; }
         public string Usable { get; set; }
         public string Internal { get; set; }
 
         public string Effect { get; set; }
 
-        // need to be structure
-        //[XmlArrayItem("Row")]
-        //public RollTableRow[] RollTable { get; set; }
         public RollTable RollTable { get; set; }
+        [XmlIgnore]
         public string TableAsString { get; set; }
 
         public string Source { get; set; }
@@ -54,24 +50,4 @@ namespace NumeneraMate.Libs.Devices
         }
     }
 
-    [XmlRoot("RollTable")]
-    public class RollTable
-    {
-        [XmlElement("Row")]
-        public List<RollTableRow> RollTableRows { get; set; }
-
-        public override string ToString()
-        {
-            var result = "";
-            foreach (var r in RollTableRows)
-                result += $"\n{r.Roll}: {r.Result}";
-            return result;
-        }
-    }
-
-    public class RollTableRow
-    {
-        public string Roll { get; set; }
-        public string Result { get; set; }
-    }
 }

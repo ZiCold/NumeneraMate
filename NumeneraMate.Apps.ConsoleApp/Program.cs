@@ -13,12 +13,16 @@ namespace NumeneraMate.Apps.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			var deviceParser = new DevicesParser(@"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\TEST_Cyphers.txt", "Test", DeviceType.Cypher);
-			deviceParser.Run();
-            //HTMLTableFromXLSXCreator.Transform();
-            //GenerateDevices();
-            
-			
+			var fileName = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\TEST_Cyphers.txt";
+			var fileNameXml = fileName + "_.xml";
+			var deviceParser = new DevicesParser("Test", DeviceType.Cypher);
+			deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
+			var cyphers = deviceParser.GetCyphersListFromXML(fileNameXml);
+			cyphers.ForEach(x => Console.WriteLine(x));
+			//HTMLTableFromXLSXCreator.Transform();
+			//GenerateDevices();
+
+
 			Console.WriteLine();
             Console.WriteLine("Press anykey man");
             Console.ReadLine();
