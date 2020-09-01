@@ -63,6 +63,37 @@ namespace NumeneraMate.Support.Parsers
             NumeneraXML.SerializeToXml(artefactsList, xmlFileName);
         }
 
+        public void CreateXMLFromRawOddities(string fileName, string xmlFileName)
+        {
+            var lines = File.ReadAllLines(fileName);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i] == "") continue;
+                var currentLine = lines[i];
+                int j = 0;
+                if (char.IsDigit(currentLine[0]))
+                {
+                    if (currentLine == "21. A 1-foot (0.3 m) length of silver cord with both ends neatly cut")
+                        Console.WriteLine();
+                    for (; j < currentLine.Length; j++)
+                    {
+                        if (!char.IsDigit(currentLine[j]) && !char.IsWhiteSpace(currentLine[j]) && currentLine[j] != '.') 
+                            break;
+                    }
+                }
+                lines [i] = currentLine.Substring(j);
+            }
+
+            var oddities = new List<Oddity>();
+            foreach (var line in lines)
+            {
+                oddities.Add(new Oddity() { Description = line, Source = Source });
+            }
+            oddities.ForEach(x => Console.WriteLine(x.Description));
+
+            NumeneraXML.SerializeToXml(oddities, xmlFileName);
+        }
+
         /// <summary>
         /// Shared method for NumeneraDevices
         /// </summary>

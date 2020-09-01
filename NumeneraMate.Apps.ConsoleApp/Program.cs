@@ -17,7 +17,8 @@ namespace NumeneraMate.Apps.ConsoleApp
 		static void Main(string[] args)
 		{
 			//HTMLTableFromXLSXCreator.Transform();
-			GenerateDevices();
+			//GenerateDevices();
+			ParseOddities();
 
 			Console.WriteLine();
             Console.WriteLine("Press anykey man");
@@ -46,6 +47,20 @@ namespace NumeneraMate.Apps.ConsoleApp
 
 		#region TestMethods
 
+		
+
+		public static void ParseCyphersToXML()
+		{
+			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\";
+			var name = "RAW_Cyphers_Discovery.txt";
+			var fileName = Path.Combine(directory, name);
+			var fileNameXml = fileName + "_xml.xml";
+			var deviceParser = new DevicesParser("Discovery", DeviceType.Cypher);
+			deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
+			var cyphers = NumeneraXML.DeserializeCyphersListFromXML(fileNameXml);
+			cyphers.ForEach(x => Console.WriteLine(x));
+		}
+
 		public static void ParseArtefactsToXML()
 		{
 			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Artefacts\";
@@ -58,16 +73,15 @@ namespace NumeneraMate.Apps.ConsoleApp
 			cyphers.ForEach(x => Console.WriteLine(x));
 		}
 
-		public static void ParseCyphersToXML()
-		{
-			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\";
-			var name = "RAW_Cyphers_Discovery.txt";
+		public static void ParseOddities()
+        {
+			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Oddities\";
+			var name = "RAW_Oddities_Compendium.txt";
 			var fileName = Path.Combine(directory, name);
 			var fileNameXml = fileName + "_xml.xml";
-			var deviceParser = new DevicesParser("Discovery", DeviceType.Cypher);
-			deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
-			var cyphers = NumeneraXML.DeserializeCyphersListFromXML(fileNameXml);
-			cyphers.ForEach(x => Console.WriteLine(x));
+			var deviceParser = new DevicesParser("Compendium", DeviceType.Oddity);
+			deviceParser.CreateXMLFromRawOddities(fileName, fileNameXml);
+
 		}
 
 		public static void CombineAllCyphers()

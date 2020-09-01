@@ -48,6 +48,12 @@ namespace NumeneraMate.Support.Parsers
             SerializeToXml(xmlDevices, fileName);
         }
 
+        public static void SerializeToXml(List<Oddity> odditiesList, string fileName)
+        {
+            var xmlDevices = new NumeneraDevices() { Oddities = odditiesList };
+            SerializeToXml(xmlDevices, fileName);
+        }
+
         public static void SerializeToXml(NumeneraDevices xmlDevices, string fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraDevices));

@@ -12,5 +12,8 @@ namespace NumeneraMate.Libs.Devices
         public List<Cypher> Cyphers { get; set; }
         [XmlElement("Artefact")]
         public List<Artefact> Artefacts { get; set; }
+
+        [XmlElement("Oddity")]
+        public List<Oddity> Oddities { get; set; }
     }
 }
