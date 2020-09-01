@@ -1,11 +1,14 @@
-﻿using NumeneraMate.Libs.Devices;
+﻿using NPOI.SS.Formula.Functions;
+using NumeneraMate.Libs.Devices;
 using NumeneraMate.Support.Parsers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace NumeneraMate.Apps.ConsoleApp
 {
@@ -13,12 +16,9 @@ namespace NumeneraMate.Apps.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			var fileName = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\TEST_Cyphers.txt";
-			var fileNameXml = fileName + "_.xml";
-			var deviceParser = new DevicesParser("Test", DeviceType.Cypher);
-			deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
-			var cyphers = deviceParser.GetCyphersListFromXML(fileNameXml);
-			cyphers.ForEach(x => Console.WriteLine(x));
+			//ParseCyphersToXML();
+			CombineAllCyphers();
+
 			//HTMLTableFromXLSXCreator.Transform();
 			//GenerateDevices();
 
@@ -28,7 +28,36 @@ namespace NumeneraMate.Apps.ConsoleApp
             Console.ReadLine();
 		}
 
-        private static void GenerateDevices()
+		public static void ParseCyphersToXML()
+        {
+			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\";
+			var name = "RAW_Cyphers_Discovery.txt";
+			var fileName = Path.Combine(directory, name);
+			var fileNameXml = fileName + "_xml.xml";
+			var deviceParser = new DevicesParser("Discovery", DeviceType.Cypher);
+			deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
+			var cyphers = DevicesParser.DeserializeCyphersListFromXML(fileNameXml);
+			cyphers.ForEach(x => Console.WriteLine(x));
+		}
+
+		public static void CombineAllCyphers()
+        {
+			// combine them all
+			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\NumeneraDevicesXML\Cyphers_";
+			var files = new List<string>() { "Discovery.xml", "Destiny.xml", "Compendium.xml" };
+
+			var allCyphers = new NumeneraCyphers() { Cyphers = new List<Cypher>() };
+			foreach (var file in files)
+			{
+				var filename = directory + file;
+				var cyphers = DevicesParser.DeserializeCyphersListFromXML(filename);
+				allCyphers.Cyphers.AddRange(cyphers);
+			}
+
+			DevicesParser.SerializeCyphersToXml(allCyphers.Cyphers, directory + $"_All_{allCyphers.Cyphers.Count}.xml");
+		}
+
+		private static void GenerateDevices()
         {
 			var dir = @"E:\Documents\Tabletop RPGs\Numenera\APPs\XMLFilesFinal\";
 

@@ -168,7 +168,7 @@ namespace NumeneraMate.Support.Parsers
         private int BuildCurrentDevice(string[] lines, int currentIndex, out Dictionary<string, string> curObj)
         {
             curObj = new Dictionary<string, string>();
-            curObj.Add(NameKeyword, lines[currentIndex]);
+            curObj.Add(NameKeyword, UppercaseFirstLetters(lines[currentIndex]));
 
             // read current object body starting from the next string
             var currentKeyword = "";
@@ -224,6 +224,33 @@ namespace NumeneraMate.Support.Parsers
             return j;
         }
 
+        public string UppercaseFirstLetters(string input)
+        {
+            char[] array = input.ToLower().ToCharArray();
+            // Handle the first letter in the string.
+            if (array.Length >= 1)
+            {
+                if (char.IsLower(array[0]))
+                {
+                    array[0] = char.ToUpper(array[0]);
+                }
+            }
+
+            // Scan through the letters, checking for spaces.
+            // ... Uppercase the lowercase letters following spaces.
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i - 1] == ' ')
+                {
+                    if (char.IsLower(array[i]))
+                    {
+                        array[i] = char.ToUpper(array[i]);
+                    }
+                }
+            }
+            return new string(array);
+        }
+
         /// <summary>
 		/// Helper: Builds table with rows delimited by symbol #
 		/// </summary>
@@ -257,7 +284,10 @@ namespace NumeneraMate.Support.Parsers
                     // for the case if this lines contains line for last roll result
                     if (k + 2 < lines.Length && KeywordsList.Any(s => lines[k + 2].Contains(s)))
                     {
-                        tableLine += " " + lines[k];
+                        if (char.IsDigit(lines[k][0]))
+                            tableLine += "#" + lines[k];
+                        else
+                            tableLine += " " + lines[k];
                         return k;
                     }
                 }
