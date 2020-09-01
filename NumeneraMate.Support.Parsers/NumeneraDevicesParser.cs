@@ -76,7 +76,7 @@ namespace NumeneraMate.Support.Parsers
                 resultList.Add(currentDevice);
                 currentDevice.Clear();
             }
-            return resultList();
+            return resultList;
         }
 
         private int BuildCurrentDevice(ref string[] linesArray, int i, Dictionary<string, string> currentDevice)
