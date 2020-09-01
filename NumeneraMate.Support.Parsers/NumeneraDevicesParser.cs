@@ -17,12 +17,14 @@ namespace NumeneraMate.Support.Parsers
         public List<string> KeywordsList { get; set; }
         
         // Input - fileName, source, keywords
+        // TODO: add enum for devices and default keywords?
         public NumeneraDevicesParser(string fileName, string sourceBook, List<string> keywordsList)
         {
             FileName = fileName;
             Source = sourceBook;
             KeywordsList = keywordsList;
         }
+
 
 
         public void TestArtefacts()

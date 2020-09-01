@@ -1,0 +1,6 @@
+Level:
+Internal:
+Wearable:
+Usable:
+Effect:
+#Table:
