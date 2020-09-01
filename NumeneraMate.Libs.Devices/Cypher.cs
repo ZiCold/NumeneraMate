@@ -4,7 +4,6 @@ using System.Xml.Serialization;
 
 namespace NumeneraMate.Libs.Devices
 {
-    [Serializable, XmlRoot("Cypher")]
     public class Cypher : NumeneraDevice
     {
         public string Wearable { get; set; }
