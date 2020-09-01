@@ -16,8 +16,8 @@ namespace NumeneraMate.Apps.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			//ParseCyphersToXML();
-			CombineAllCyphers();
+			ParseCyphersToXML();
+			//CombineAllCyphers();
 
 			//HTMLTableFromXLSXCreator.Transform();
 			//GenerateDevices();
@@ -36,7 +36,7 @@ namespace NumeneraMate.Apps.ConsoleApp
 			var fileNameXml = fileName + "_xml.xml";
 			var deviceParser = new DevicesParser("Discovery", DeviceType.Cypher);
 			deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
-			var cyphers = DevicesParser.DeserializeCyphersListFromXML(fileNameXml);
+			var cyphers = NumeneraXML.DeserializeCyphersListFromXML(fileNameXml);
 			cyphers.ForEach(x => Console.WriteLine(x));
 		}
 
@@ -50,11 +50,11 @@ namespace NumeneraMate.Apps.ConsoleApp
 			foreach (var file in files)
 			{
 				var filename = directory + file;
-				var cyphers = DevicesParser.DeserializeCyphersListFromXML(filename);
+				var cyphers = NumeneraXML.DeserializeCyphersListFromXML(filename);
 				allCyphers.Cyphers.AddRange(cyphers);
 			}
 
-			DevicesParser.SerializeCyphersToXml(allCyphers.Cyphers, directory + $"_All_{allCyphers.Cyphers.Count}.xml");
+			//DevicesParser.SerializeCyphersToXml(allCyphers.Cyphers, directory + $"_All_{allCyphers.Cyphers.Count}.xml");
 		}
 
 		private static void GenerateDevices()

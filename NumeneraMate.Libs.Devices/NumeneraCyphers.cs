@@ -14,4 +14,12 @@ namespace NumeneraMate.Libs.Devices
         [XmlAttribute("quantity")]
         public int Quantity { get => Cyphers.Count; }
     }
+
+    public class NumeneraDevices
+    {
+        [XmlElement("Cypher")]
+        public List<Cypher> Cyphers { get; set; }
+        [XmlElement("Artefact")]
+        public List<Artefact> Artefacts { get; set; }
+    }
 }

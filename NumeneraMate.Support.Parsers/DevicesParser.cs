@@ -52,34 +52,8 @@ namespace NumeneraMate.Support.Parsers
 
             List<Cypher> cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
 
-            SerializeCyphersToXml(cyphersList, xmlFileName);
-        }
-
-        /// <summary>
-        /// Helper: Get cyphers list from generated XML
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public static List<Cypher> DeserializeCyphersListFromXML(string fileName)
-        {
-            XmlSerializer ser = new XmlSerializer(typeof(NumeneraCyphers));
-            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                var xmlWrapper = (NumeneraCyphers)ser.Deserialize(fs);
-                return xmlWrapper.Cyphers.ToList();
-            }
-        }
-
-        public static void SerializeCyphersToXml(List<Cypher> cyphersList, string fileName)
-        {
-            var xmlDevices = new NumeneraCyphers() { Cyphers = cyphersList };
-            XmlSerializer ser = new XmlSerializer(typeof(NumeneraCyphers));
-            using (FileStream writer = new FileStream(fileName, FileMode.Create))
-            //using (TextWriter writer = new StreamWriter(fileName))
-            {
-                ser.Serialize(writer, xmlDevices);
-            }
-        }
+            NumeneraXML.SerializeToXml(cyphersList, xmlFileName);
+        }       
 
         private List<Cypher> GetCyphersListFromDictionaries(List<Dictionary<string, string>> devicesAsDictionariesList)
         {
