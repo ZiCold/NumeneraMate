@@ -36,7 +36,7 @@ namespace NumeneraMate.Support.Parsers
         }
 
         /// <summary>
-        /// Main method
+        /// Cyphers -> XML
         /// </summary>
         /// <param name="fileName">file with raw text from PDF</param>
         /// <param name="xmlFileName">created xml file</param>
@@ -49,7 +49,11 @@ namespace NumeneraMate.Support.Parsers
             NumeneraXML.SerializeToXml(cyphersList, xmlFileName);
         }
 
-
+        /// <summary>
+        /// Artefact -> XML
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="xmlFileName"></param>
         public void CreateXMLFromRawArtefactsText(string fileName, string xmlFileName)
         {
             var devicesAsDictionariesList = ParseFileToDeviceDictionaries(fileName);
@@ -59,6 +63,11 @@ namespace NumeneraMate.Support.Parsers
             NumeneraXML.SerializeToXml(artefactsList, xmlFileName);
         }
 
+        /// <summary>
+        /// Shared method for NumeneraDevices
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public List<Dictionary<string, string>> ParseFileToDeviceDictionaries(string fileName)
         {
             var linesArray = File.ReadAllLines(fileName);
