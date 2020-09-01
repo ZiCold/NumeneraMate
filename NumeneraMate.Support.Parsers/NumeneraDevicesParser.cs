@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,17 @@ namespace NumeneraMate.Support.Parsers
     /// </summary>
     public class NumeneraDevicesParser
     {
-
+        public string FileName { get; set; }
+        public string Source { get; set; }
+        public List<string> KeywordsList { get; set; }
+        
+        // Input - fileName, source, keywords
+        public NumeneraDevicesParser(string fileName, string sourceBook, List<string> keywordsList)
+        {
+            FileName = fileName;
+            Source = sourceBook;
+            KeywordsList = keywordsList;
+        }
 
 
         public void TestArtefacts()
