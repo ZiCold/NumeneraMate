@@ -60,7 +60,7 @@ namespace NumeneraMate.Support.Parsers
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public List<Cypher> GetCyphersListFromXML(string fileName)
+        public static List<Cypher> DeserializeCyphersListFromXML(string fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraCyphers));
             using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
@@ -70,7 +70,7 @@ namespace NumeneraMate.Support.Parsers
             }
         }
 
-        public void SerializeCyphersToXml(List<Cypher> cyphersList, string fileName)
+        public static void SerializeCyphersToXml(List<Cypher> cyphersList, string fileName)
         {
             var xmlDevices = new NumeneraCyphers() { Cyphers = cyphersList };
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraCyphers));
@@ -238,7 +238,11 @@ namespace NumeneraMate.Support.Parsers
             // start build table from the next string after Table keyword
             for (int k = index + 1; k < lines.Length; k++)
             {
-                if (string.IsNullOrEmpty(lines[k])) continue;
+                if (string.IsNullOrEmpty(lines[k])) 
+                    continue;
+                if (KeywordsList.Any(s => lines[k].StartsWith(s)))
+                    return k - 1;
+                
                 // if next line is not the end
                 if (k + 1 < lines.Length)
                 {
@@ -249,8 +253,13 @@ namespace NumeneraMate.Support.Parsers
                         tableLine += "#" + lines[k];
                         return k;
                     }
-                    if (KeywordsList.Any(s => lines[k].Contains(s)))
-                        return k - 1;
+                    
+                    // for the case if this lines contains line for last roll result
+                    if (k + 2 < lines.Length && KeywordsList.Any(s => lines[k + 2].Contains(s)))
+                    {
+                        tableLine += " " + lines[k];
+                        return k;
+                    }
                 }
                 else
                 {
@@ -258,8 +267,10 @@ namespace NumeneraMate.Support.Parsers
                     tableLine += "#" + lines[k];
                     return k;
                 }
-
-                tableLine += "#" + lines[k];
+                if (char.IsDigit(lines[k][0]))
+                    tableLine += "#" + lines[k];
+                else
+                    tableLine += " " + lines[k];
             }
             return -1;
         }
