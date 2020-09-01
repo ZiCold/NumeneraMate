@@ -25,7 +25,20 @@ namespace NumeneraMate.Support.Parsers
             KeywordsList = keywordsList;
         }
 
-
+        public NumeneraDevicesParser(string fileName, string sourceBook, DeviceType numeneraDeviceType)
+        {
+            FileName = fileName;
+            Source = sourceBook;
+            switch (numeneraDeviceType)
+            {
+                case DeviceType.Cypher:
+                    KeywordsList = new List<string>() { "Level:", "Internal:", "Wearable:", "Usable:", "Effect:", "#Table:" }; break;
+                case DeviceType.Artefact:
+                    KeywordsList = new List<string>() { "Level:", "Form:", "Effect:", "#Table:", "Depletion:" }; break;
+                case DeviceType.Oddity:
+                    KeywordsList = new List<string>(); break;
+            }
+        }
 
         public void TestArtefacts()
         {
