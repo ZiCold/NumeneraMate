@@ -17,7 +17,8 @@ namespace NumeneraMate.Support.Parsers
         public string FileName { get; set; }
         public string Source { get; set; }
         public List<string> KeywordsList { get; set; }
-        
+        public string NameKeyword { get; set; } = "Name:";
+
         // Input - fileName, source, keywords
         // TODO: maybe add enum for devices and default keywords?
         public NumeneraDevicesParser(string fileName, string sourceBook, List<string> keywordsList)
@@ -45,9 +46,7 @@ namespace NumeneraMate.Support.Parsers
         public void Run()
         {
             var linesArray = File.ReadAllLines(FileName);
-            var textLines = new List<string>();
-            foreach (var line in linesArray)
-                if (!string.IsNullOrEmpty(line)) textLines.Add(line);
+            var textLines = linesArray.Where(x => !string.IsNullOrEmpty(x)).ToList();
             textLines = TextFromPdfWordsFixer.ClearText(textLines);
 
             // if in a single line more then one keyword - unnessecary step
@@ -65,6 +64,22 @@ namespace NumeneraMate.Support.Parsers
         }
 
         private List<Dictionary<string, string>> GetDevicesDictionaries(List<string> textLines)
+        {
+            var resultList = new List<Dictionary<string, string>>();
+            var currentDevice = new Dictionary<string, string>();
+            var linesArray = textLines.ToArray();
+            for (int i = 0; i < linesArray.Length; i++)
+            {
+                currentDevice.Add(NameKeyword, linesArray[i]);
+                i = BuildCurrentDevice(ref linesArray, i, currentDevice);
+
+                resultList.Add(currentDevice);
+                currentDevice.Clear();
+            }
+            return resultList();
+        }
+
+        private int BuildCurrentDevice(ref string[] linesArray, int i, Dictionary<string, string> currentDevice)
         {
             throw new NotImplementedException();
         }
