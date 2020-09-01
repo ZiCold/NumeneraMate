@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 namespace NumeneraMate.Support.Parsers
 {
     /// <summary>
-    /// Creates xml/csv from from PDF extracted text
+    /// Creates xml from from PDF extracted text
     /// Some text can highlighted as Table with keyword #Table (rolls for example)
     /// </summary>
     public class DevicesParser
@@ -35,6 +35,11 @@ namespace NumeneraMate.Support.Parsers
             }
         }
 
+        /// <summary>
+        /// Main method
+        /// </summary>
+        /// <param name="fileName">file with raw text from PDF</param>
+        /// <param name="xmlFileName">created xml file</param>
         public void CreateXMLFromRawCyphersText(string fileName, string xmlFileName)
         {
             var linesArray = File.ReadAllLines(fileName);
@@ -50,6 +55,11 @@ namespace NumeneraMate.Support.Parsers
             SerializeCyphersToXml(cyphersList, xmlFileName);
         }
 
+        /// <summary>
+        /// Helper: Get cyphers list from generated XML
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public List<Cypher> GetCyphersListFromXML(string fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraCyphers));
@@ -64,8 +74,8 @@ namespace NumeneraMate.Support.Parsers
         {
             var xmlDevices = new NumeneraCyphers() { Cyphers = cyphersList };
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraCyphers));
-            // using (FileStream fs = new FileStream(FileName + "_Output.xml", FileMode.Create))
-            using (TextWriter writer = new StreamWriter(fileName))
+            using (FileStream writer = new FileStream(fileName, FileMode.Create))
+            //using (TextWriter writer = new StreamWriter(fileName))
             {
                 ser.Serialize(writer, xmlDevices);
             }
