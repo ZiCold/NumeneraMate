@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.ConsoleApp", "NumeneraMate.Apps.ConsoleApp\NumeneraMate.Apps.ConsoleApp.csproj", "{37A602B3-48CA-4681-B0E4-594752FA15C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Libs.Devices", "NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj", "{A296F225-153B-4967-A52C-0526B81CB16F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Libs.Devices", "NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj", "{A296F225-153B-4967-A52C-0526B81CB16F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Support.Parsers", "NumeneraMate.Support.Parsers\NumeneraMate.Support.Parsers.csproj", "{A2286C01-1A2C-4096-90E9-DC798E46E0E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A296F225-153B-4967-A52C-0526B81CB16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A296F225-153B-4967-A52C-0526B81CB16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A296F225-153B-4967-A52C-0526B81CB16F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2286C01-1A2C-4096-90E9-DC798E46E0E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2286C01-1A2C-4096-90E9-DC798E46E0E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2286C01-1A2C-4096-90E9-DC798E46E0E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2286C01-1A2C-4096-90E9-DC798E46E0E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

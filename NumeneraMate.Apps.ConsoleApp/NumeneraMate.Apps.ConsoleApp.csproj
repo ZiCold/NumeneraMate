@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HTMLTableFromXLSXCreator.cs" />
-    <Compile Include="NumeneraDevicesParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +73,10 @@
     <ProjectReference Include="..\NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj">
       <Project>{a296f225-153b-4967-a52c-0526b81cb16f}</Project>
       <Name>NumeneraMate.Libs.Devices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NumeneraMate.Support.Parsers\NumeneraMate.Support.Parsers.csproj">
+      <Project>{a2286c01-1a2c-4096-90e9-dc798e46e0e8}</Project>
+      <Name>NumeneraMate.Support.Parsers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

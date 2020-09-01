@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Keywords_Artefacts.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Keywords_Artefacts.txt" />
+  </ItemGroup>
+
+</Project>

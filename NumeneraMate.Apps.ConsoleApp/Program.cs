@@ -1,4 +1,5 @@
 ﻿using NumeneraMate.Libs.Devices;
+using NumeneraMate.Support.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,21 @@ namespace NumeneraMate.Apps.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
+			var devicesParser = new NumeneraDevicesParser();
+			devicesParser.TestCyphers();
+
+            //HTMLTableFromXLSXCreator.Transform();
+
+            //GenerateDevices();
+            
+			
+			Console.WriteLine();
+            Console.WriteLine("Press anykey man");
+            Console.ReadLine();
+		}
+
+        private static void GenerateDevices()
+        {
 			var dir = @"E:\Documents\Tabletop RPGs\Numenera\APPs\XMLFilesFinal\";
 
 			var cyphersFilenames = new List<string>() { "Cyphers_Discovery", "Cyphers_Destiny", "Cyphers_Compendium" };
@@ -19,36 +35,36 @@ namespace NumeneraMate.Apps.ConsoleApp
 			var odditiesFilenames = new List<string> { "Oddities_Discovery", "Oddities_Compendium" };
 
 			var cyphersList = new List<Cypher>();
-            foreach (var cyphersFile in cyphersFilenames)
-            {
+			foreach (var cyphersFile in cyphersFilenames)
+			{
 				var repo = new XMLRepo(dir + cyphersFile + ".xml");
 				var currentCyphersList = repo.DeserializeXmlFile().Cyphers;
 				cyphersList.AddRange(currentCyphersList);
-                Console.WriteLine($"{cyphersFile} cyphers count: {cyphersList.Count}");
+				Console.WriteLine($"{cyphersFile} cyphers loaded: {currentCyphersList.Count}");
 				//cyphersList.ForEach(x => System.Console.WriteLine(x.ToString()));
-            }
-
+			}
+            Console.WriteLine($"Total cyphers count: {cyphersList.Count}");
 
 			//ViewUniqueAttributes(dir + fileName, "Oddity");
 			//var cyphersList = repo.LoadItems();
 			//var cyphersList = repo.DeserializeXmlToList();
-
-			//Console.WriteLine("Press G to generate or ESC to exit");
-			//var c = Console.ReadKey();
-			//while (c.Key != ConsoleKey.Escape)
-			//{
-			//	if (c.KeyChar == 'g')
-			//	{
-			//		Console.WriteLine($"Generate from {cyphersList.Count}!");
-			//		//var rand = new Random((int)DateTime.UtcNow.Ticks);
-			//		var rand = new Random(Guid.NewGuid().GetHashCode());
-			//		var rndInt = rand.Next(cyphersList.Count);
-			//		Console.WriteLine($"1d6 = {rand.Next(1, 6)}");
-			//		Console.WriteLine(cyphersList[rndInt].ToString());
-			//	}
-			//	c = Console.ReadKey();
-			//}
-		}
+			ConsoleKeyInfo c = new ConsoleKeyInfo();
+            while (c.Key != ConsoleKey.Escape)
+            {
+				Console.WriteLine("Press G to generate or ESC to exit");
+				c = Console.ReadKey();
+                if (c.KeyChar == 'g')
+                {
+                    //Console.WriteLine($"Generate from {cyphersList.Count}!");
+                    //var rand = new Random((int)DateTime.UtcNow.Ticks);
+                    var rand = new Random(Guid.NewGuid().GetHashCode());
+                    var rndInt = rand.Next(cyphersList.Count);
+                    Console.WriteLine($"1d6 = {rand.Next(1, 6)}");
+                    Console.WriteLine(cyphersList[rndInt].ToString());
+                }
+				//c = Console.ReadKey();
+            }
+        }
 
 		/// <summary>
 		/// View all unique attributes to create specific class
