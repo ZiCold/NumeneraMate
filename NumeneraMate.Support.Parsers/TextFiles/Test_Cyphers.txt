@@ -1,0 +1,71 @@
+﻿DETONATION
+Level: 1d6 + 2
+Wearable: Wristband projector (long range)
+
+Effect: Explodes in an immediate radius, 
+Roll for the type of damage:
+Table:
+01–10 Cell-disrupting (harms only flesh)
+11–30 Corrosive
+31–40 Electrical discharge
+41–50 Heat drain (cold)
+51–75 Fire
+76–00 Shrapnel
+Usable: Explosive device (thrown, short range)
+or handheld projector (long range)
+
+DENSITY NODULE
+Level: 1d6
+Usable: Crystal nodule affixed to a melee
+weapon
+Effect: For the next 28 hours, each time the
+weapon the nodule is attached to strikes
+a solid creature or object, the weapon
+suddenly increases dramatically in weight,
+causing the blow to inflict an additional 2
+points of damage (3 points if the cypher is
+level 4 or higher).
+
+SKILL BOOST
+Level: 1d6
+
+Usable: Injector
+Effect: Dramatically but temporarily alters the
+user’s mind and body so that one specific
+physical action they can perform is eased by
+three steps. Once activated, this boost can be
+used a number of times equal to the cypher’s
+level, but only within a 28-hour period. The
+boost takes effect each time the action is
+performed, so a level 3 cypher boosts the
+first three times the action is attempted. The
+action can be one of a number of possibilities:
+Table:
+01–15 Melee attack
+16–30 Ranged attack
+31–40 Speed defense
+41–50 Might defense
+51–60 Intellect defense
+61–68 Jumping
+69–76 Climbing
+77–84 Running
+85–92 Swimming
+93–94 Sneaking
+95–96 Balancing
+97–98 Perceiving
+99 Carrying
+00 Escaping
+Internal: Pill, ingestible liquid
+Smthmore here
+
+DENSITY NODULE
+Level: 1d6
+Usable: Crystal nodule affixed to a melee
+weapon
+Effect: For the next 28 hours, each time the
+weapon the nodule is attached to strikes
+a solid creature or object, the weapon
+suddenly increases dramatically in weight,
+causing the blow to inflict an additional 2
+points of damage (3 points if the cypher is
+level 4 or higher).

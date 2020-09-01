@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Keywords_Artefacts.txt" />
+    <Content Include="TextFiles\Keywords_Artefacts.txt" />
   </ItemGroup>
 
 </Project>

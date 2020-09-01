@@ -13,9 +13,6 @@ namespace NumeneraMate.Apps.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			var devicesParser = new NumeneraDevicesParser();
-			devicesParser.TestCyphers();
-
             //HTMLTableFromXLSXCreator.Transform();
 
             //GenerateDevices();
