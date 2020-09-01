@@ -20,15 +20,6 @@ namespace NumeneraMate.Support.Parsers
         public List<string> KeywordsList { get; set; }
         public string NameKeyword { get; set; } = "Name:";
 
-        // Input - fileName, source, keywords
-        // TODO: maybe add enum for devices and default keywords?
-        public NumeneraDevicesParser(string fileName, string sourceBook, List<string> keywordsList)
-        {
-            FileName = fileName;
-            Source = sourceBook;
-            KeywordsList = keywordsList;
-        }
-
         public NumeneraDevicesParser(string fileName, string sourceBook, DeviceType numeneraDeviceType)
         {
             FileName = fileName;
@@ -58,7 +49,8 @@ namespace NumeneraMate.Support.Parsers
             List<Dictionary<string, string>> devicesAsDictionariesList = GetDevicesDictionaries(textLines);
 
             var cyphersList = new List<Cypher>();
-            // Get list of cyphers as List of objects
+            cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
+
 
             foreach (var device in devicesAsDictionariesList)
             {
@@ -70,6 +62,16 @@ namespace NumeneraMate.Support.Parsers
             }
         }
 
+        private List<Cypher> GetCyphersListFromDictionaries(List<Dictionary<string, string>> devicesAsDictionariesList)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Create list of Numenera Devices as List of Dictionaries
+        /// </summary>
+        /// <param name="textLines"></param>
+        /// <returns></returns>
         private List<Dictionary<string, string>> GetDevicesDictionaries(List<string> textLines)
         {
             var resultList = new List<Dictionary<string, string>>();
@@ -86,6 +88,13 @@ namespace NumeneraMate.Support.Parsers
             return resultList;
         }
 
+        /// <summary>
+        /// Creates single cypher or artefact
+        /// </summary>
+        /// <param name="lines"></param>
+        /// <param name="currentIndex"></param>
+        /// <param name="curObj"></param>
+        /// <returns></returns>
         private int BuildCurrentDevice(string[] lines, int currentIndex, out Dictionary<string, string> curObj)
         {
             curObj = new Dictionary<string, string>();
