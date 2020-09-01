@@ -40,6 +40,12 @@ namespace NumeneraMate.Support.Parsers
             SerializeToXML(xmlDevices, fileName);
         }
 
+        public static void SerializeToXml(List<Artefact> aratefactsList, string fileName)
+        {
+            var xmlDevices = new NumeneraDevices() { Artefacts = aratefactsList };
+            SerializeToXML(xmlDevices, fileName);
+        }
+
         public static void SerializeToXML(NumeneraDevices xmlDevices, string fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraDevices));

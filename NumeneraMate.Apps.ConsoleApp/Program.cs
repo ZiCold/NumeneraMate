@@ -16,8 +16,10 @@ namespace NumeneraMate.Apps.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			ParseCyphersToXML();
+			//ParseCyphersToXML();
 			//CombineAllCyphers();
+
+			ParseArtefactsToXML();
 
 			//HTMLTableFromXLSXCreator.Transform();
 			//GenerateDevices();
@@ -26,6 +28,18 @@ namespace NumeneraMate.Apps.ConsoleApp
 			Console.WriteLine();
             Console.WriteLine("Press anykey man");
             Console.ReadLine();
+		}
+
+		public static void ParseArtefactsToXML()
+		{
+			var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Artefacts\";
+			var name = "RAW_Artefacts_Discovery.txt";
+			var fileName = Path.Combine(directory, name);
+			var fileNameXml = fileName + "_xml.xml";
+			var deviceParser = new DevicesParser("Discovery", DeviceType.Artefact);
+			deviceParser.CreateXMLFromRawArtefactsText(fileName, fileNameXml);
+			var cyphers = NumeneraXML.DeserializeArtefactsListFromXML(fileNameXml);
+			cyphers.ForEach(x => Console.WriteLine(x));
 		}
 
 		public static void ParseCyphersToXML()

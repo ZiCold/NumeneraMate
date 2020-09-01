@@ -53,7 +53,24 @@ namespace NumeneraMate.Support.Parsers
             List<Cypher> cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
 
             NumeneraXML.SerializeToXml(cyphersList, xmlFileName);
-        }       
+        }
+
+
+        public void CreateXMLFromRawArtefactsText(string fileName, string xmlFileName)
+        {
+            var linesArray = File.ReadAllLines(fileName);
+            var textLines = linesArray.Where(x => !string.IsNullOrEmpty(x)).ToList();
+            textLines = TextFromPdfWordsFixer.ClearText(textLines);
+
+            var keywordsLines = RemoveMoreThanOneKeyWordOccurrences(textLines);
+
+            List<Dictionary<string, string>> devicesAsDictionariesList = GetDevicesDictionaries(textLines);
+
+            List<Artefact> artefactsList = GetArtefactsListFromDictionaries(devicesAsDictionariesList);
+
+            NumeneraXML.SerializeToXml(artefactsList, xmlFileName);
+        }
+
 
         private List<Cypher> GetCyphersListFromDictionaries(List<Dictionary<string, string>> devicesAsDictionariesList)
         {
@@ -84,6 +101,37 @@ namespace NumeneraMate.Support.Parsers
                     }
                 }
                 cyphersList.Add(cypher);
+            }
+            return cyphersList;
+        }
+
+        private List<Artefact> GetArtefactsListFromDictionaries(List<Dictionary<string, string>> devicesAsDictionariesList)
+        {
+            var cyphersList = new List<Artefact>();
+            foreach (var device in devicesAsDictionariesList)
+            {
+                var artefact = new Artefact() { Source = Source };
+                foreach (var key in device.Keys)
+                {
+                    switch (key)
+                    {
+                        case "Name:":
+                            artefact.Name = device[key]; break;
+                        case "Level:":
+                            artefact.Level = device[key]; break;
+                        case "Form:":
+                            artefact.Form = device[key]; break;
+                        case "Effect:":
+                            artefact.Effect = device[key]; break;
+                        case "Depletion:":
+                            artefact.Depletion = device[key]; break;
+                        case "#Table:":
+                            artefact.TableAsString = device[key];
+                            artefact.RollTable = new RollTable() { RollTableRows = GetRollListFromTableString(device[key]) };
+                            break;
+                    }
+                }
+                cyphersList.Add(artefact);
             }
             return cyphersList;
         }
@@ -179,6 +227,8 @@ namespace NumeneraMate.Support.Parsers
 
                 if (currentKeyword == tableKeyword)
                 {
+                    if (curObj["Name:"] == "Fearmaker")
+                        Console.WriteLine();
                     curObj.Add(currentKeyword, "");
                     j = BuildTable(lines, j, out var tableLine);
                     curObj[currentKeyword] = tableLine;
@@ -256,7 +306,7 @@ namespace NumeneraMate.Support.Parsers
                     }
                     
                     // for the case if this lines contains line for last roll result
-                    if (k + 2 < lines.Length && KeywordsList.Any(s => lines[k + 2].Contains(s)))
+                    if (k + 2 < lines.Length && lines[k + 2].StartsWith(KeywordsList.First()))
                     {
                         if (char.IsDigit(lines[k][0]))
                             tableLine += "#" + lines[k];
