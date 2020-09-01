@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,12 +90,36 @@ namespace NumeneraMate.Support.Parsers
                         case "Effect:":
                             cypher.Effect = device[key]; break;
                         case "#Table:":
-                            cypher.TableAsString = device[key]; break;
+                            cypher.TableAsString = device[key];
+                            cypher.RollTable = new RollTable() { RollTableRows = GetRollListFromTableString(device[key]) };
+                            break;
                     }
                 }
                 cyphersList.Add(cypher);
             }
             return cyphersList;
+        }
+
+        private List<RollTableRow> GetRollListFromTableString(string tableString)
+        {
+            var rollsList = new List<RollTableRow>();
+            var rolls = tableString.Split(new[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var roll in rolls)
+            {
+                var numberToRoll = "";
+                int i = 0;
+                for (; i < roll.Length; i++)
+                {
+                    var symbol = roll[i];
+                    if (char.IsDigit(symbol) || char.IsWhiteSpace(symbol) || symbol == '-' || symbol == '–')
+                        numberToRoll += symbol;
+                    else
+                        break;
+                }
+                var description = roll.Substring(i);
+                rollsList.Add(new RollTableRow() { Roll = numberToRoll.Trim(), Result = description.Trim() });
+            }
+            return rollsList;
         }
 
         /// <summary>
