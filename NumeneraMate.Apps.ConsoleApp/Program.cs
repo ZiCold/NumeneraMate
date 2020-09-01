@@ -13,7 +13,7 @@ namespace NumeneraMate.Apps.ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			var deviceParser = new NumeneraDevicesParser(@"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\TEST_Cyphers.txt", "Test", DeviceType.Cypher);
+			var deviceParser = new DevicesParser(@"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\TEST_Cyphers.txt", "Test", DeviceType.Cypher);
 			deviceParser.Run();
             //HTMLTableFromXLSXCreator.Transform();
             //GenerateDevices();

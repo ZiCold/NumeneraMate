@@ -13,14 +13,14 @@ namespace NumeneraMate.Support.Parsers
     /// Creates xml/csv from from PDF extracted text
     /// Some text can highlighted as Table with keyword #Table (rolls for example)
     /// </summary>
-    public class NumeneraDevicesParser
+    public class DevicesParser
     {
         public string FileName { get; set; }
         public string Source { get; set; }
         public List<string> KeywordsList { get; set; }
         public string NameKeyword { get; set; } = "Name:";
 
-        public NumeneraDevicesParser(string fileName, string sourceBook, DeviceType numeneraDeviceType)
+        public DevicesParser(string fileName, string sourceBook, DeviceType numeneraDeviceType)
         {
             FileName = fileName;
             Source = sourceBook;
