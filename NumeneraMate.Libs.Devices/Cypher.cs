@@ -16,10 +16,16 @@ namespace NumeneraMate.Libs.Devices
             get
             {
                 if (minimumCraftingLevel == 0 && !string.IsNullOrEmpty(Level))
-                    if (Level.Trim() == "1d6")
-                        minimumCraftingLevel = 1;
+                {
+                    if (Level.Contains("+"))
+                    {
+                        minimumCraftingLevel = int.Parse(Level.Substring(Level.IndexOf("+")+1));
+                    }
                     else
-                        minimumCraftingLevel = int.Parse(Level.Replace("1d6", "").Replace("+", "").Trim()) + 1;
+                    {
+                        minimumCraftingLevel = 1;
+                    }
+                }
                 return minimumCraftingLevel;
             }
             set => minimumCraftingLevel = value;
