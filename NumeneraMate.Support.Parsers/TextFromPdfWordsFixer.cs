@@ -53,6 +53,9 @@ namespace NumeneraMate.Support.Parsers
 				{ "indefnitely", "indefinitely"},
 				{ "microflaments", "microfilaments"},
 				{ "identifes", "identifies"},
+
+				// not a typo, but still exists
+				{ "Useable", "Usable" }
 			};
 
 		public static List<string> ClearText(string textToFix)
