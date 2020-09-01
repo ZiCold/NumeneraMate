@@ -48,8 +48,6 @@ namespace NumeneraMate.Support.Parsers
             // cause next we can create XML, CSV, Excel table or return specific objects
             List<Dictionary<string, string>> devicesAsDictionariesList = GetDevicesDictionaries(textLines);
 
-            var cyphersList = new List<Cypher>();
-            cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
 
 
             foreach (var device in devicesAsDictionariesList)
@@ -60,11 +58,43 @@ namespace NumeneraMate.Support.Parsers
                 }
                 Console.WriteLine();
             }
+
+            var cyphersList = new List<Cypher>();
+            cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
+
+            cyphersList.ForEach(x => Console.WriteLine(x));
+
         }
 
         private List<Cypher> GetCyphersListFromDictionaries(List<Dictionary<string, string>> devicesAsDictionariesList)
         {
-            throw new NotImplementedException();
+            var cyphersList = new List<Cypher>();
+            foreach (var device in devicesAsDictionariesList)
+            {
+                var cypher = new Cypher() { Source = Source };
+                foreach (var key in device.Keys)
+                {
+                    switch (key)
+                    {
+                        case "Name:":
+                            cypher.Name = device[key]; break;
+                        case "Level:":
+                            cypher.Level = device[key]; break;
+                        case "Internal:":
+                            cypher.Internal = device[key]; break;
+                        case "Wearable:":
+                            cypher.Wearable = device[key]; break;
+                        case "Usable:":
+                            cypher.Usable = device[key]; break;
+                        case "Effect:":
+                            cypher.Effect = device[key]; break;
+                        case "#Table:":
+                            cypher.TableAsString = device[key]; break;
+                    }
+                }
+                cyphersList.Add(cypher);
+            }
+            return cyphersList;
         }
 
         /// <summary>
