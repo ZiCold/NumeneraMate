@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NumeneraMate.Libs.Devices;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,9 +36,9 @@ namespace NumeneraMate.Support.Parsers
             switch (numeneraDeviceType)
             {
                 case DeviceType.Cypher:
-                    KeywordsList = new List<string>() { "Level:", "Internal:", "Wearable:", "Usable:", "Effect:", "Table:" }; break;
+                    KeywordsList = new List<string>() { "Level:", "Internal:", "Wearable:", "Usable:", "Effect:", "#Table:" }; break;
                 case DeviceType.Artefact:
-                    KeywordsList = new List<string>() { "Level:", "Form:", "Effect:", "Table:", "Depletion:" }; break;
+                    KeywordsList = new List<string>() { "Level:", "Form:", "Effect:", "#Table:", "Depletion:" }; break;
                 case DeviceType.Oddity:
                     KeywordsList = new List<string>(); break;
             }
@@ -56,7 +57,7 @@ namespace NumeneraMate.Support.Parsers
             // cause next we can create XML, CSV, Excel table or return specific objects
             List<Dictionary<string, string>> devicesAsDictionariesList = GetDevicesDictionaries(textLines);
 
-
+            var cyphersList = new List<Cypher>();
             // Get list of cyphers as List of objects
 
             foreach (var device in devicesAsDictionariesList)
@@ -89,58 +90,99 @@ namespace NumeneraMate.Support.Parsers
         {
             curObj = new Dictionary<string, string>();
             curObj.Add(NameKeyword, lines[currentIndex]);
+
             // read current object body starting from the next string
             var currentKeyword = "";
             int j;
+            string tableKeyword = KeywordsList.FirstOrDefault(x => x.StartsWith("#"));
+            bool isThereTable = string.IsNullOrEmpty(tableKeyword) ? false : true;
             for (j = currentIndex + 1; j < lines.Length; j++)
             {
                 if (string.IsNullOrEmpty(lines[j])) continue;
-                // либо конец массива строк, либо начало следующего объекта
-                if (j + 1 != lines.Length && lines[j + 1].StartsWith(KeywordsList.First())) 
+                // either end of the array or start of the new object
+                if (j + 1 != lines.Length && lines[j + 1].StartsWith(KeywordsList.First()))
                     return j - 1;
 
                 // check line for Keyword and add new line
                 foreach (var keyword in KeywordsList)
+                {
+                    if (keyword == tableKeyword && lines[j].StartsWith(keyword.Substring(1)))
+                    {
+                        currentKeyword = keyword;
+                        break;
+                    }
                     if (lines[j].StartsWith(keyword))
                     {
                         currentKeyword = keyword;
                         break;
                     }
-                if (currentKeyword != "")
-                {
-                    if (curObj.ContainsKey(currentKeyword))
-                    {
-                        curObj[currentKeyword] += " " + lines[j];
-                    }
-                    else
-                    {
-                        var startOfDescription = lines[j].Substring(currentKeyword.Length);
-                        curObj.Add(currentKeyword, startOfDescription);
-                    }
-                    continue;
                 }
-                else
+
+                if (currentKeyword == "")
                 {
                     curObj[NameKeyword] += " " + lines[j];
                     continue;
                 }
 
-                //if (lines[j + 1].StartsWith(KeywordsList.First())) return j - 1;
+                if (currentKeyword == tableKeyword)
+                {
+                    curObj.Add(currentKeyword, "");
+                    j = BuildTable(lines, j, out var tableLine);
+                    curObj[currentKeyword] = tableLine;
+                    continue;
+                }
 
-
-                // if it's table, than build it OR add normal keyword/line
-                //if (info.TableKeyword != null && lines[j].Contains(info.TableKeyword))
-                //{
-                //    curObj[curObj.Count - 1] += lines[j] + " ";
-                //    j = BuildTable(lines, j, curObj, info.KeywordsList);
-                //}
-                //else
-                //{
-                //    curObj[curObj.Count - 1] += lines[j] + " ";
-                //}
-
+                if (curObj.ContainsKey(currentKeyword))
+                {
+                    curObj[currentKeyword] += " " + lines[j];
+                }
+                else
+                {
+                    var startOfDescription = lines[j].Substring(currentKeyword.Length);
+                    curObj.Add(currentKeyword, startOfDescription);
+                }
             }
             return j;
+        }
+
+        /// <summary>
+		/// Helper: Builds table with rows delimited by symbol #
+		/// </summary>
+		/// <param name="lines"></param>
+		/// <param name="index"></param>
+		/// <param name="curObj"></param>
+		/// <param name="keywordsList"></param>
+		/// <returns></returns>
+		private int BuildTable(string[] lines, int index, out string tableLine)
+        {
+            tableLine = "";
+            // start build table from the next string after Table keyword
+            for (int k = index + 1; k < lines.Length; k++)
+            {
+                if (string.IsNullOrEmpty(lines[k])) continue;
+                // if next line is not the end
+                if (k + 1 < lines.Length)
+                {
+                    // if next line is new keyword, then end table and exit
+                    if (KeywordsList.Any(s => lines[k + 1].Contains(s)))
+                    {
+                        // add current row to the table
+                        tableLine += "#" + lines[k];
+                        return k;
+                    }
+                    if (KeywordsList.Any(s => lines[k].Contains(s)))
+                        return k - 1;
+                }
+                else
+                {
+                    // if it was the last line than end
+                    tableLine += "#" + lines[k];
+                    return k;
+                }
+
+                tableLine += "#" + lines[k];
+            }
+            return -1;
         }
 
         /// <summary>
