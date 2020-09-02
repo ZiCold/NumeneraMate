@@ -8,5 +8,9 @@ namespace NumeneraMate.Libs.Devices
     {
         public string Description { get; set; }
         public string Source { get; set; }
+        public override string ToString()
+        {
+            return $"Description: {Description}\nSource: {Source}\n";
+        }
     }
 }
