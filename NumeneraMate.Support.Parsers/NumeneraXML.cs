@@ -18,21 +18,26 @@ namespace NumeneraMate.Support.Parsers
         /// <returns></returns>
         public static List<Cypher> DeserializeCyphersListFromXML(string fileName)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(NumeneraDevices));
-            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                var xmlWrapper = (NumeneraDevices)ser.Deserialize(fs);
-                return xmlWrapper.Cyphers;
-            }
+            return DeserializeDevicesFromXML(fileName).Cyphers;
         }
 
         public static List<Artefact> DeserializeArtefactsListFromXML(string fileName)
+        {
+            return DeserializeDevicesFromXML(fileName).Artefacts;
+        }
+
+        public static List<Oddity> DeserializeOdditiesListFromXML(string fileName)
+        {
+            return DeserializeDevicesFromXML(fileName).Oddities;
+        }
+
+        private static NumeneraDevices DeserializeDevicesFromXML(string fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraDevices));
             using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
                 var xmlWrapper = (NumeneraDevices)ser.Deserialize(fs);
-                return xmlWrapper.Artefacts;
+                return xmlWrapper;
             }
         }
 
@@ -54,7 +59,7 @@ namespace NumeneraMate.Support.Parsers
             SerializeToXml(xmlDevices, fileName);
         }
 
-        public static void SerializeToXml(NumeneraDevices xmlDevices, string fileName)
+        private static void SerializeToXml(NumeneraDevices xmlDevices, string fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(NumeneraDevices));
             using (FileStream writer = new FileStream(fileName, FileMode.Create))
