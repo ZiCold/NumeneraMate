@@ -9,10 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="TextFiles\Keywords_Artefacts.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj" />
   </ItemGroup>
 

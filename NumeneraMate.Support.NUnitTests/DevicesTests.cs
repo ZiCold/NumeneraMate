@@ -1,6 +1,9 @@
 using NUnit.Framework;
 using NumeneraMate.Support.Parsers;
 using NumeneraMate.Libs.Devices;
+using System.IO;
+using System.Collections.Generic;
+using FluentAssertions;
 
 namespace NumeneraMate.Support.NUnitTests
 {
@@ -24,10 +27,10 @@ namespace NumeneraMate.Support.NUnitTests
     <Source>Compendium</Source>
   </Cypher>";
             var d10cypher = NumeneraXML.DeserializeCypherFromXMLString(d10cypherXML);
-            
+
             var d10baseLevel = d10cypher.LevelBase;
             Assert.AreEqual(10, d10baseLevel);
-            
+
             var d10levelTerm = d10cypher.LevelTerm;
             Assert.AreEqual(0, d10levelTerm);
 
@@ -52,6 +55,25 @@ namespace NumeneraMate.Support.NUnitTests
 
             var d6minCraftingLevel = d6cypher.MinimumCraftingLevel;
             Assert.AreEqual(5, d6minCraftingLevel);
+        }
+
+        [Test]
+        public void TestPDFParsing()
+        {
+            var directory = @"..\..\..\ExampleFiles";
+            var name = "Test_Cyphers.txt";
+            var fileName = Path.Combine(directory, name);
+            var fileNameXml = Path.Combine(directory, Path.GetFileNameWithoutExtension(fileName) + ".xml");
+            var deviceParser = new DevicesParser("Discovery", DeviceType.Cypher);
+            deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
+            var cyphers = NumeneraXML.DeserializeCyphersListFromXML(fileNameXml);
+
+            cyphers[0].Should().BeEquivalentTo(CyphersExample.List[0]);
+            cyphers[1].Should().BeEquivalentTo(CyphersExample.List[1]);
+
+            //cyphers[2].RollTable.Should().BeEquivalentTo(CyphersExample.List[2].RollTable);
+
+            //cyphers.Should().BeEquivalentTo(CyphersExample.List);
         }
     }
 }
