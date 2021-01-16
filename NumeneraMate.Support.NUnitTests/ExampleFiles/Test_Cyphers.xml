@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<NumeneraDevices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Cypher>
+    <Name>Detonation</Name>
+    <Level>1d6 + 2</Level>
+    <Effect>Explodes in an immediate radius,  Roll for the type of damage:</Effect>
+    <RollTable>
+      <Row>
+        <Roll>01-10</Roll>
+        <Result>Cell-disrupting (harms only flesh)</Result>
+      </Row>
+      <Row>
+        <Roll>11-30</Roll>
+        <Result>Corrosive</Result>
+      </Row>
+      <Row>
+        <Roll>31-40</Roll>
+        <Result>Electrical discharge</Result>
+      </Row>
+      <Row>
+        <Roll>41-50</Roll>
+        <Result>Heat drain (cold)</Result>
+      </Row>
+      <Row>
+        <Roll>51-75</Roll>
+        <Result>Fire</Result>
+      </Row>
+      <Row>
+        <Roll>76-00</Roll>
+        <Result>Shrapnel</Result>
+      </Row>
+    </RollTable>
+    <Source>Discovery</Source>
+    <Wearable>Wristband projector (long range)</Wearable>
+    <Usable>Explosive device (thrown, short range) or handheld projector (long range)</Usable>
+  </Cypher>
+  <Cypher>
+    <Name>Density Nodule</Name>
+    <Level>1d6</Level>
+    <Effect>For the next 28 hours, each time the weapon the nodule is attached to strikes a solid creature or object, the weapon suddenly increases dramatically in weight, causing the blow to inflict an additional 2 points of damage (3 points if the cypher is level 4 or higher).</Effect>
+    <Source>Discovery</Source>
+    <Usable>Crystal nodule affixed to a melee weapon</Usable>
+  </Cypher>
+  <Cypher>
+    <Name>Skill Boost</Name>
+    <Level>1d6</Level>
+    <Effect>Dramatically but temporarily alters the user’s mind and body so that one specific physical action they can perform is eased by three steps. Once activated, this boost can be used a number of times equal to the cypher’s level, but only within a 28-hour period. The boost takes effect each time the action is performed, so a level 3 cypher boosts the first three times the action is attempted. The action can be one of a number of possibilities:</Effect>
+    <RollTable>
+      <Row>
+        <Roll>01-15</Roll>
+        <Result>Melee attack</Result>
+      </Row>
+      <Row>
+        <Roll>16-30</Roll>
+        <Result>Ranged attack</Result>
+      </Row>
+      <Row>
+        <Roll>31-40</Roll>
+        <Result>Speed defense</Result>
+      </Row>
+      <Row>
+        <Roll>41-50</Roll>
+        <Result>Might defense</Result>
+      </Row>
+      <Row>
+        <Roll>51-60</Roll>
+        <Result>Intellect defense</Result>
+      </Row>
+      <Row>
+        <Roll>61-68</Roll>
+        <Result>Jumping</Result>
+      </Row>
+      <Row>
+        <Roll>69-76</Roll>
+        <Result>Climbing</Result>
+      </Row>
+      <Row>
+        <Roll>77-84</Roll>
+        <Result>Running</Result>
+      </Row>
+      <Row>
+        <Roll>85-92</Roll>
+        <Result>Swimming</Result>
+      </Row>
+      <Row>
+        <Roll>93-94</Roll>
+        <Result>Sneaking</Result>
+      </Row>
+      <Row>
+        <Roll>95-96</Roll>
+        <Result>Balancing</Result>
+      </Row>
+      <Row>
+        <Roll>97-98</Roll>
+        <Result>Perceiving</Result>
+      </Row>
+      <Row>
+        <Roll>99</Roll>
+        <Result>Carrying</Result>
+      </Row>
+      <Row>
+        <Roll>00</Roll>
+        <Result>Escaping</Result>
+      </Row>
+    </RollTable>
+    <Source>Discovery</Source>
+    <Usable>Injector</Usable>
+    <Internal>Pill, ingestible liquid Smthmore here</Internal>
+  </Cypher>
+  <Cypher>
+    <Name>Density Nodule</Name>
+    <Level>1d6</Level>
+    <Effect>For the next 28 hours, each time the weapon the nodule is attached to strikes a solid creature or object, the weapon suddenly increases dramatically in weight, causing the blow to inflict an additional 2 points of damage (3 points if the cypher is level 4 or higher).</Effect>
+    <Source>Discovery</Source>
+    <Usable>Crystal nodule affixed to a melee weapon</Usable>
+  </Cypher>
+</NumeneraDevices>

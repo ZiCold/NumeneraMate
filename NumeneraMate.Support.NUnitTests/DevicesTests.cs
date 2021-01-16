@@ -68,12 +68,7 @@ namespace NumeneraMate.Support.NUnitTests
             deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
             var cyphers = NumeneraXML.DeserializeCyphersListFromXML(fileNameXml);
 
-            cyphers[0].Should().BeEquivalentTo(CyphersExample.List[0]);
-            cyphers[1].Should().BeEquivalentTo(CyphersExample.List[1]);
-
-            //cyphers[2].RollTable.Should().BeEquivalentTo(CyphersExample.List[2].RollTable);
-
-            //cyphers.Should().BeEquivalentTo(CyphersExample.List);
+            cyphers.Should().BeEquivalentTo(CyphersExample.List);
         }
     }
 }

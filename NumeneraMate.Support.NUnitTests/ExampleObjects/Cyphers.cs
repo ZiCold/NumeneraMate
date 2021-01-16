@@ -28,32 +28,32 @@ namespace NumeneraMate.Support.NUnitTests
                                 {
                                     new RollTableRow()
                                     {
-                                        Roll = "01–10",
+                                        Roll = "01-10",
                                         Result = "Cell-disrupting (harms only flesh)"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "11–30",
+                                        Roll = "11-30",
                                         Result = "Corrosive"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "31–40",
+                                        Roll = "31-40",
                                         Result = "Electrical discharge"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "41–50",
+                                        Roll = "41-50",
                                         Result = "Heat drain (cold)"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "51–75",
+                                        Roll = "51-75",
                                         Result = "Fire"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "76–00",
+                                        Roll = "76-00",
                                         Result = "Shrapnel"
                                     }
                                 }
@@ -89,17 +89,17 @@ namespace NumeneraMate.Support.NUnitTests
                                 {
                                     new RollTableRow()
                                     {
-                                        Roll = "01–15",
+                                        Roll = "01-15",
                                         Result = "Melee attack"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "16–30",
+                                        Roll = "16-30",
                                         Result = "Ranged attack"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "31–40",
+                                        Roll = "31-40",
                                         Result = "Speed defense"
                                     },
                                     new RollTableRow()
@@ -109,17 +109,17 @@ namespace NumeneraMate.Support.NUnitTests
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "51–60",
+                                        Roll = "51-60",
                                         Result = "Intellect defense"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "61–68",
+                                        Roll = "61-68",
                                         Result = "Jumping"
                                     },
                                     new RollTableRow()
                                     {
-                                        Roll = "69–76",
+                                        Roll = "69-76",
                                         Result = "Climbing"
                                     },
                                     new RollTableRow()

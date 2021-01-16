@@ -212,7 +212,7 @@ namespace NumeneraMate.Support.Parsers
 
                 var nextObj = new Dictionary<string, string>();
                 foreach (var key in currentDevice.Keys)
-                    nextObj.Add(key, currentDevice[key].Trim());
+                    nextObj.Add(key, ReplaceLongHyphen(currentDevice[key].Trim()));
                 resultList.Add(nextObj);
             }
             return resultList;
@@ -363,6 +363,11 @@ namespace NumeneraMate.Support.Parsers
                     tableLine += " " + lines[k];
             }
             return -1;
+        }
+
+        private string ReplaceLongHyphen(string input)
+        {
+            return input.Replace('–', '-');
         }
 
         /// <summary>
