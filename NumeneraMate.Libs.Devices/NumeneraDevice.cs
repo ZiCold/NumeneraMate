@@ -35,6 +35,19 @@ namespace NumeneraMate.Libs.Devices
             }
         }
 
+        [XmlIgnore]
+        public int LevelTerm
+        {
+            get
+            {
+                if (!Level.Contains("+")) return 0;
+                var levelTermStr = Level.Substring(Level.ToLower().IndexOf("+") + 1);
+                var success = int.TryParse(levelTermStr, out int levelTerm);
+                if (success) return levelTerm;
+                else return 0;
+            }
+        }
+
         public int MinimumCraftingLevel
         {
             get

@@ -161,7 +161,8 @@ namespace NumeneraMate.Apps.ConsoleApp
     <Source>Compendium</Source>
   </Cypher>";
             var d10cypher = NumeneraXML.DeserializeCypherFromXMLString(d10cypherXML);
-            var baseLevel = d10cypher.LevelBase;
+            var d10baseLevel = d10cypher.LevelBase;
+            var d10levelTerm = d10cypher.LevelTerm;
 
             var d6cypherXML = @"  <Cypher>
     <Name>Amplification Parasite</Name>
@@ -173,6 +174,7 @@ namespace NumeneraMate.Apps.ConsoleApp
   </Cypher>";
             var d6cypher = NumeneraXML.DeserializeCypherFromXMLString(d6cypherXML);
             var d6baseLevel = d6cypher.LevelBase;
+            var d6levelTerm = d6cypher.LevelTerm;
 
             Console.WriteLine();
         }
