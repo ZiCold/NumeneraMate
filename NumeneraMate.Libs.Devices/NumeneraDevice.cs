@@ -11,6 +11,30 @@ namespace NumeneraMate.Libs.Devices
 
         public string Name { get; set; }
         public string Level { get; set; }
+        /// <summary>
+        /// Base dice for Level calculation
+        /// </summary>
+        [XmlIgnore]
+        public int LevelBase
+        {
+            get
+            {
+                var clearedLevelString = Level.Substring(Level.ToLower().IndexOf("d") + 1);
+                var maybeDiceValue = "";
+                for (int i = 0; i < clearedLevelString.Length; i++)
+                {
+                    if (clearedLevelString[i] == '+') break;
+                    if (char.IsDigit(clearedLevelString[i]))
+                        maybeDiceValue += clearedLevelString[i];
+                }
+                var success = int.TryParse(maybeDiceValue, out int diceValue);
+                if (success)
+                    return diceValue;
+                else
+                    return 1;
+            }
+        }
+
         public int MinimumCraftingLevel
         {
             get

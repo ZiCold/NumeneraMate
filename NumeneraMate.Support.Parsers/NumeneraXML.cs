@@ -41,7 +41,16 @@ namespace NumeneraMate.Support.Parsers
             }
         }
 
-        public static void SerializeToXml(List<Cypher> cyphersList, string fileName)
+        public static Cypher DeserializeCypherFromXMLString(string cypherXML)
+        {
+            XmlSerializer ser = new XmlSerializer(typeof(Cypher));
+            using (TextReader reader = new StringReader(cypherXML))
+            {
+                return (Cypher)ser.Deserialize(reader);
+            }
+        }
+
+    public static void SerializeToXml(List<Cypher> cyphersList, string fileName)
         {
             var xmlDevices = new NumeneraDevices() { Cyphers = cyphersList };
             SerializeToXml(xmlDevices, fileName);
@@ -68,6 +77,8 @@ namespace NumeneraMate.Support.Parsers
                 ser.Serialize(writer, xmlDevices);
             }
         }
+
+
 
         /// <summary>
         /// View all unique attributes to create specific class

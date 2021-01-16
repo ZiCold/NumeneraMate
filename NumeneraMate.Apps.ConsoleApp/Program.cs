@@ -17,7 +17,8 @@ namespace NumeneraMate.Apps.ConsoleApp
         static void Main(string[] args)
         {
             //HTMLTableFromXLSXCreator.Transform();
-            GenerateDevices();
+            //GenerateDevices();
+            GetBadeDiceValue();
 
             //Console.WriteLine();
             //Console.WriteLine("Press anykey man");
@@ -26,14 +27,14 @@ namespace NumeneraMate.Apps.ConsoleApp
 
         private static void GenerateDevices()
         {
-            var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\NumeneraDevicesXML\";
+            var directory = @"E:\Documents\Tabletop RPGs\Numenera\NumeneraAppFiles\Devices";
 
             var cyphersFileName = Path.Combine(directory, "Cyphers_All_538.xml");
             var cyphersList = NumeneraXML.DeserializeCyphersListFromXML(cyphersFileName);
             Console.WriteLine("Cyphers loaded: " + cyphersList.Count);
 
-            var artefacttsFileName = Path.Combine(directory, "Artefacts_All_336.xml");
-            var artefactsList = NumeneraXML.DeserializeArtefactsListFromXML(artefacttsFileName);
+            var artefactsFileName = Path.Combine(directory, "Artefacts_All_336.xml");
+            var artefactsList = NumeneraXML.DeserializeArtefactsListFromXML(artefactsFileName);
             Console.WriteLine("Artefacts loaded: " + artefactsList.Count);
 
             var odditiesFilename = Path.Combine(directory, "Oddities_All_400.xml");
@@ -146,6 +147,34 @@ namespace NumeneraMate.Apps.ConsoleApp
             }
 
             NumeneraXML.SerializeToXml(allCyphers.Artefacts, directory + $"All_{allCyphers.Artefacts.Count}.xml");
+        }
+
+        public static void GetBadeDiceValue()
+        {
+            var d10cypherXML = @"  <Cypher>
+    <Name>Analysis Scanner</Name>
+    <Level>1d10</Level>
+    <MinimumCraftingLevel>1</MinimumCraftingLevel>
+    <Wearable>Bracelet</Wearable>
+    <Usable>Handheld device</Usable>
+    <Effect>This device scans and records everything within short range for one round and then conveys the level and nature of all creatures, objects, and energy sources it scanned. This information can be accessed for 28 hours after the scan.</Effect>
+    <Source>Compendium</Source>
+  </Cypher>";
+            var d10cypher = NumeneraXML.DeserializeCypherFromXMLString(d10cypherXML);
+            var baseLevel = d10cypher.LevelBase;
+
+            var d6cypherXML = @"  <Cypher>
+    <Name>Amplification Parasite</Name>
+    <Level>1d6 + 4</Level>
+    <MinimumCraftingLevel>4</MinimumCraftingLevel>
+    <Internal>Living fish, beetle, or worm that must be ingested</Internal>
+    <Effect>Upon eating the parasite, the user chooses one stat and the GM chooses a different stat. The difficulty of any roll related to the user’s chosen stat is reduced by two steps, and the difficulty of any roll involving the GM’s chosen stat is increased by two steps. The parasite dies after 1d6 hours, and the effect ends when the user violently expels it from her body.</Effect>
+    <Source>Compendium</Source>
+  </Cypher>";
+            var d6cypher = NumeneraXML.DeserializeCypherFromXMLString(d6cypherXML);
+            var d6baseLevel = d6cypher.LevelBase;
+
+            Console.WriteLine();
         }
 
         #endregion TestMethods
