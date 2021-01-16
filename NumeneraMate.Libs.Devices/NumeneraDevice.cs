@@ -7,7 +7,7 @@ namespace NumeneraMate.Libs.Devices
 {
     public class NumeneraDevice
     {
-        private int minimumCraftingLevel;
+
 
         public string Name { get; set; }
         public string Level { get; set; }
@@ -50,22 +50,7 @@ namespace NumeneraMate.Libs.Devices
 
         public int MinimumCraftingLevel
         {
-            get
-            {
-                if (minimumCraftingLevel == 0 && !string.IsNullOrEmpty(Level))
-                {
-                    if (Level.Contains("+"))
-                    {
-                        minimumCraftingLevel = int.Parse(Level.Substring(Level.IndexOf("+") + 1));
-                    }
-                    else
-                    {
-                        minimumCraftingLevel = 1;
-                    }
-                }
-                return minimumCraftingLevel;
-            }
-            set => minimumCraftingLevel = value;
+            get => 1 + LevelTerm;
         }
 
         public string Effect { get; set; }
