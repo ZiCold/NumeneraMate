@@ -52,13 +52,13 @@ namespace NumeneraMate.Support.Parsers
 
     public static void SerializeToXml(List<Cypher> cyphersList, string fileName)
         {
-            var xmlDevices = new NumeneraDevices() { Cyphers = cyphersList, Count = cyphersList.Count };
+            var xmlDevices = new NumeneraDevices(cyphersList);
             SerializeToXml(xmlDevices, fileName);
         }
 
         public static void SerializeToXml(List<Artefact> artefactsList, string fileName)
         {
-            var xmlDevices = new NumeneraDevices() { Artefacts = artefactsList, Count = artefactsList.Count };
+            var xmlDevices = new NumeneraDevices(artefactsList);
             SerializeToXml(xmlDevices, fileName);
         }
 

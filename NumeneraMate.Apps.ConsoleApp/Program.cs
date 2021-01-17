@@ -16,8 +16,8 @@ namespace NumeneraMate.Apps.ConsoleApp
     {
         static void Main(string[] args)
         {
-            //CombineAllCyphers();
-            CombineAllArtefacts();
+            CombineAllCyphers();
+            //CombineAllArtefacts();
             //HTMLTableFromXLSXCreator.Transform();
             //GenerateDevices();
             //TestCalculatedProperties();
@@ -123,17 +123,17 @@ namespace NumeneraMate.Apps.ConsoleApp
             var directory = @"E:\Documents\Tabletop RPGs\Numenera\NumeneraAppFiles\Devices\Cyphers_";
             var files = new List<string>() { "Discovery.xml", "Destiny.xml", "Compendium.xml" };
 
-            var allCyphers = new NumeneraDevices() { Cyphers = new List<Cypher>() };
+            var allCyphers = new List<Cypher>();
             foreach (var file in files)
             {
                 var filename = directory + file;
                 var cyphers = NumeneraXML.DeserializeCyphersListFromXML(filename);
-                NumeneraXML.SerializeToXml(cyphers, directory + $"{cyphers[0].Source}_fixed.xml");
-                allCyphers.Cyphers.AddRange(cyphers);
-                allCyphers.Count = cyphers.Count;
+                NumeneraXML.SerializeToXml(cyphers, directory + $"{cyphers[0].Source}.xml");
+                allCyphers.AddRange(cyphers);
             }
 
-            NumeneraXML.SerializeToXml(allCyphers.Cyphers, directory + $"All_{allCyphers.Cyphers.Count}.xml");
+            var cyphersToSerialize = new NumeneraDevices(allCyphers);
+            NumeneraXML.SerializeToXml(cyphersToSerialize.Cyphers, directory + $"AllSources_{cyphersToSerialize.Cyphers.Count}.xml");
         }
 
         public static void CombineAllArtefacts()
@@ -142,17 +142,17 @@ namespace NumeneraMate.Apps.ConsoleApp
             var directory = @"E:\Documents\Tabletop RPGs\Numenera\NumeneraAppFiles\Devices\Artefacts_";
             var files = new List<string>() { "Discovery.xml", "Destiny.xml", "Compendium.xml" };
 
-            var allArtefacts = new NumeneraDevices() { Artefacts = new List<Artefact>() };
+            var allArtefacts = new List<Artefact>();
             foreach (var file in files)
             {
                 var filename = directory + file;
                 var artefacts = NumeneraXML.DeserializeArtefactsListFromXML(filename);
                 NumeneraXML.SerializeToXml(artefacts, directory + $"{artefacts[0].Source}_fixed.xml");
-                allArtefacts.Artefacts.AddRange(artefacts);
-                allArtefacts.Count = artefacts.Count;
+                allArtefacts.AddRange(artefacts);
             }
 
-            NumeneraXML.SerializeToXml(allArtefacts.Artefacts, directory + $"All_{allArtefacts.Artefacts.Count}.xml");
+            var artefactsToSerialize = new NumeneraDevices(allArtefacts);
+            NumeneraXML.SerializeToXml(artefactsToSerialize.Artefacts, directory + $"AllSources_{artefactsToSerialize.Artefacts.Count}.xml");
         }
 
         public static void TestCalculatedProperties()
