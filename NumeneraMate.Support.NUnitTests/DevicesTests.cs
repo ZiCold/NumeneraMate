@@ -58,7 +58,7 @@ namespace NumeneraMate.Support.NUnitTests
         }
 
         [Test]
-        public void TestPDFParsing()
+        public void TestPDFParsing_Cyphers()
         {
             var directory = @"..\..\..\ExampleFiles";
             var name = "Test_Cyphers.txt";
@@ -69,6 +69,22 @@ namespace NumeneraMate.Support.NUnitTests
             var cyphers = NumeneraXML.DeserializeCyphersListFromXML(fileNameXml);
 
             cyphers.Should().BeEquivalentTo(CyphersExample.List);
+        }
+
+        [Test]
+        public void TestPDFParsing_Artefacts()
+        {
+            var directory = @"..\..\..\ExampleFiles";
+            var name = "Test_Artefacts.txt";
+            var fileName = Path.Combine(directory, name);
+            var fileNameXml = Path.Combine(directory, Path.GetFileNameWithoutExtension(fileName) + ".xml");
+            var deviceParser = new DevicesParser("Discovery", DeviceType.Artefact);
+            deviceParser.CreateXMLFromRawArtefactsText(fileName, fileNameXml);
+            var artefacts = NumeneraXML.DeserializeArtefactsListFromXML(fileNameXml);
+
+            System.Diagnostics.Debug.WriteLine(artefacts[0].Name);
+            artefacts.Should().BeEquivalentTo(ArtefactsExample.List);
+            //artefacts[1].Should().BeEquivalentTo(ArtefactsExample.List[1]);
         }
     }
 }

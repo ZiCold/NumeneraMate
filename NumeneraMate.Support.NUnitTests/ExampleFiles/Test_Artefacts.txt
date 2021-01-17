@@ -12,6 +12,7 @@ comes under attack, the drone fires one shot
 per round at attackers within long range,
 inflicting damage equal to the artifact level.
 Depletion: 1 in 1d20
+
 Protection Amulet
 Level: 1d6
 Form: A stylized amulet worn on a chain
@@ -27,6 +28,7 @@ Table:
 17–20 Radiation
 Depletion: 1 in 1d6 (check each time the
 amulet reduces the damage)
+
 AMBER CASEMENT
 Level: 1d6 + 4
 Form: Series of short, rounded tubes and
@@ -38,6 +40,7 @@ device. The air is turned into an amberlike
 substance, and those trapped in it will
 likely suffocate or starve.
 Depletion: 1–4 in 1d6
+
 AMULET OF SAFETY
 Level: 1d6
 Form: Plain metallic disk on a chain

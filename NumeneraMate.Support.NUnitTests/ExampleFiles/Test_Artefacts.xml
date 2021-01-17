@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<NumeneraDevices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Artefact>
+    <Name>Projectile Drone</Name>
+    <Level>1d6 + 3</Level>
+    <Effect>It takes two rounds to assemble and set up this device. Once set up, it takes an action to activate. When activated, this device follows whoever activated it around for one hour on its tripod legs (movement: short). If the user comes under attack, the drone fires one shot per round at attackers within long range, inflicting damage equal to the artifact level.</Effect>
+    <Source>Discovery</Source>
+    <Form>A 3-foot-tall (1 m) collapsible tripod with a metallic projectile weapon mounted on top</Form>
+    <Depletion>1 in 1d20</Depletion>
+  </Artefact>
+  <Artefact>
+    <Name>Protection Amulet</Name>
+    <Level>1d6</Level>
+    <Effect>The amulet reduces one type of damage by an amount equal to the artifact level. Roll a d20 to determine the kind of damage the amulet protects against.</Effect>
+    <RollTable>
+      <Row>
+        <Roll>1-4</Roll>
+        <Result>Cold</Result>
+      </Row>
+      <Row>
+        <Roll>5-8</Roll>
+        <Result>Electrocution and shock</Result>
+      </Row>
+      <Row>
+        <Roll>9-12</Roll>
+        <Result>Fire</Result>
+      </Row>
+      <Row>
+        <Roll>13-16</Roll>
+        <Result>Poison</Result>
+      </Row>
+      <Row>
+        <Roll>17-20</Roll>
+        <Result>Radiation</Result>
+      </Row>
+    </RollTable>
+    <Source>Discovery</Source>
+    <Form>A stylized amulet worn on a chain</Form>
+    <Depletion>1 in 1d6 (check each time the amulet reduces the damage)</Depletion>
+  </Artefact>
+  <Artefact>
+    <Name>Amber Casement</Name>
+    <Level>1d6 + 4</Level>
+    <Effect>When activated, it solidifes the air in a 10-foot (3 m) cube of space, the center of which must be within short range of the device. The air is turned into an amberlike substance, and those trapped in it will likely suffocate or starve.</Effect>
+    <Source>Discovery</Source>
+    <Form>Series of short, rounded tubes and hoses about 12 inches (30 cm) long</Form>
+    <Depletion>1-4 in 1d6</Depletion>
+  </Artefact>
+  <Artefact>
+    <Name>Amulet Of Safety</Name>
+    <Level>1d6</Level>
+    <Effect>Once the amulet is keyed to a specific numenera weapon, the weapon cannot activate to harm the wearer. The amulet’s level must be at least as high as the weapon’s level.</Effect>
+    <Source>Discovery</Source>
+    <Form>Plain metallic disk on a chain</Form>
+    <Depletion>-</Depletion>
+  </Artefact>
+</NumeneraDevices>
