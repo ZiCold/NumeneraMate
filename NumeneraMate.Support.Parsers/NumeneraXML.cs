@@ -52,19 +52,19 @@ namespace NumeneraMate.Support.Parsers
 
     public static void SerializeToXml(List<Cypher> cyphersList, string fileName)
         {
-            var xmlDevices = new NumeneraDevices() { Cyphers = cyphersList };
+            var xmlDevices = new NumeneraDevices() { Cyphers = cyphersList, Count = cyphersList.Count };
             SerializeToXml(xmlDevices, fileName);
         }
 
-        public static void SerializeToXml(List<Artefact> aratefactsList, string fileName)
+        public static void SerializeToXml(List<Artefact> artefactsList, string fileName)
         {
-            var xmlDevices = new NumeneraDevices() { Artefacts = aratefactsList };
+            var xmlDevices = new NumeneraDevices() { Artefacts = artefactsList, Count = artefactsList.Count };
             SerializeToXml(xmlDevices, fileName);
         }
 
         public static void SerializeToXml(List<Oddity> odditiesList, string fileName)
         {
-            var xmlDevices = new NumeneraDevices() { Oddities = odditiesList };
+            var xmlDevices = new NumeneraDevices() { Oddities = odditiesList, Count = odditiesList.Count };
             SerializeToXml(xmlDevices, fileName);
         }
 

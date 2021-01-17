@@ -16,8 +16,8 @@ namespace NumeneraMate.Apps.ConsoleApp
     {
         static void Main(string[] args)
         {
-            CombineAllCyphers();
-            //CombineAllArtefacts();
+            //CombineAllCyphers();
+            CombineAllArtefacts();
             //HTMLTableFromXLSXCreator.Transform();
             //GenerateDevices();
             //TestCalculatedProperties();
@@ -128,8 +128,9 @@ namespace NumeneraMate.Apps.ConsoleApp
             {
                 var filename = directory + file;
                 var cyphers = NumeneraXML.DeserializeCyphersListFromXML(filename);
-                NumeneraXML.SerializeToXml(cyphers, directory + $"{cyphers[0].Source}_{cyphers.Count}_fixed.xml");
+                NumeneraXML.SerializeToXml(cyphers, directory + $"{cyphers[0].Source}_fixed.xml");
                 allCyphers.Cyphers.AddRange(cyphers);
+                allCyphers.Count = cyphers.Count;
             }
 
             NumeneraXML.SerializeToXml(allCyphers.Cyphers, directory + $"All_{allCyphers.Cyphers.Count}.xml");
@@ -146,8 +147,9 @@ namespace NumeneraMate.Apps.ConsoleApp
             {
                 var filename = directory + file;
                 var artefacts = NumeneraXML.DeserializeArtefactsListFromXML(filename);
-                //NumeneraXML.SerializeToXml(artefacts, directory + $"{artefacts[0].Source}_{artefacts.Count}_fixed.xml");
+                NumeneraXML.SerializeToXml(artefacts, directory + $"{artefacts[0].Source}_fixed.xml");
                 allArtefacts.Artefacts.AddRange(artefacts);
+                allArtefacts.Count = artefacts.Count;
             }
 
             NumeneraXML.SerializeToXml(allArtefacts.Artefacts, directory + $"All_{allArtefacts.Artefacts.Count}.xml");
