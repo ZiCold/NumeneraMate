@@ -7,8 +7,6 @@ namespace NumeneraMate.Libs.Devices
 {
     public class NumeneraDevice
     {
-
-
         public string Name { get; set; }
         public string Level { get; set; }
         /// <summary>
@@ -51,6 +49,11 @@ namespace NumeneraMate.Libs.Devices
         public int MinimumCraftingLevel
         {
             get => 1 + LevelTerm;
+
+            // Uncomment this if you want to serialize MinimumCraftingLevel
+            // XmlSerializer does not serialize properties with private setters
+            // https://stackoverflow.com/questions/13401192/why-are-properties-without-a-setter-not-serialized
+            // set { }
         }
 
         public string Effect { get; set; }
