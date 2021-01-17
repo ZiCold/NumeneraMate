@@ -73,8 +73,6 @@ namespace NumeneraMate.Support.Parsers
                 int j = 0;
                 if (char.IsDigit(currentLine[0]))
                 {
-                    if (currentLine == "21. A 1-foot (0.3 m) length of silver cord with both ends neatly cut")
-                        Console.WriteLine();
                     for (; j < currentLine.Length; j++)
                     {
                         if (!char.IsDigit(currentLine[j]) && !char.IsWhiteSpace(currentLine[j]) && currentLine[j] != '.') 
@@ -367,7 +365,7 @@ namespace NumeneraMate.Support.Parsers
 
         private string ReplaceLongHyphen(string input)
         {
-            return input.Replace('–', '-');
+            return input.Replace('–', '-').Replace('—','-');
         }
 
         /// <summary>
