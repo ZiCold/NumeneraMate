@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HTMLTableFromXLSXCreator.cs" />
+    <Compile Include="CreaturesParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +71,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NumeneraMate.Libs.Creatures\NumeneraMate.Libs.Creatures.csproj">
+      <Project>{0f57dc1d-3e7e-4634-830e-506dbd838720}</Project>
+      <Name>NumeneraMate.Libs.Creatures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj">
       <Project>{a296f225-153b-4967-a52c-0526b81cb16f}</Project>
       <Name>NumeneraMate.Libs.Devices</Name>
