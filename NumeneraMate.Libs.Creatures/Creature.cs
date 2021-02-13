@@ -15,5 +15,13 @@ namespace NumeneraMate.Libs.Creatures
         public bool Swamp { get; set; }
         public bool Dimensions { get; set; }
         public bool Water { get; set; }
+
+        public override string ToString()
+        {
+            var result = $"Name: {this.Name}{Environment.NewLine}" +
+                $"Source: {this.Source}";
+
+            return result;
+        }
     }
 }
