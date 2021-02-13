@@ -1,6 +1,7 @@
 ﻿using NPOI.SS.Formula.Functions;
 using NumeneraMate.Libs.Devices;
 using NumeneraMate.Support.Parsers;
+using NumeneraMate.Libs.Creatures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,9 @@ namespace NumeneraMate.Apps.ConsoleApp
     {
         static void Main(string[] args)
         {
-            CombineAllCyphers();
+            GenerateCreatures();
+            //var smth = CreaturesParser.GetCreaturesListFromExcel();
+            //CombineAllCyphers();
             //CombineAllArtefacts();
             //HTMLTableFromXLSXCreator.Transform();
             //GenerateDevices();
@@ -75,6 +78,113 @@ namespace NumeneraMate.Apps.ConsoleApp
                         Console.WriteLine($"Generating from {odditiesList.Count} oddities\n");
                         randomIndex = rand.Next(odditiesList.Count);
                         Console.WriteLine(odditiesList[randomIndex].ToString());
+                        break;
+                }
+            }
+        }
+
+        public static void GenerateCreatures()
+        {
+            var creatures = CreaturesParser.GetCreaturesListFromExcel();
+            var endlessCreatures = creatures.Where(x => x.UsedInEndlessLegendCampaign).ToList();
+            Console.WriteLine($"Creatures loaded: {creatures.Count}");
+            Console.WriteLine($"Of which EndlessLegends creatures: {endlessCreatures.Count}");
+
+            var rand = new Random(Guid.NewGuid().GetHashCode());
+            int randomIndex = 0;
+            var currentCreatures = new List<Creature>();
+            var output = "";
+
+            var c = new ConsoleKeyInfo();
+
+            while(c.Key != ConsoleKey.Escape)
+            {
+                var terrainList = new List<string>()
+                {
+                    "Ruins/Underground",
+                    "Plains/Hills",
+                    "Desert",
+                    "Woods",
+                    "Mountains",
+                    "Swamp",
+                    "Dimensions",
+                    "Water"
+                };
+                Console.WriteLine("Choose terrain type: ");
+                for (int i = 0; i < terrainList.Count; i++)
+                {
+                    Console.Write($"{i + 1} - {terrainList[i]}");
+                    if (i != terrainList.Count - 1) Console.Write(", ");
+                    else Console.WriteLine();
+                }
+                Console.WriteLine();
+
+                c = Console.ReadKey(true);
+                switch (c.KeyChar)
+                {
+                    case '1':
+                        currentCreatures = endlessCreatures.Where(x => x.RuinsUnderground).ToList();
+                        randomIndex = rand.Next(currentCreatures.Count);
+                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
+                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
+                        Console.WriteLine(output);
+                        break;
+                    case '2':
+                        currentCreatures = endlessCreatures.Where(x => x.PlainsHills).ToList();
+                        randomIndex = rand.Next(currentCreatures.Count);
+                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
+                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
+                        Console.WriteLine(output);
+                        break;
+                    case '3':
+                        currentCreatures = endlessCreatures.Where(x => x.Desert).ToList();
+                        randomIndex = rand.Next(currentCreatures.Count);
+                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
+                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
+                        Console.WriteLine(output);
+                        break;
+                    case '4':
+                        currentCreatures = endlessCreatures.Where(x => x.Woods).ToList();
+                        randomIndex = rand.Next(currentCreatures.Count);
+                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
+                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
+                        Console.WriteLine(output);
+                        break;
+                    case '5':
+                        currentCreatures = endlessCreatures.Where(x => x.Mountains).ToList();
+                        randomIndex = rand.Next(currentCreatures.Count);
+                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
+                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
+                        Console.WriteLine(output);
+                        break;
+                    case '6':
+                        currentCreatures = endlessCreatures.Where(x => x.Swamp).ToList();
+                        randomIndex = rand.Next(currentCreatures.Count);
+                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
+                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
+                        Console.WriteLine(output);
+                        break;
+                    case '7':
+                        currentCreatures = endlessCreatures.Where(x => x.Dimensions).ToList();
+                        randomIndex = rand.Next(currentCreatures.Count);
+                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
+                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
+                        Console.WriteLine(output);
+                        break;
+                    case '8':
+                        currentCreatures = endlessCreatures.Where(x => x.Water).ToList();
+                        randomIndex = rand.Next(currentCreatures.Count);
+                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
+                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
+                        Console.WriteLine(output);
                         break;
                 }
             }
@@ -153,38 +263,6 @@ namespace NumeneraMate.Apps.ConsoleApp
 
             var artefactsToSerialize = new NumeneraDevices(allArtefacts);
             NumeneraXML.SerializeToXml(artefactsToSerialize.Artefacts, directory + $"AllSources_{artefactsToSerialize.Artefacts.Count}.xml");
-        }
-
-        public static void TestCalculatedProperties()
-        {
-            var d10cypherXML = @"  <Cypher>
-    <Name>Analysis Scanner</Name>
-    <Level>1d10</Level>
-    <MinimumCraftingLevel>1</MinimumCraftingLevel>
-    <Wearable>Bracelet</Wearable>
-    <Usable>Handheld device</Usable>
-    <Effect>This device scans and records everything within short range for one round and then conveys the level and nature of all creatures, objects, and energy sources it scanned. This information can be accessed for 28 hours after the scan.</Effect>
-    <Source>Compendium</Source>
-  </Cypher>";
-            var d10cypher = NumeneraXML.DeserializeCypherFromXMLString(d10cypherXML);
-            var d10baseLevel = d10cypher.LevelBase;
-            var d10levelTerm = d10cypher.LevelTerm;
-            var d10minCraftingLevel = d10cypher.MinimumCraftingLevel;
-
-            var d6cypherXML = @"  <Cypher>
-    <Name>Amplification Parasite</Name>
-    <Level>1d6 + 4</Level>
-    <MinimumCraftingLevel>4</MinimumCraftingLevel>
-    <Internal>Living fish, beetle, or worm that must be ingested</Internal>
-    <Effect>Upon eating the parasite, the user chooses one stat and the GM chooses a different stat. The difficulty of any roll related to the user’s chosen stat is reduced by two steps, and the difficulty of any roll involving the GM’s chosen stat is increased by two steps. The parasite dies after 1d6 hours, and the effect ends when the user violently expels it from her body.</Effect>
-    <Source>Compendium</Source>
-  </Cypher>";
-            var d6cypher = NumeneraXML.DeserializeCypherFromXMLString(d6cypherXML);
-            var d6baseLevel = d6cypher.LevelBase;
-            var d6levelTerm = d6cypher.LevelTerm;
-            var d6minCraftingLevel = d6cypher.MinimumCraftingLevel;
-
-            Console.WriteLine();
         }
 
         #endregion TestMethods
