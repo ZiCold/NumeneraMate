@@ -28,10 +28,10 @@ namespace NumeneraMate.Support.NUnitTests
   </Cypher>";
             var d10cypher = NumeneraXML.DeserializeCypherFromXMLString(d10cypherXML);
 
-            var d10baseLevel = d10cypher.LevelBase;
+            var d10baseLevel = d10cypher.LevelBaseDice;
             Assert.AreEqual(10, d10baseLevel);
 
-            var d10levelTerm = d10cypher.LevelTerm;
+            var d10levelTerm = d10cypher.LevelIncrease;
             Assert.AreEqual(0, d10levelTerm);
 
             var d10minCraftingLevel = d10cypher.MinimumCraftingLevel;
@@ -47,10 +47,10 @@ namespace NumeneraMate.Support.NUnitTests
   </Cypher>";
             var d6cypher = NumeneraXML.DeserializeCypherFromXMLString(d6cypherXML);
 
-            var d6baseLevel = d6cypher.LevelBase;
+            var d6baseLevel = d6cypher.LevelBaseDice;
             Assert.AreEqual(6, d6baseLevel);
 
-            var d6levelTerm = d6cypher.LevelTerm;
+            var d6levelTerm = d6cypher.LevelIncrease;
             Assert.AreEqual(4, d6levelTerm);
 
             var d6minCraftingLevel = d6cypher.MinimumCraftingLevel;

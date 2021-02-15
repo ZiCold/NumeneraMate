@@ -13,7 +13,7 @@ namespace NumeneraMate.Libs.Devices
         /// Base dice for Level calculation
         /// </summary>
         [XmlIgnore]
-        public int LevelBase
+        public int LevelBaseDice
         {
             get
             {
@@ -32,9 +32,11 @@ namespace NumeneraMate.Libs.Devices
                     return 1;
             }
         }
-
+        /// <summary>
+        /// Number after "+" in level string
+        /// </summary>
         [XmlIgnore]
-        public int LevelTerm
+        public int LevelIncrease
         {
             get
             {
@@ -48,7 +50,7 @@ namespace NumeneraMate.Libs.Devices
 
         public int MinimumCraftingLevel
         {
-            get => 1 + LevelTerm;
+            get => 1 + LevelIncrease;
 
             // Uncomment this if you want to serialize MinimumCraftingLevel
             // XmlSerializer does not serialize properties with private setters
