@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Support.Parser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Support.NUnitTests", "NumeneraMate.Support.NUnitTests\NumeneraMate.Support.NUnitTests.csproj", "{30BFC4AE-3B2E-4BCF-BB8E-16124BCC06C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Libs.Creatures", "NumeneraMate.Libs.Creatures\NumeneraMate.Libs.Creatures.csproj", "{0F57DC1D-3E7E-4634-830E-506DBD838720}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Libs.Creatures", "NumeneraMate.Libs.Creatures\NumeneraMate.Libs.Creatures.csproj", "{0F57DC1D-3E7E-4634-830E-506DBD838720}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.Xamarin.Android", "NumeneraMate.Apps.Xamarin\NumeneraMate.Apps.Xamarin.Android\NumeneraMate.Apps.Xamarin.Android.csproj", "{7151060F-13DA-4D7E-8043-176D9EB1D033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.Xamarin", "NumeneraMate.Apps.Xamarin\NumeneraMate.Apps.Xamarin\NumeneraMate.Apps.Xamarin.csproj", "{092BF185-0CE0-46AB-8301-DA069E9F5073}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,16 @@ Global
 		{0F57DC1D-3E7E-4634-830E-506DBD838720}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F57DC1D-3E7E-4634-830E-506DBD838720}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F57DC1D-3E7E-4634-830E-506DBD838720}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7151060F-13DA-4D7E-8043-176D9EB1D033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7151060F-13DA-4D7E-8043-176D9EB1D033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7151060F-13DA-4D7E-8043-176D9EB1D033}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7151060F-13DA-4D7E-8043-176D9EB1D033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7151060F-13DA-4D7E-8043-176D9EB1D033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7151060F-13DA-4D7E-8043-176D9EB1D033}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{092BF185-0CE0-46AB-8301-DA069E9F5073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{092BF185-0CE0-46AB-8301-DA069E9F5073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{092BF185-0CE0-46AB-8301-DA069E9F5073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{092BF185-0CE0-46AB-8301-DA069E9F5073}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
