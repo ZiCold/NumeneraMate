@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreaturesGenerator.cs" />
     <Compile Include="HTMLTableFromXLSXCreator.cs" />
     <Compile Include="CreaturesParser.cs" />
     <Compile Include="Program.cs" />
