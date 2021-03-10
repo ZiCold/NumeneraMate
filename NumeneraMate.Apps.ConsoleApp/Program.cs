@@ -124,70 +124,44 @@ namespace NumeneraMate.Apps.ConsoleApp
                 {
                     case '1':
                         currentCreatures = endlessCreatures.Where(x => x.RuinsUnderground).ToList();
-                        randomIndex = rand.Next(currentCreatures.Count);
-                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
-                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
-                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
-                        Console.WriteLine(output);
                         break;
                     case '2':
                         currentCreatures = endlessCreatures.Where(x => x.PlainsHills).ToList();
-                        randomIndex = rand.Next(currentCreatures.Count);
-                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
-                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
-                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
-                        Console.WriteLine(output);
                         break;
                     case '3':
                         currentCreatures = endlessCreatures.Where(x => x.Desert).ToList();
-                        randomIndex = rand.Next(currentCreatures.Count);
-                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
-                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
-                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
-                        Console.WriteLine(output);
                         break;
                     case '4':
                         currentCreatures = endlessCreatures.Where(x => x.Woods).ToList();
-                        randomIndex = rand.Next(currentCreatures.Count);
-                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
-                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
-                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
-                        Console.WriteLine(output);
                         break;
                     case '5':
                         currentCreatures = endlessCreatures.Where(x => x.Mountains).ToList();
-                        randomIndex = rand.Next(currentCreatures.Count);
-                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
-                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
-                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
-                        Console.WriteLine(output);
                         break;
                     case '6':
                         currentCreatures = endlessCreatures.Where(x => x.Swamp).ToList();
-                        randomIndex = rand.Next(currentCreatures.Count);
-                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
-                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
-                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
-                        Console.WriteLine(output);
                         break;
                     case '7':
                         currentCreatures = endlessCreatures.Where(x => x.Dimensions).ToList();
-                        randomIndex = rand.Next(currentCreatures.Count);
-                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
-                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
-                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
-                        Console.WriteLine(output);
                         break;
                     case '8':
                         currentCreatures = endlessCreatures.Where(x => x.Water).ToList();
-                        randomIndex = rand.Next(currentCreatures.Count);
-                        output = $"Terrain type: {terrainList[int.Parse(c.KeyChar.ToString()) - 1]}" + Environment.NewLine +
-                            $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
-                            currentCreatures[randomIndex].ToString() + Environment.NewLine;
-                        Console.WriteLine(output);
                         break;
                 }
+
+                if (currentCreatures.Count != 0)
+                    ShowCurrentRandomCreature(currentCreatures, terrainList[int.Parse(c.KeyChar.ToString()) - 1]);
+                currentCreatures.Clear();
             }
+        }
+
+        public static void ShowCurrentRandomCreature(List<Creature> currentCreatures, string terrain)
+        {
+            var rand = new Random(Guid.NewGuid().GetHashCode());
+            var randomIndex = rand.Next(currentCreatures.Count);
+            string output = $"Terrain type: {terrain}" + Environment.NewLine +
+                $"Number of creatures: {currentCreatures.Count}" + Environment.NewLine +
+                currentCreatures[randomIndex].ToString() + Environment.NewLine;
+            Console.WriteLine(output);
         }
 
         #region TestMethods
