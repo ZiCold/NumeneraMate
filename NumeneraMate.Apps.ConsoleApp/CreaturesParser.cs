@@ -12,12 +12,9 @@ namespace NumeneraMate.Apps.ConsoleApp
 {
     public static class CreaturesParser
     {
-        public static List<Creature> GetCreaturesListFromExcel()
+        public static List<Creature> GetCreaturesListFromExcel(string directory, string filename)
         {
-            var excelTableDirectory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Creatures\";
-            var excelTableFilename = @"CreaturesTable.xlsx";
-
-            var filepath = Path.Combine(excelTableDirectory, excelTableFilename);
+            var filepath = Path.Combine(directory, filename);
 
             XSSFWorkbook xssfwb;
             using (FileStream file = new FileStream(filepath, FileMode.Open, FileAccess.Read))
@@ -25,7 +22,9 @@ namespace NumeneraMate.Apps.ConsoleApp
                 xssfwb = new XSSFWorkbook(file);
             }
 
-            var sheetTitle = "Creatures List";
+            xssfwb.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
+
+            var sheetTitle = "Creatures";
 
             ISheet sheet = xssfwb.GetSheet(sheetTitle);
 
@@ -46,35 +45,45 @@ namespace NumeneraMate.Apps.ConsoleApp
         private static Creature ProcessRow(IRow currentRow)
         {
             var oneCreature = new Creature();
-            oneCreature.Name = currentRow.GetCell(1).StringCellValue;
-            oneCreature.Source = currentRow.GetCell(2).StringCellValue;
 
-            var endless = currentRow.GetCell(3).NumericCellValue.ToString();
-            oneCreature.UsedInEndlessLegendCampaign = !string.IsNullOrEmpty(endless) && endless != "0";
-
-            var ruins = currentRow.GetCell(4).StringCellValue.Trim();
-            oneCreature.RuinsUnderground = !string.IsNullOrEmpty(ruins);
-
-            var plains = currentRow.GetCell(5).StringCellValue.Trim();
-            oneCreature.PlainsHills = !string.IsNullOrEmpty(plains);
-
-            var desert = currentRow.GetCell(6).StringCellValue.Trim();
-            oneCreature.Desert = !string.IsNullOrEmpty(desert);
-
-            var woods = currentRow.GetCell(7).StringCellValue.Trim();
-            oneCreature.Woods = !string.IsNullOrEmpty(woods);
-
-            var mountains = currentRow.GetCell(8).StringCellValue.Trim();
-            oneCreature.Mountains = !string.IsNullOrEmpty(mountains);
-
-            var swamp = currentRow.GetCell(9).StringCellValue.Trim();
-            oneCreature.Swamp = !string.IsNullOrEmpty(swamp);
-
-            var dimensions = currentRow.GetCell(10).StringCellValue.Trim();
-            oneCreature.Dimensions = !string.IsNullOrEmpty(dimensions);
-
-            var water = currentRow.GetCell(11).StringCellValue.Trim();
-            oneCreature.Water = !string.IsNullOrEmpty(water);
+            for (int i = 1; i <= 11; i++)
+            {
+                var currentCell = currentRow.GetCell(i, MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                var isItInTerrain = false;
+                if (currentCell != null)
+                {
+                    if (currentCell.CellType != CellType.Numeric && !string.IsNullOrEmpty(currentCell.StringCellValue.Trim()))
+                        isItInTerrain = true;
+                }
+                    
+                switch (i)
+                {
+                    case 1:
+                        oneCreature.Name = currentCell.StringCellValue; break;
+                    case 2:
+                        oneCreature.Source = currentCell.StringCellValue; break;
+                    case 3:
+                        var endless = currentCell.NumericCellValue.ToString();
+                        oneCreature.UsedInEndlessLegendCampaign = !string.IsNullOrEmpty(endless) && endless != "0";
+                        break;
+                    case 4:
+                        oneCreature.RuinsUnderground = isItInTerrain; break;
+                    case 5:
+                        oneCreature.PlainsHills = isItInTerrain; break;
+                    case 6:
+                        oneCreature.Desert = isItInTerrain; break;
+                    case 7:
+                        oneCreature.Woods = isItInTerrain; break;
+                    case 8:
+                        oneCreature.Mountains = isItInTerrain; break;
+                    case 9:
+                        oneCreature.Swamp = isItInTerrain; break;
+                    case 10:
+                        oneCreature.Dimensions = isItInTerrain; break;
+                    case 11:
+                        oneCreature.Water = isItInTerrain; break;
+                }
+            }
 
             return oneCreature;
         }

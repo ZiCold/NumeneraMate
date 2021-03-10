@@ -17,12 +17,14 @@ namespace NumeneraMate.Apps.ConsoleApp
     {
         static void Main(string[] args)
         {
-            GenerateCreatures();
+            GenerateCreatures(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\", @"Creatures and Events Table.xlsx");
+            //GenerateDevices(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\Devices");
+            
+            
             //var smth = CreaturesParser.GetCreaturesListFromExcel();
             //CombineAllCyphers();
             //CombineAllArtefacts();
             //HTMLTableFromXLSXCreator.Transform();
-            //GenerateDevices();
             //TestCalculatedProperties();
 
             //Console.WriteLine();
@@ -30,19 +32,17 @@ namespace NumeneraMate.Apps.ConsoleApp
             //Console.ReadLine();
         }
 
-        private static void GenerateDevices()
+        private static void GenerateDevices(string directory)
         {
-            var directory = @"E:\Documents\Tabletop RPGs\Numenera\NumeneraAppFiles\Devices";
-
-            var cyphersFileName = Path.Combine(directory, "Cyphers_All_538.xml");
+            var cyphersFileName = Path.Combine(directory, "Cyphers_AllSources.xml");
             var cyphersList = NumeneraXML.DeserializeCyphersListFromXML(cyphersFileName);
             Console.WriteLine("Cyphers loaded: " + cyphersList.Count);
 
-            var artefactsFileName = Path.Combine(directory, "Artefacts_All_336.xml");
+            var artefactsFileName = Path.Combine(directory, "Artefacts_AllSources.xml");
             var artefactsList = NumeneraXML.DeserializeArtefactsListFromXML(artefactsFileName);
             Console.WriteLine("Artefacts loaded: " + artefactsList.Count);
 
-            var odditiesFilename = Path.Combine(directory, "Oddities_All_400.xml");
+            var odditiesFilename = Path.Combine(directory, "Oddities_AllSources.xml");
             var odditiesList = NumeneraXML.DeserializeOdditiesListFromXML(odditiesFilename);
             Console.WriteLine("Oddities loaded: " + odditiesList.Count);
 
@@ -83,9 +83,9 @@ namespace NumeneraMate.Apps.ConsoleApp
             }
         }
 
-        public static void GenerateCreatures()
+        public static void GenerateCreatures(string directory, string filename)
         {
-            var creatures = CreaturesParser.GetCreaturesListFromExcel();
+            var creatures = CreaturesParser.GetCreaturesListFromExcel(directory, filename);
             var endlessCreatures = creatures.Where(x => x.UsedInEndlessLegendCampaign).ToList();
             Console.WriteLine($"Creatures loaded: {creatures.Count}");
             Console.WriteLine($"Of which EndlessLegends creatures: {endlessCreatures.Count}");
@@ -97,7 +97,7 @@ namespace NumeneraMate.Apps.ConsoleApp
 
             var c = new ConsoleKeyInfo();
 
-            while(c.Key != ConsoleKey.Escape)
+            while (c.Key != ConsoleKey.Escape)
             {
                 var terrainList = new List<string>()
                 {
