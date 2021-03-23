@@ -11,6 +11,7 @@ namespace NumeneraMate.Support.Parsers
 {
     public static class NumeneraXML
     {
+        #region Deserialize
         /// <summary>
         /// Helper: Get cyphers list from generated XML
         /// </summary>
@@ -50,7 +51,10 @@ namespace NumeneraMate.Support.Parsers
             }
         }
 
-    public static void SerializeToXml(List<Cypher> cyphersList, string fileName)
+        #endregion
+
+        #region Serialize
+        public static void SerializeToXml(List<Cypher> cyphersList, string fileName)
         {
             var xmlDevices = new NumeneraDevices(cyphersList);
             SerializeToXml(xmlDevices, fileName);
@@ -77,7 +81,7 @@ namespace NumeneraMate.Support.Parsers
                 ser.Serialize(writer, xmlDevices);
             }
         }
-
+        #endregion
 
 
         /// <summary>
