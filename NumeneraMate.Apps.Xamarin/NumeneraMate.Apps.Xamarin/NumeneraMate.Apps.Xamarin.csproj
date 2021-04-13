@@ -6,9 +6,22 @@
     <UseShortFileNames>True</UseShortFileNames>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="DevicesFiles\Cyphers_AllSources.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="DevicesFiles\Cyphers_AllSources.xml" />
+  </ItemGroup>
+
   <ItemGroup>  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj" />
+    <ProjectReference Include="..\..\NumeneraMate.Support.Parsers\NumeneraMate.Support.Parsers.csproj" />
   </ItemGroup>
 
   <ItemGroup>

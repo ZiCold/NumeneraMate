@@ -14,8 +14,7 @@
                 Placeholder="Nothing"
                 IsReadOnly="True"
                 Text="{Binding Description}"
-                    HeightRequest="300"/>
-
+                    HeightRequest="420"/>
             <Button Grid.Column="0"
                     Text="Generate Random"
                     BackgroundColor="#dfdfe0"
