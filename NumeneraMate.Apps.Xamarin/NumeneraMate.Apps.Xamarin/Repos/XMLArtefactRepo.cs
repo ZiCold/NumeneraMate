@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace NumeneraMate.Apps.Xamarin.Repos
 {
-    public class XMLArtefactRepo : IUnchangeableRepo<Artefact>
+    public class XMLArtefactRepo : BaseXMLRepo<Artefact>, IUnchangeableRepo<Artefact>
     {
         // If DB is loaded in memory on initializing
         // Factory pattern as in: https://stackoverflow.com/questions/23048285/call-asynchronous-method-in-constructor/34311951#34311951
@@ -21,8 +21,6 @@ namespace NumeneraMate.Apps.Xamarin.Repos
             return deviceRepo;
         }
 
-        string _xmlFileName;
-        List<Artefact> _artefacts;
         private XMLArtefactRepo(string xmlFileName)
         {
             _xmlFileName = xmlFileName;
@@ -30,40 +28,19 @@ namespace NumeneraMate.Apps.Xamarin.Repos
 
         private void Initialize()
         {
-            var numDevices = new NumeneraDevices();
-            var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-            Stream stream = assembly.GetManifestResourceStream(_xmlFileName);
-            using (var reader = new System.IO.StreamReader(stream))
-            {
-                var xmlString = reader.ReadToEnd();
-                XmlSerializer ser = new XmlSerializer(typeof(NumeneraDevices));
-                using (TextReader xmlStringReader = new StringReader(xmlString))
-                {
-                    numDevices = (NumeneraDevices)ser.Deserialize(xmlStringReader);
-                }
-            }
+            var numDevices = InitializeNumeneraDevices();
 
-            _artefacts = numDevices.Artefacts;
-        }
-
-        public List<Artefact> GetAllItems()
-        {
-            return _artefacts;
-        }
-
-        public Task<List<Artefact>> GetAllItemsAsync()
-        {
-            return Task.FromResult(_artefacts);
+            _devices = numDevices.Artefacts;
         }
 
         public Artefact GetItem(string name)
         {
-            return _artefacts.FirstOrDefault(x => x.Name == name);
+            return _devices.FirstOrDefault(x => x.Name == name);
         }
 
         public Task<Artefact> GetItemAsync(string name)
         {
-            return Task.FromResult(_artefacts.FirstOrDefault(x => x.Name == name));
+            return Task.FromResult(_devices.FirstOrDefault(x => x.Name == name));
         }
     }
 }
