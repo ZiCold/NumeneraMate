@@ -35,14 +35,14 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
             get => isGenerateButtonEnabled;
             set => SetProperty(ref isGenerateButtonEnabled, value);
         }
-
+        
         public Command GenerateRandomDevice { get; }
 
         List<Cypher> Cyphers { get; set; }
-
+        
         // Maybe feature IRandom for using Random.org
         Random rand = new Random(Guid.NewGuid().GetHashCode());
-
+        
         async Task OnGenerateDeviceAsync()
         {
             IsGenerateButtonEnabled = false;

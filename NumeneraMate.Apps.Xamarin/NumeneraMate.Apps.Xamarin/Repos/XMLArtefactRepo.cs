@@ -1,30 +1,29 @@
 ﻿using NumeneraMate.Libs.Devices;
-using NumeneraMate.Support.Parsers;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Reflection;
-using System.IO;
 using System.Xml.Serialization;
-using System.Linq;
 
 namespace NumeneraMate.Apps.Xamarin.Repos
 {
-    public class XMLCypherRepo : IUnchangeableRepo<Cypher>
+    public class XMLArtefactRepo : IUnchangeableRepo<Artefact>
     {
         // If DB is loaded in memory on initializing
         // Factory pattern as in: https://stackoverflow.com/questions/23048285/call-asynchronous-method-in-constructor/34311951#34311951
-        public static async Task<XMLCypherRepo> Create(string xmlFileName)
+        public static async Task<XMLArtefactRepo> Create(string xmlFileName)
         {
-            var deviceRepo = new XMLCypherRepo(xmlFileName);
+            var deviceRepo = new XMLArtefactRepo(xmlFileName);
             await Task.Factory.StartNew(() => deviceRepo.Initialize());
             return deviceRepo;
         }
 
         string _xmlFileName;
-        List<Cypher> _cyphers;
-        private XMLCypherRepo(string xmlFileName)
+        List<Artefact> _artefacts;
+        private XMLArtefactRepo(string xmlFileName)
         {
             _xmlFileName = xmlFileName;
         }
@@ -44,27 +43,27 @@ namespace NumeneraMate.Apps.Xamarin.Repos
                 }
             }
 
-            _cyphers = numDevices.Cyphers;
+            _artefacts = numDevices.Artefacts;
         }
 
-        public List<Cypher> GetAllItems()
+        public List<Artefact> GetAllItems()
         {
-            return _cyphers;
+            return _artefacts;
         }
 
-        public Task<List<Cypher>> GetAllItemsAsync()
+        public Task<List<Artefact>> GetAllItemsAsync()
         {
-            return Task.FromResult(_cyphers);
+            return Task.FromResult(_artefacts);
         }
 
-        public Cypher GetItem(string name)
+        public Artefact GetItem(string name)
         {
-            return _cyphers.FirstOrDefault(x => x.Name == name);
+            return _artefacts.FirstOrDefault(x => x.Name == name);
         }
 
-        public Task<Cypher> GetItemAsync(string name)
+        public Task<Artefact> GetItemAsync(string name)
         {
-            return Task.FromResult(_cyphers.FirstOrDefault(x => x.Name == name));
+            return Task.FromResult(_artefacts.FirstOrDefault(x => x.Name == name));
         }
     }
 }

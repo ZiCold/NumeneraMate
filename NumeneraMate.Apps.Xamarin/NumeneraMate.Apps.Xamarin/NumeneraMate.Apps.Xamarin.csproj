@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DevicesFiles\Artefacts_AllSources.xml" />
     <None Remove="DevicesFiles\Cyphers_AllSources.xml" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="DevicesFiles\Artefacts_AllSources.xml" />
     <EmbeddedResource Include="DevicesFiles\Cyphers_AllSources.xml" />
   </ItemGroup>
 

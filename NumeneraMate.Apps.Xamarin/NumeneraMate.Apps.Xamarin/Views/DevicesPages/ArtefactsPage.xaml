@@ -14,11 +14,12 @@
                 Placeholder="Nothing"
                 IsReadOnly="True"
                 Text="{Binding Description}"
-                    HeightRequest="300"/>
+                    HeightRequest="440"/>
 
             <Button Grid.Column="0"
                     Text="Generate Random"
-                    Command="{Binding GenerateRandomDevice}" Visual="Material" />
+                    Command="{Binding GenerateRandomDevice}" Visual="Material" 
+                    IsEnabled="{Binding IsGenerateButtonEnabled}"/>
 
         </StackLayout>
     </ContentPage.Content>
