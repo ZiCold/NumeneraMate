@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
 {
-    class OdditiesViewModel : BaseViewModel
+    class OdditiesViewModel : BaseDeviceViewModel<Oddity>
     {
         public OdditiesViewModel()
         {
@@ -20,28 +20,7 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         }
         string _xmlFileName;
 
-        IUnchangeableRepo<Oddity> repo;
-
-        string description;
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
-
-        bool isGenerateButtonEnabled;
-        public bool IsGenerateButtonEnabled
-        {
-            get => isGenerateButtonEnabled;
-            set => SetProperty(ref isGenerateButtonEnabled, value);
-        }
-
         public Command GenerateRandomDevice { get; }
-
-        List<Oddity> Devices { get; set; }
-
-        // Maybe feature IRandom for using Random.org
-        Random rand = new Random(Guid.NewGuid().GetHashCode());
 
         async Task OnGenerateDeviceAsync()
         {
@@ -56,10 +35,8 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         public void GenerateDevice()
         {
             var randomIndex = rand.Next(Devices.Count);
-            var diceRandom = rand.Next(1, 6);
 
             var generatedOddity = Devices[randomIndex];
-            //generatedCypher.Level += $" [D6 = {diceRandom}]";
 
             Description = generatedOddity.ToString();
         }
