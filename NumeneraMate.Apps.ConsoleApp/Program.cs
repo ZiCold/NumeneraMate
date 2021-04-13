@@ -20,7 +20,6 @@ namespace NumeneraMate.Apps.ConsoleApp
             GenerateCreatures(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\", @"Creatures and Events Table.xlsx");
             //GenerateDevices(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\Devices");
             
-            
             //var smth = CreaturesParser.GetCreaturesListFromExcel();
             //CombineAllCyphers();
             //CombineAllArtefacts();
@@ -28,8 +27,8 @@ namespace NumeneraMate.Apps.ConsoleApp
             //TestCalculatedProperties();
 
             //Console.WriteLine();
-            //Console.WriteLine("Press anykey man");
-            //Console.ReadLine();
+            Console.WriteLine("Press anykey man");
+            Console.ReadLine();
         }
 
         private static void GenerateDevices(string directory)
@@ -91,9 +90,7 @@ namespace NumeneraMate.Apps.ConsoleApp
             Console.WriteLine($"Of which EndlessLegends creatures: {endlessCreatures.Count}");
 
             var rand = new Random(Guid.NewGuid().GetHashCode());
-            int randomIndex = 0;
             var currentCreatures = new List<Creature>();
-            var output = "";
 
             var c = new ConsoleKeyInfo();
 
