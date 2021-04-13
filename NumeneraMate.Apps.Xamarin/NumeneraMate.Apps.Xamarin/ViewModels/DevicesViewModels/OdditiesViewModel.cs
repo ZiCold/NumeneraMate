@@ -11,7 +11,7 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
     {
         public OdditiesViewModel()
         {
-            Title = "Cyphers";
+            Title = "Oddities";
 
             GenerateRandomDevice = new Command(async () => await OnGenerateDeviceAsync());
 
