@@ -17,8 +17,9 @@
                     HeightRequest="420"/>
             <Button Grid.Column="0"
                     Text="Generate Random"
-                    BackgroundColor="#dfdfe0"
-                    Command="{Binding GenerateRandomDevice}" Visual="Material" />
+                    Command="{Binding GenerateRandomDevice}" Visual="Material" 
+                    IsEnabled="{Binding IsGenerateButtonEnabled}"
+                    />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

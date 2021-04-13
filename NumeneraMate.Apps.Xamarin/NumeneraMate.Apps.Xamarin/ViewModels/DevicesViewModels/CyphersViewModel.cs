@@ -15,12 +15,10 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
 
             GenerateRandomDevice = new Command(async () => await OnGenerateDeviceAsync());
 
-            // The right way is to load interface and then, after repo is loaded, show "data is loaded"
-            var task = Task.Factory.StartNew(() => XMLCypherRepo.Create("NumeneraMate.Apps.Xamarin.DevicesFiles.Cyphers_AllSources.xml"));
-            repo = task.Result.Result;
-
-            //repo = new XMLCypherRepo("NumeneraMate.Apps.Xamarin.DevicesFiles.Cyphers_AllSources.xml");
+            _xmlFileName = "NumeneraMate.Apps.Xamarin.DevicesFiles.Cyphers_AllSources.xml";
+            IsGenerateButtonEnabled = true;
         }
+        string _xmlFileName;
 
         IUnchangeableRepo<Cypher> repo;
 
@@ -29,6 +27,13 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         {
             get => description;
             set => SetProperty(ref description, value);
+        }
+
+        bool isGenerateButtonEnabled;
+        public bool IsGenerateButtonEnabled
+        {
+            get => isGenerateButtonEnabled;
+            set => SetProperty(ref isGenerateButtonEnabled, value);
         }
 
         public Command GenerateRandomDevice { get; }
@@ -40,8 +45,12 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
 
         async Task OnGenerateDeviceAsync()
         {
+            IsGenerateButtonEnabled = false;
+            if (repo is null)
+                repo = await XMLCypherRepo.Create(_xmlFileName);
             Cyphers = await repo.GetAllItemsAsync();
             GenerateDevice();
+            IsGenerateButtonEnabled = true;
         }
 
         public void GenerateDevice()
