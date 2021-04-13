@@ -19,7 +19,7 @@
             <Button Grid.Column="0"
                     Text="Generate Random"
                     Command="{Binding GenerateRandomDevice}" Visual="Material" 
-                    IsEnabled="{Binding IsGenerateButtonEnabled}/>
+                    IsEnabled="{Binding IsGenerateButtonEnabled}"/>
 
         </StackLayout>
     </ContentPage.Content>
