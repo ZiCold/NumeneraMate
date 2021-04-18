@@ -17,13 +17,20 @@ namespace NumeneraMate.Libs.Devices
         {
             get
             {
-                var clearedLevelString = Level.Substring(Level.ToLower().IndexOf("d") + 1);
                 var maybeDiceValue = "";
-                for (int i = 0; i < clearedLevelString.Length; i++)
+                if (Level.ToLower().IndexOf("d") == -1)
                 {
-                    if (clearedLevelString[i] == '+') break;
-                    if (char.IsDigit(clearedLevelString[i]))
-                        maybeDiceValue += clearedLevelString[i];
+                    maybeDiceValue = Level;
+                }
+                else
+                {
+                    var clearedLevelString = Level.Substring(Level.ToLower().IndexOf("d") + 1);
+                    for (int i = 0; i < clearedLevelString.Length; i++)
+                    {
+                        if (clearedLevelString[i] == '+') break;
+                        if (char.IsDigit(clearedLevelString[i]))
+                            maybeDiceValue += clearedLevelString[i];
+                    }
                 }
                 var success = int.TryParse(maybeDiceValue, out int diceValue);
                 if (success)
@@ -47,6 +54,11 @@ namespace NumeneraMate.Libs.Devices
                 else return 0;
             }
         }
+        /// <summary>
+        /// random d6 + LevelIncrease
+        /// </summary>
+        [XmlIgnore]
+        public int CurrentLevel { get; set; }
 
         public int MinimumCraftingLevel
         {
