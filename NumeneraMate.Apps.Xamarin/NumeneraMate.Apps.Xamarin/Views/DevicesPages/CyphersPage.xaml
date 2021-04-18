@@ -9,18 +9,58 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout Margin="20">
-            <Editor x:Name="editor"
-                Placeholder="Nothing"
-                IsReadOnly="True"
-                Text="{Binding Description}"
-                    HeightRequest="440"/>
-            
-            <Button Grid.Column="0"
-                    Text="Generate Random"
-                    Command="{Binding GenerateRandomDevice}" Visual="Material" 
-                    IsEnabled="{Binding IsGenerateButtonEnabled}"
-                    />
-        </StackLayout>
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0" Padding="10">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Name:" FontAttributes="Bold"/>
+                        <Label Text="{Binding Cypher.Name}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Level:" FontAttributes="Bold"/>
+                        <Label Text="{Binding Cypher.CurrentLevel}"/>
+                    </StackLayout>
+
+                    <Label Text="Appearance:" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Wearable:"/>
+                        <Label Text="{Binding Cypher.Wearable}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Usable:"/>
+                        <Label Text="{Binding Cypher.Usable}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Internal:"/>
+                        <Label Text="{Binding Cypher.Internal}"/>
+                    </StackLayout>
+
+                    <Label Text="Effect:" FontAttributes="Bold"/>
+                    <Label Text="{Binding Cypher.Effect}"/>
+
+                    <Label Text="RollTable:" FontAttributes="Bold"/>
+                    <Label Text="{Binding Cypher.RollTable}"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Source:" FontAttributes="Bold"/>
+                        <Label Text="{Binding Cypher.Source}"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="1"
+                        Text="Generate Random"
+                        Command="{Binding GenerateRandomDevice}" Visual="Material" 
+                        IsEnabled="{Binding IsGenerateButtonEnabled}"
+                        />
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

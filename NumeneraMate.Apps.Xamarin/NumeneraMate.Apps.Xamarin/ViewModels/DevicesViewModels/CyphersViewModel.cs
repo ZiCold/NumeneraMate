@@ -19,6 +19,13 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
 
         string _xmlFileName;
 
+        Cypher _cypher;
+        public Cypher Cypher
+        {
+            get => _cypher;
+            set => SetProperty(ref _cypher, value);
+        }
+
         public Command GenerateRandomDevice { get; }
 
         async Task OnGenerateDeviceAsync()
@@ -36,10 +43,10 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
             var randomIndex = rand.Next(Devices.Count);
             var diceRandom = rand.Next(1, 6);
 
-            var generatedCypher = Devices[randomIndex];
-            generatedCypher.Level += $" [D6 = {diceRandom}]";
+            var curCypher = Devices[randomIndex];
+            curCypher.CurrentLevel = diceRandom + curCypher.LevelIncrease;
 
-            Description = generatedCypher.ToString();
+            Cypher = curCypher;
         }
     }
 }
