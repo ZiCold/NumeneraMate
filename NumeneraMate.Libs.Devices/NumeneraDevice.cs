@@ -18,9 +18,11 @@ namespace NumeneraMate.Libs.Devices
             get
             {
                 var maybeDiceValue = "";
+                // if there no 'd' than this is the static level, so no random dice
+                // for example 8 = d0 + 8
                 if (Level.ToLower().IndexOf("d") == -1)
                 {
-                    maybeDiceValue = Level;
+                    return 0;
                 }
                 else
                 {
@@ -47,8 +49,16 @@ namespace NumeneraMate.Libs.Devices
         {
             get
             {
-                if (!Level.Contains("+")) return 0;
-                var levelTermStr = Level.Substring(Level.ToLower().IndexOf("+") + 1);
+                var levelTermStr = "";
+                if (!Level.Contains("+"))
+                {
+                    if (!Level.Contains("d")) levelTermStr = Level; // static level, like 8
+                    else levelTermStr = "0";      // 1d6
+                }
+                else
+                {
+                    levelTermStr = Level.Substring(Level.ToLower().IndexOf("+") + 1);
+                }
                 var success = int.TryParse(levelTermStr, out int levelTerm);
                 if (success) return levelTerm;
                 else return 0;
@@ -62,7 +72,7 @@ namespace NumeneraMate.Libs.Devices
 
         public int MinimumCraftingLevel
         {
-            get => 1 + LevelIncrease;
+            get => LevelBaseDice != 0 ? 1 + LevelIncrease : LevelIncrease;
 
             // Uncomment this if you want to serialize MinimumCraftingLevel
             // XmlSerializer does not serialize properties with private setters

@@ -4,6 +4,7 @@ using NumeneraMate.Libs.Devices;
 using System.IO;
 using System.Collections.Generic;
 using FluentAssertions;
+using System;
 
 namespace NumeneraMate.Support.NUnitTests
 {
@@ -37,6 +38,7 @@ namespace NumeneraMate.Support.NUnitTests
             var d10minCraftingLevel = d10cypher.MinimumCraftingLevel;
             Assert.AreEqual(1, d10minCraftingLevel);
 
+
             var d6cypherXML = @"  <Cypher>
     <Name>Amplification Parasite</Name>
     <Level>1d6 + 4</Level>
@@ -55,6 +57,25 @@ namespace NumeneraMate.Support.NUnitTests
 
             var d6minCraftingLevel = d6cypher.MinimumCraftingLevel;
             Assert.AreEqual(5, d6minCraftingLevel);
+
+
+            var staticLevelCypherXML = @"  <Cypher>
+    <Name>Detonation (singularity)</Name>
+    <Level>10</Level>
+    <Effect>Explodes and creates a momentary singularity that tears at the fabric of the universe. Inflicts 20 points of damage to all within short range, drawing them (or their remains) together to immediate range (if possible). Player characters in the radius move one step down the damage track if they fail a Might defense roll.</Effect>
+    <Source>Discovery</Source>
+    <Usable>Explosive device or ceramic sphere (thrown, short range) or handheld projector (long range)</Usable>
+  </Cypher>";
+            var staticLevelCypher = NumeneraXML.DeserializeCypherFromXMLString(staticLevelCypherXML);
+
+            var staticLevel = staticLevelCypher.LevelBaseDice;
+            Assert.AreEqual(0, staticLevel);
+
+            var staticLevelTerm = staticLevelCypher.LevelIncrease;
+            Assert.AreEqual(10, staticLevelTerm);
+
+            var staticLevelMinCraftingLevel = staticLevelCypher.MinimumCraftingLevel;
+            Assert.AreEqual(10, staticLevelMinCraftingLevel);
         }
 
         [Test]
