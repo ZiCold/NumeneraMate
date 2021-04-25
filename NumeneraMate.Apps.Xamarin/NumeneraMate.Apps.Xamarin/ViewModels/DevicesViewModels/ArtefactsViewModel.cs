@@ -1,5 +1,6 @@
 ﻿using NumeneraMate.Apps.Xamarin.Repos;
 using NumeneraMate.Libs.Devices;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -10,6 +11,7 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         public ArtefactsViewModel()
         {
             Title = "Artefacts";
+            rand = new Random(Guid.NewGuid().GetHashCode());
 
             GenerateRandomDevice = new Command(async () => await OnGenerateDeviceAsync());
 

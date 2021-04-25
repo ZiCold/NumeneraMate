@@ -1,5 +1,6 @@
 ﻿using NumeneraMate.Apps.Xamarin.Repos;
 using NumeneraMate.Libs.Devices;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -10,6 +11,7 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         public CyphersViewModel()
         {
             Title = "Cyphers";
+            rand = new Random(Guid.NewGuid().GetHashCode());
 
             GenerateRandomDevice = new Command(async () => await OnGenerateDeviceAsync());
 
@@ -41,10 +43,15 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         public void GenerateDevice()
         {
             var randomIndex = rand.Next(Devices.Count);
+
+
             var diceRandom = rand.Next(1, 6);
 
             var curCypher = Devices[randomIndex];
-            curCypher.CurrentLevel = diceRandom + curCypher.LevelIncrease;
+            var randomDice = curCypher.LevelBaseDice == 0 ? 0 : rand.Next(1, curCypher.LevelBaseDice);
+            randomDice += curCypher.LevelIncrease;
+
+            curCypher.CurrentLevel = randomDice;
 
             Cypher = curCypher;
         }

@@ -10,7 +10,7 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
     public abstract class BaseDeviceViewModel<T> : BaseViewModel
     {
         // Maybe feature IRandom for using Random.org
-        protected Random rand = new Random(Guid.NewGuid().GetHashCode());
+        protected Random rand;
 
         protected IUnchangeableRepo<T> repo;
 

@@ -12,6 +12,7 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         public OdditiesViewModel()
         {
             Title = "Oddities";
+            rand = new Random(Guid.NewGuid().GetHashCode());
 
             GenerateRandomDevice = new Command(async () => await OnGenerateDeviceAsync());
 
