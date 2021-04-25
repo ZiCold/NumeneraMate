@@ -44,16 +44,13 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         {
             var randomIndex = rand.Next(Devices.Count);
 
+            var curDevice = Devices[randomIndex];
+            
+            var randomLevel = curDevice.LevelBaseDice == 0 ? 0 : rand.Next(1, curDevice.LevelBaseDice);
+            randomLevel += curDevice.LevelIncrease;
+            curDevice.CurrentLevel = randomLevel;
 
-            var diceRandom = rand.Next(1, 6);
-
-            var curCypher = Devices[randomIndex];
-            var randomDice = curCypher.LevelBaseDice == 0 ? 0 : rand.Next(1, curCypher.LevelBaseDice);
-            randomDice += curCypher.LevelIncrease;
-
-            curCypher.CurrentLevel = randomDice;
-
-            Cypher = curCypher;
+            Cypher = curDevice;
         }
     }
 }

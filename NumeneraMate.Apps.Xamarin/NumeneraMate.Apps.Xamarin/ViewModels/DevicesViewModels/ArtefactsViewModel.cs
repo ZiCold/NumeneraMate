@@ -21,6 +21,13 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
 
         string _xmlFileName;
 
+        Artefact _artefact;
+        public Artefact Artefact
+        {
+            get => _artefact;
+            set => SetProperty(ref _artefact, value);
+        }
+
         public Command GenerateRandomDevice { get; }
 
         async Task OnGenerateDeviceAsync()
@@ -36,12 +43,14 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         public void GenerateDevice()
         {
             var randomIndex = rand.Next(Devices.Count);
-            var diceRandom = rand.Next(1, 6);
 
-            var generatedCypher = Devices[randomIndex];
-            generatedCypher.Level += $" [D6 = {diceRandom}]";
+            var curDevice = Devices[randomIndex];
 
-            Description = generatedCypher.ToString();
+            var randomLevel = curDevice.LevelBaseDice == 0 ? 0 : rand.Next(1, curDevice.LevelBaseDice);
+            randomLevel += curDevice.LevelIncrease;
+            curDevice.CurrentLevel = randomLevel;
+
+            Artefact = curDevice;
         }
     }
 }

@@ -28,17 +28,17 @@
 
                     <Label Text="Appearance:" FontAttributes="Bold"/>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Wearable:"/>
+                        <Label Text="Wearable:" MinimumWidthRequest="80"/>
                         <Label Text="{Binding Cypher.Wearable}"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Usable:"/>
+                        <Label Text="Usable:" MinimumWidthRequest="80"/>
                         <Label Text="{Binding Cypher.Usable}"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Internal:"/>
+                        <Label Text="Internal:" MinimumWidthRequest="80"/>
                         <Label Text="{Binding Cypher.Internal}"/>
                     </StackLayout>
 

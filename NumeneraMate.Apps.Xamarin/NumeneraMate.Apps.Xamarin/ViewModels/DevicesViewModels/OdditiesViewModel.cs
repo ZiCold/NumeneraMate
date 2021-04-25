@@ -21,6 +21,12 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         }
         string _xmlFileName;
 
+        Oddity _oddity;
+        public Oddity Oddity
+        {
+            get => _oddity;
+            set => SetProperty(ref _oddity, value);
+        }
         public Command GenerateRandomDevice { get; }
 
         async Task OnGenerateDeviceAsync()
@@ -37,9 +43,9 @@ namespace NumeneraMate.Apps.Xamarin.ViewModels.DevicesViewModels
         {
             var randomIndex = rand.Next(Devices.Count);
 
-            var generatedOddity = Devices[randomIndex];
+            var curDevice = Devices[randomIndex];
 
-            Description = generatedOddity.ToString();
+            Oddity = curDevice;
         }
     }
 }

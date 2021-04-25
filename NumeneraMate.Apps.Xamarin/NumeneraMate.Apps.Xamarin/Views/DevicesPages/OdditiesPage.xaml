@@ -9,18 +9,30 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout Margin="20">
-            <Editor x:Name="editor"
-                Placeholder="Nothing"
-                IsReadOnly="True"
-                Text="{Binding Description}"
-                    HeightRequest="440"/>
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0" Padding="10">
+                <StackLayout>
 
-            <Button Grid.Column="0"
-                    Text="Generate Random"
-                    Command="{Binding GenerateRandomDevice}" Visual="Material" 
-                    IsEnabled="{Binding IsGenerateButtonEnabled}"/>
+                    <Label Text="Description:" FontAttributes="Bold"/>
+                    <Label Text="{Binding Oddity.Description}"/>
 
-        </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Source:" FontAttributes="Bold"/>
+                        <Label Text="{Binding Oddity.Source}"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="1"
+                        Text="Generate Random"
+                        Command="{Binding GenerateRandomDevice}" Visual="Material" 
+                        IsEnabled="{Binding IsGenerateButtonEnabled}"
+                        />
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

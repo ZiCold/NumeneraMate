@@ -9,18 +9,50 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout Margin="20">
-            <Editor x:Name="editor"
-                Placeholder="Nothing"
-                IsReadOnly="True"
-                Text="{Binding Description}"
-                    HeightRequest="440"/>
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0" Padding="10">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Name:" FontAttributes="Bold"/>
+                        <Label Text="{Binding Artefact.Name}"/>
+                    </StackLayout>
 
-            <Button Grid.Column="0"
-                    Text="Generate Random"
-                    Command="{Binding GenerateRandomDevice}" Visual="Material" 
-                    IsEnabled="{Binding IsGenerateButtonEnabled}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Level:" FontAttributes="Bold"/>
+                        <Label Text="{Binding Artefact.CurrentLevel}"/>
+                    </StackLayout>
 
-        </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Form:" MinimumWidthRequest="40"/>
+                        <Label Text="{Binding Artefact.Form}"/>
+                    </StackLayout>
+
+                    <Label Text="Effect:" FontAttributes="Bold"/>
+                    <Label Text="{Binding Artefact.Effect}"/>
+
+                    <Label Text="RollTable:" FontAttributes="Bold"/>
+                    <Label Text="{Binding Artefact.RollTable}"/>
+
+                    <Label Text="Depletion:" FontAttributes="Bold"/>
+                    <Label Text="{Binding Artefact.Depletion}"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Source:" FontAttributes="Bold"/>
+                        <Label Text="{Binding Artefact.Source}"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="1"
+                        Text="Generate Random"
+                        Command="{Binding GenerateRandomDevice}" Visual="Material" 
+                        IsEnabled="{Binding IsGenerateButtonEnabled}"
+                        />
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
