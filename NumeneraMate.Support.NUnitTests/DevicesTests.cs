@@ -18,6 +18,8 @@ namespace NumeneraMate.Support.NUnitTests
         [Test]
         public void TestCalculatedProperties()
         {
+            var rand = new Random(Guid.NewGuid().GetHashCode());
+
             var d10cypherXML = @"  <Cypher>
     <Name>Analysis Scanner</Name>
     <Level>1d10</Level>
@@ -37,6 +39,9 @@ namespace NumeneraMate.Support.NUnitTests
 
             var d10minCraftingLevel = d10cypher.MinimumCraftingLevel;
             Assert.AreEqual(1, d10minCraftingLevel);
+
+            var d10randomLevel = rand.Next(1, d10cypher.LevelBaseDice) + d10cypher.LevelIncrease;
+            Assert.IsTrue(d10randomLevel >= 1 && d10randomLevel <= 10);
 
 
             var d6cypherXML = @"  <Cypher>
@@ -58,6 +63,9 @@ namespace NumeneraMate.Support.NUnitTests
             var d6minCraftingLevel = d6cypher.MinimumCraftingLevel;
             Assert.AreEqual(5, d6minCraftingLevel);
 
+            var d6randomLevel = rand.Next(1, d6cypher.LevelBaseDice) + d6cypher.LevelIncrease;
+            Assert.IsTrue(d6randomLevel >= 5 && d6randomLevel <= 10);
+
 
             var staticLevelCypherXML = @"  <Cypher>
     <Name>Detonation (singularity)</Name>
@@ -76,6 +84,9 @@ namespace NumeneraMate.Support.NUnitTests
 
             var staticLevelMinCraftingLevel = staticLevelCypher.MinimumCraftingLevel;
             Assert.AreEqual(10, staticLevelMinCraftingLevel);
+
+            var staticLevelRandom = (staticLevelCypher.LevelBaseDice == 0 ? 0 : rand.Next(1, d6cypher.LevelBaseDice)) + staticLevelCypher.LevelIncrease;
+            Assert.IsTrue(staticLevelRandom == 10);
         }
 
         [Test]
