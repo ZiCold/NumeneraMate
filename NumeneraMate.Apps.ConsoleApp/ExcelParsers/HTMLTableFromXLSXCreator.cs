@@ -17,13 +17,16 @@ namespace NumeneraMate.Apps.ConsoleApp
     {
         public static void Transform()
         {
-            CreateHTMLTable_CraftingDescriptions();
-            CreateHTMLTable_CraftingCosts();
+            //CreateHTMLTable_CraftingDescriptions();
+            //CreateHTMLTable_CraftingCosts();
 
 
+            var directory = @"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\CharacterGeneration 2.5\";
+            var outputDirectory = @"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\zicold.github.io\characters_tables\";
             //CreateHTMLTable_Descriptors();
-            //CreateHTMLTable_Focuses();
-            //CreateHTMLTable_Type(0);
+            CreateHTMLTable_Focuses();
+            var typesFileName = "TypesAbilities.xlsx";
+            CreateHTMLTable_Type(Path.Combine(directory, typesFileName), outputDirectory, 4);
             //for (int i = 0; i < 6; i++) { CreateHTMLTable_Type(i); }
         }
 
@@ -199,16 +202,12 @@ namespace NumeneraMate.Apps.ConsoleApp
         }
 
         #region CharactersTables
-        public static void CreateHTMLTable_Type(int bookPage)
+        public static void CreateHTMLTable_Type(string pathToFile, string outputDirectory, int bookPage)
         {
-            var directory = @"C:\Users\ZiCold\OneDrive\Numenera\CharacterGeneration 2.5\";
-            var filename = "TypesAbilities.xlsx";
-            var filepath = Path.Combine(directory, filename);
-
             XSSFWorkbook xssfwb;
 
             // open .xlsx file
-            using (FileStream file = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            using (FileStream file = new FileStream(pathToFile, FileMode.Open, FileAccess.Read))
             {
                 xssfwb = new XSSFWorkbook(file);
             }
@@ -216,6 +215,7 @@ namespace NumeneraMate.Apps.ConsoleApp
             // get first sheet
             ISheet sheet = xssfwb.GetSheetAt(bookPage);
             var typeName = sheet.SheetName;
+            Log(typeName + " sheet found");
             var title = typeName + " Abilities";
 
             var htmlHeader = GetHtmlHeader(title);
@@ -223,6 +223,7 @@ namespace NumeneraMate.Apps.ConsoleApp
 
             // header row
             var firstRow = sheet.GetRow(0);
+            Log("There " + firstRow.LastCellNum + " columns");
             var htmlRowHeader = "<tr>";
             for (int colId = 0; colId < firstRow.LastCellNum; colId++)
             {
@@ -234,6 +235,7 @@ namespace NumeneraMate.Apps.ConsoleApp
                 htmlRowHeader += curHeaderRow;
             }
             htmlRowHeader += Environment.NewLine + "</tr>";
+            Log("Header row processed");
 
             // and now rows itself
             var htmlRows = GetStringFromXLSXrows_ForCharacters(sheet, firstRow);
@@ -247,8 +249,7 @@ namespace NumeneraMate.Apps.ConsoleApp
                 htmlRows + Environment.NewLine +
                 tableEnd + Environment.NewLine + bodyEnd;
 
-            var outputDirectory = @"E:\Projects\Github\zicold.github.io\characters_tables\";
-            File.WriteAllText(outputDirectory + Path.GetFileNameWithoutExtension(filename) + "_Table_" + typeName + ".html", finalHtnl);
+            File.WriteAllText(outputDirectory + Path.GetFileNameWithoutExtension(pathToFile) + "_Table_" + typeName + ".html", finalHtnl);
         }
 
         private static string GetStyleForThCell_TypesAbilities(string cellValue)
@@ -451,6 +452,8 @@ namespace NumeneraMate.Apps.ConsoleApp
                 }
                 htmlRow += Environment.NewLine + "</tr>";
                 htmlRows += htmlRow;
+
+                Log("Row #" + rowId + " processed");
             }
             return htmlRows;
         }
@@ -481,6 +484,11 @@ namespace NumeneraMate.Apps.ConsoleApp
         {
             return "<table " +
                 "border=\"1\" cellspacing=\"0\" cellpadding=\"4px\" style=\"" + tableStyle + "\"> ";
+        }
+
+        private static void Log(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

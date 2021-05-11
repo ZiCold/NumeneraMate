@@ -17,13 +17,20 @@ namespace NumeneraMate.Apps.ConsoleApp
     {
         static void Main(string[] args)
         {
-            GenerateCreatures(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\", @"Creatures and Events Table.xlsx");
+            // todo: разобраться с парсерами
+            NumeneraParsersProject.MainMethod();
+
+            //GenerateCreatures(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\", @"Creatures and Events Table.xlsx");
             //GenerateDevices(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\Devices");
-            
+
             //var smth = CreaturesParser.GetCreaturesListFromExcel();
             //CombineAllCyphers();
             //CombineAllArtefacts();
+
+
             //HTMLTableFromXLSXCreator.Transform();
+
+
             //TestCalculatedProperties();
 
             //Console.WriteLine();
@@ -63,8 +70,9 @@ namespace NumeneraMate.Apps.ConsoleApp
                         Console.WriteLine($"Generating from {cyphersList.Count} cyphers\n");
                         randomIndex = rand.Next(cyphersList.Count);
                         diceRandom = rand.Next(1, 6);
-                        cyphersList[randomIndex].Level += $" [D6 = {diceRandom}]";
-                        Console.WriteLine(cyphersList[randomIndex].ToString());
+                        var device = cyphersList[randomIndex];
+                        //device.Level += $" [D6 = {diceRandom}]";
+                        Console.WriteLine(device.ToString());
                         break;
                     case '2':
                         Console.WriteLine($"Generatring from {artefactsList.Count} artefacts\n");
