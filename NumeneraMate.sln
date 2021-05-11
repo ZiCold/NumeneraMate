@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Libs.Creatures
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.Xamarin.Android", "NumeneraMate.Apps.Xamarin\NumeneraMate.Apps.Xamarin.Android\NumeneraMate.Apps.Xamarin.Android.csproj", "{7151060F-13DA-4D7E-8043-176D9EB1D033}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.Xamarin", "NumeneraMate.Apps.Xamarin\NumeneraMate.Apps.Xamarin\NumeneraMate.Apps.Xamarin.csproj", "{092BF185-0CE0-46AB-8301-DA069E9F5073}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Apps.Xamarin", "NumeneraMate.Apps.Xamarin\NumeneraMate.Apps.Xamarin\NumeneraMate.Apps.Xamarin.csproj", "{092BF185-0CE0-46AB-8301-DA069E9F5073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Libs.Craft", "NumeneraMate.Libs.Craft\NumeneraMate.Libs.Craft.csproj", "{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{092BF185-0CE0-46AB-8301-DA069E9F5073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{092BF185-0CE0-46AB-8301-DA069E9F5073}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{092BF185-0CE0-46AB-8301-DA069E9F5073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
