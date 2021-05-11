@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NumeneraMate.Libs.Craft\NumeneraMate.Libs.Craft.csproj" />
     <ProjectReference Include="..\NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj" />
     <ProjectReference Include="..\NumeneraMate.Support.Parsers\NumeneraMate.Support.Parsers.csproj" />
   </ItemGroup>

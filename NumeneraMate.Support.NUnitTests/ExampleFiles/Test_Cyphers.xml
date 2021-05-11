@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<NumeneraDevices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<NumeneraDevices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Count="4">
   <Cypher>
     <Name>Detonation</Name>
     <Level>1d6 + 2</Level>

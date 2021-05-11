@@ -8,7 +8,7 @@ using System;
 
 namespace NumeneraMate.Support.NUnitTests
 {
-    public class Tests
+    public class DevicesTests
     {
         [SetUp]
         public void Setup()
