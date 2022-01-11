@@ -3,11 +3,120 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.Xml.Linq;
 using System.IO;
+using NumeneraMate.Apps.ConsoleApp.XmlModels;
 
 namespace NumeneraMate.Apps.ConsoleApp
 {
-    public class XMLfromXLSXCreator
+    public static class XMLfromXLSXCreator
     {
+        public static void CreateXMLsFromEventsTable(string eventsDirectory, string eventsXlsxName)
+        {
+            //CreateCreaturesXML(eventsDirectory, eventsXlsxName);
+            CreateEncountersXML(eventsDirectory, eventsXlsxName);
+        }
+
+        private static void CreateEncountersXML(string directory, string xlsxName)
+        {
+            var encounters = new List<Encounter>();
+            XSSFWorkbook xssfwb;
+            using (FileStream file = new FileStream(Path.Combine(directory, xlsxName), FileMode.Open, FileAccess.Read))
+            {
+                xssfwb = new XSSFWorkbook(file);
+            }
+
+            xssfwb.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
+
+            var sheetTitle = "Encounters";
+            ISheet sheet = xssfwb.GetSheet(sheetTitle);
+
+            for (int rowId = 1; rowId <= sheet.LastRowNum; rowId++)
+            {
+                var currentRow = sheet.GetRow(rowId);
+                if (currentRow == null) continue;
+
+                var singleEncounter = ProcessRowEncounter(currentRow);
+                singleEncounter.Id = rowId;
+                encounters.Add(singleEncounter);
+            }
+
+            var xdoc = new XDocument();
+            var elements = new XElement("Encounters");
+            foreach (var encounter in encounters)
+            {
+                var curElem = new XElement("Encounter");
+                curElem.Add(new XElement(nameof(encounter.Id), encounter.Id));
+                curElem.Add(new XElement(nameof(encounter.Description), encounter.Description));
+                curElem.Add(new XElement(nameof(encounter.PlainsHills), encounter.PlainsHills));
+                curElem.Add(new XElement(nameof(encounter.Desert), encounter.Desert));
+                curElem.Add(new XElement(nameof(encounter.Woods), encounter.Woods));
+                curElem.Add(new XElement(nameof(encounter.Mountains), encounter.Mountains));
+                curElem.Add(new XElement(nameof(encounter.Swamp), encounter.Swamp));
+                elements.Add(curElem);
+            }
+            xdoc.Add(elements);
+            xdoc.Save(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\zicold.github.io\events_system\encounters.xml");
+
+            return;
+        }
+
+        private static Encounter ProcessRowEncounter(IRow currentRow)
+        {
+            var encounter = new Encounter();
+            for (int colNumber = 1; colNumber <= 6; colNumber++)
+            {
+                var currentCell = currentRow.GetCell(colNumber, MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                var isItInTerrain = false;
+                if (currentCell != null)
+                {
+                    if (currentCell.CellType != CellType.Numeric && !string.IsNullOrEmpty(currentCell.StringCellValue.Trim()))
+                        isItInTerrain = true;
+                }
+
+                switch (colNumber)
+                {
+                    case 1:
+                        encounter.Description = currentCell.StringCellValue; break;
+                    case 2:
+                        encounter.PlainsHills = isItInTerrain; break;
+                    case 3:
+                        encounter.Desert = isItInTerrain; break;
+                    case 4:
+                        encounter.Woods = isItInTerrain; break;
+                    case 5:
+                        encounter.Mountains = isItInTerrain; break;
+                    case 6:
+                        encounter.Swamp = isItInTerrain; break;
+                }
+            }
+            return encounter;
+        }
+
+        public static void CreateCreaturesXML(string directory, string xlsxName)
+        {
+            var creatures = CreaturesParser.GetCreaturesListFromExcel(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\HexCampaign\", @"Creatures and Events Table.xlsx");
+            var xdoc = new XDocument();
+            var elements = new XElement("Creatures");
+            foreach (var creature in creatures)
+            {
+                var curElem = new XElement("Creature");
+                curElem.Add(new XElement(nameof(creature.Name), creature.Name));
+                curElem.Add(new XElement(nameof(creature.Source), creature.Source));
+                curElem.Add(new XElement(nameof(creature.UsedInEndlessLegendCampaign), creature.UsedInEndlessLegendCampaign));
+                curElem.Add(new XElement(nameof(creature.RuinsUnderground), creature.RuinsUnderground));
+                curElem.Add(new XElement(nameof(creature.PlainsHills), creature.PlainsHills));
+                curElem.Add(new XElement(nameof(creature.Desert), creature.Desert));
+                curElem.Add(new XElement(nameof(creature.Woods), creature.Woods));
+                curElem.Add(new XElement(nameof(creature.Mountains), creature.Mountains));
+                curElem.Add(new XElement(nameof(creature.Swamp), creature.Swamp));
+                curElem.Add(new XElement(nameof(creature.Dimensions), creature.Dimensions));
+                curElem.Add(new XElement(nameof(creature.Water), creature.Water));
+                elements.Add(curElem);
+            }
+            xdoc.Add(elements);
+            xdoc.Save(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\zicold.github.io\events_system\creatures.xml");
+            return;
+        }
+
         public static void TransformDescriptors()
         {
             var directory = @"C:\Users\ZiCold\OneDrive\Numenera\CharacterGeneration 2.5\";

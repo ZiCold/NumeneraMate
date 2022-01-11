@@ -18,8 +18,11 @@ namespace NumeneraMate.Apps.ConsoleApp
         static void Main(string[] args)
         {
             // todo: разобраться с парсерами
-            NumeneraParsersProject.MainMethod();
+            //NumeneraParsersProject.MainMethod();
 
+            var eventsDirectory = @"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\HexCampaign\";
+            var eventsXlsxName = @"Creatures and Events Table.xlsx";
+            XMLfromXLSXCreator.CreateXMLsFromEventsTable(eventsDirectory, eventsXlsxName);
             //GenerateCreatures(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\", @"Creatures and Events Table.xlsx");
             //GenerateDevices(@"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\Devices");
 
@@ -29,7 +32,6 @@ namespace NumeneraMate.Apps.ConsoleApp
 
 
             //HTMLTableFromXLSXCreator.Transform();
-
 
             //TestCalculatedProperties();
 
