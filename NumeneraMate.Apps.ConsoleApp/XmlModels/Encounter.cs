@@ -15,5 +15,6 @@ namespace NumeneraMate.Apps.ConsoleApp.XmlModels
         public bool Woods { get; set; }
         public bool Mountains { get; set; }
         public bool Swamp { get; set; }
+        public bool Camp { get; set; }
     }
 }

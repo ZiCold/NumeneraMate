@@ -51,6 +51,7 @@ namespace NumeneraMate.Apps.ConsoleApp
                 curElem.Add(new XElement(nameof(encounter.Woods), encounter.Woods));
                 curElem.Add(new XElement(nameof(encounter.Mountains), encounter.Mountains));
                 curElem.Add(new XElement(nameof(encounter.Swamp), encounter.Swamp));
+                curElem.Add(new XElement(nameof(encounter.Camp), encounter.Camp));
                 elements.Add(curElem);
             }
             xdoc.Add(elements);
@@ -62,7 +63,7 @@ namespace NumeneraMate.Apps.ConsoleApp
         private static Encounter ProcessRowEncounter(IRow currentRow)
         {
             var encounter = new Encounter();
-            for (int colNumber = 1; colNumber <= 6; colNumber++)
+            for (int colNumber = 1; colNumber <= 7; colNumber++)
             {
                 var currentCell = currentRow.GetCell(colNumber, MissingCellPolicy.CREATE_NULL_AS_BLANK);
                 var isItInTerrain = false;
@@ -86,6 +87,8 @@ namespace NumeneraMate.Apps.ConsoleApp
                         encounter.Mountains = isItInTerrain; break;
                     case 6:
                         encounter.Swamp = isItInTerrain; break;
+                    case 7:
+                        encounter.Camp = isItInTerrain; break;
                 }
             }
             return encounter;
