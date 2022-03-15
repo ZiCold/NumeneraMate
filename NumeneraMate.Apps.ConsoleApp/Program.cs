@@ -19,6 +19,7 @@ namespace NumeneraMate.Apps.ConsoleApp
         {
             // todo: разобраться с парсерами
             //NumeneraParsersProject.MainMethod();
+            ParseCyphersToXML();
 
             var eventsDirectory = @"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\HexCampaign\";
             var eventsXlsxName = @"Creatures and Events Table.xlsx";
@@ -175,11 +176,11 @@ namespace NumeneraMate.Apps.ConsoleApp
 
         public static void ParseCyphersToXML()
         {
-            var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Cyphers\";
-            var name = "RAW_Cyphers_Discovery.txt";
+            var directory = @"E:\Documents\Tabletop RPGs\Numenera\APPs_InWorkFiles\";
+            var name = "RAW_Extreme_Cyphers.txt";
             var fileName = Path.Combine(directory, name);
             var fileNameXml = fileName + "_xml.xml";
-            var deviceParser = new DevicesParser("Discovery", DeviceType.Cypher);
+            var deviceParser = new DevicesParser("Extreme Cyphers", DeviceType.Cypher);
             deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
             var cyphers = NumeneraXML.DeserializeCyphersListFromXML(fileNameXml);
             cyphers.ForEach(x => Console.WriteLine(x));
