@@ -17,8 +17,8 @@ namespace NumeneraMate.Apps.ConsoleApp
     {
         public static void Transform()
         {
-            //CreateHTMLTable_CraftingDescriptions();
             //CreateHTMLTable_CraftingCosts();
+            //CreateHTMLTable_CraftingDescriptions();
 
 
             var directory = @"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\NumeneraAppFiles\CharacterGeneration 2.5\";
@@ -32,7 +32,7 @@ namespace NumeneraMate.Apps.ConsoleApp
 
         public static void CreateHTMLTable_CraftingDescriptions()
         {
-            var directory = @"C:\Users\ZiCold\OneDrive\Numenera\Salvage System\";
+            var directory = @"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\zicold.github.io\crafting\Excel Files\";
             var filename = "CraftingTables.xlsx";
             var filepath = Path.Combine(directory, filename);
             XSSFWorkbook xssfwb;
@@ -83,13 +83,14 @@ namespace NumeneraMate.Apps.ConsoleApp
                 bodyEnd;
 
             var outputDirectory = @"E:\Projects\Github\zicold.github.io\crafting_tables\";
+            outputDirectory = @"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\zicold.github.io\crafting\Excel Files\";
             File.WriteAllText(outputDirectory + Path.GetFileNameWithoutExtension(filename) + $"_{sheetTitle}.html", finalHtml);
         }
 
         public static void CreateHTMLTable_CraftingCosts()
         {
-            var directory = @"C:\Users\ZiCold\OneDrive\Numenera\Salvage System\";
-            var filename = "CraftingTables.xlsx";
+            var directory = @"C:\Users\ZiCold\OneDrive\TRPGs - Numenera\zicold.github.io\crafting\Excel Files\";
+            var filename = "Endless Legend - Crafting Tables.xlsx";
             var filepath = Path.Combine(directory, filename);
             XSSFWorkbook xssfwb;
 
@@ -99,7 +100,7 @@ namespace NumeneraMate.Apps.ConsoleApp
                 xssfwb = new XSSFWorkbook(file);
             }
 
-            var sheetTitle = "CraftingCosts";
+            var sheetTitle = "Craft Objects Iotum";
             ISheet sheet = xssfwb.GetSheet(sheetTitle);
             var htmlHeader = GetHtmlHeader(sheetTitle, "Numenera " + sheetTitle);
             var tableBegin = GetTableBeginning();
@@ -132,6 +133,7 @@ namespace NumeneraMate.Apps.ConsoleApp
                 bodyEnd;
 
             var outputDirectory = @"E:\Projects\Github\zicold.github.io\crafting_tables\";
+            outputDirectory = directory;
             File.WriteAllText(outputDirectory + Path.GetFileNameWithoutExtension(filename) + $"_{sheetTitle}.html", finalHtml);
         }
 
@@ -169,17 +171,17 @@ namespace NumeneraMate.Apps.ConsoleApp
                                 var refId = cellValue.Trim().ToLower().Replace(",", "").Replace(" ", "-");
                                 htmlRow += Environment.NewLine + "<td id=\"" + refId + "\">"
                                         + $"<a href=\"{linkToPage}#{refId}\" target=\"_blank\">" + cellValue + "</a>"
-                                        + Environment.NewLine + "</td>";
+                                        + "</td>";
                                 break;
                             case "minlvl":
-                                htmlRow += Environment.NewLine + "<td style=\"text-align:center\">" + cellValue + Environment.NewLine + "</td>"; break;
+                                htmlRow += Environment.NewLine + "<td style=\"text-align:center\">" + cellValue + "</td>"; break;
                             default:
-                                htmlRow += Environment.NewLine + "<td>" + cellValue + Environment.NewLine + "</td>"; break;
+                                htmlRow += Environment.NewLine + "<td>" + cellValue + "</td>"; break;
                         }
                     }
                     else
                     {
-                        htmlRow += Environment.NewLine + "<td>" + cellValue + Environment.NewLine + "</td>";
+                        htmlRow += Environment.NewLine + "<td>" + cellValue + "</td>";
                     }
                 }
                 htmlRow += Environment.NewLine + "</tr>";
@@ -267,7 +269,7 @@ namespace NumeneraMate.Apps.ConsoleApp
 
         public static void CreateHTMLTable_Focuses()
         {
-            var directory = @"C:\Users\ZiCold\OneDrive\Numenera\CharacterGeneration 2.5\";
+            var directory = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\zicold.github.io\characters_tables\excel files\";
             var filename = "Focuses.xlsx";
             var filepath = Path.Combine(directory, filename);
             var title = "Focuses";
