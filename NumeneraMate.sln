@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Libs.Craft", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.ConsoleAppDotNet", "NumeneraMate.Apps.ConsoleAppDotNet\NumeneraMate.Apps.ConsoleAppDotNet.csproj", "{5044D77B-3708-4B04-A268-80BE1B34B68C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Libs.NumeneraObjects", "NumeneraMate.Libs.NumeneraObjects\NumeneraMate.Libs.NumeneraObjects.csproj", "{7129831E-14BA-4DB7-8B03-C480E81A153C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5044D77B-3708-4B04-A268-80BE1B34B68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5044D77B-3708-4B04-A268-80BE1B34B68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5044D77B-3708-4B04-A268-80BE1B34B68C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7129831E-14BA-4DB7-8B03-C480E81A153C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7129831E-14BA-4DB7-8B03-C480E81A153C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7129831E-14BA-4DB7-8B03-C480E81A153C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7129831E-14BA-4DB7-8B03-C480E81A153C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
