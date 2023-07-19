@@ -1,69 +1,50 @@
-﻿using NumeneraMate.Libs.Devices;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using NumeneraMate.Libs.NumeneraObjects.Devices;
 
 namespace NumeneraMate.Support.Parsers
 {
     /// <summary>
-    /// Creates xml from from PDF extracted text
-    /// Some text can highlighted as Table with keyword #Table (rolls for example)
+    /// Creates xml from text extracted from PDF
+    /// One part of text can be highlighted as Table with keyword #Table (rolls for example)
     /// </summary>
     public class DevicesParser
     {
         public string Source { get; set; }
         public List<string> KeywordsList { get; set; }
         public string NameKeyword { get; set; } = "Name:";
-
-        public DevicesParser(string sourceBook, DeviceType numeneraDeviceType)
-        {
-            Source = sourceBook;
-            switch (numeneraDeviceType)
-            {
-                case DeviceType.Cypher:
-                    KeywordsList = new List<string>() { "Level:", "Internal:", "Wearable:", "Usable:", "Effect:", "#Table:" }; break;
-                case DeviceType.Artefact:
-                    KeywordsList = new List<string>() { "Level:", "Form:", "Effect:", "#Table:", "Depletion:" }; break;
-                case DeviceType.Oddity:
-                    KeywordsList = new List<string>(); break;
-            }
-        }
+        public DevicesParser() { }
 
         /// <summary>
-        /// Cyphers -> XML
+        /// Get cyphers from raw text (from pdf)
         /// </summary>
-        /// <param name="fileName">file with raw text from PDF</param>
-        /// <param name="xmlFileName">created xml file</param>
-        public void CreateXMLFromRawCyphersText(string fileName, string xmlFileName)
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public List<Cypher> GetCyphersListFromRawText(string filename, string source)
         {
-            var devicesAsDictionariesList = ParseFileToDeviceDictionaries(fileName);
-
-            List<Cypher> cyphersList = GetCyphersListFromDictionaries(devicesAsDictionariesList);
-
-            NumeneraXML.SerializeToXml(cyphersList, xmlFileName);
+            Source = source;
+            KeywordsList = new List<string>() { "Level:", "Internal:", "Wearable:", "Usable:", "Effect:", "#Table:" };
+            var devicesAsDictionaries = ParseFileToDeviceDictionaries(filename);
+            return GetCyphersListFromDictionaries(devicesAsDictionaries);
         }
 
         /// <summary>
-        /// Artefact -> XML
+        /// Get artefacts from raw text (from pdf)
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public List<Artefact> GetArtefactsListFromRawText(string filename, string source)
+        {
+            Source = source;
+            KeywordsList = new List<string>() { "Level:", "Form:", "Effect:", "#Table:", "Depletion:" };
+            var devicesAsDictionaries = ParseFileToDeviceDictionaries(filename);
+            return GetArtefactsListFromDictionaries(devicesAsDictionaries);
+        }
+
+        /// <summary>
+        /// Get oddities from raw text (from pdf)
         /// </summary>
         /// <param name="fileName"></param>
-        /// <param name="xmlFileName"></param>
-        public void CreateXMLFromRawArtefactsText(string fileName, string xmlFileName)
-        {
-            var devicesAsDictionariesList = ParseFileToDeviceDictionaries(fileName);
-
-            List<Artefact> artefactsList = GetArtefactsListFromDictionaries(devicesAsDictionariesList);
-
-            NumeneraXML.SerializeToXml(artefactsList, xmlFileName);
-        }
-
-        public void CreateXMLFromRawOddities(string fileName, string xmlFileName)
+        /// <returns></returns>
+        public List<Oddity> GetOdditiesListFromRawText(string fileName, string source)
         {
             var lines = File.ReadAllLines(fileName);
             for (int i = 0; i < lines.Length; i++)
@@ -87,9 +68,7 @@ namespace NumeneraMate.Support.Parsers
             {
                 oddities.Add(new Oddity() { Description = line, Source = Source });
             }
-            oddities.ForEach(x => Console.WriteLine(x.Description));
-
-            NumeneraXML.SerializeToXml(oddities, xmlFileName);
+            return oddities;
         }
 
         /// <summary>
@@ -97,7 +76,7 @@ namespace NumeneraMate.Support.Parsers
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public List<Dictionary<string, string>> ParseFileToDeviceDictionaries(string fileName)
+        private List<Dictionary<string, string>> ParseFileToDeviceDictionaries(string fileName)
         {
             var linesArray = File.ReadAllLines(fileName);
             var textLines = linesArray.Where(x => !string.IsNullOrEmpty(x)).ToList();
@@ -373,7 +352,7 @@ namespace NumeneraMate.Support.Parsers
         /// </summary>
         /// <param name="itemsLines"></param>
         /// <returns></returns>
-        public List<string> RemoveMoreThanOneKeyWordOccurrences(List<string> itemsLines)
+        private List<string> RemoveMoreThanOneKeyWordOccurrences(List<string> itemsLines)
         {
             var result = new List<string>();
             foreach (var line in itemsLines)

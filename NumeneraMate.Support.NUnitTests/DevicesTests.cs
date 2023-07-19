@@ -96,9 +96,8 @@ namespace NumeneraMate.Support.NUnitTests
             var name = "Test_Cyphers.txt";
             var fileName = Path.Combine(directory, name);
             var fileNameXml = Path.Combine(directory, Path.GetFileNameWithoutExtension(fileName) + ".xml");
-            var deviceParser = new DevicesParser("Discovery", DeviceType.Cypher);
-            deviceParser.CreateXMLFromRawCyphersText(fileName, fileNameXml);
-            var cyphers = NumeneraXML.DeserializeCyphersListFromXML(fileNameXml);
+            var deviceParser = new DevicesParser();
+            var cyphers = deviceParser.GetCyphersListFromRawText(fileName, "Discovery");
 
             cyphers.Should().BeEquivalentTo(CyphersExample.List);
         }
@@ -110,9 +109,8 @@ namespace NumeneraMate.Support.NUnitTests
             var name = "Test_Artefacts.txt";
             var fileName = Path.Combine(directory, name);
             var fileNameXml = Path.Combine(directory, Path.GetFileNameWithoutExtension(fileName) + ".xml");
-            var deviceParser = new DevicesParser("Discovery", DeviceType.Artefact);
-            deviceParser.CreateXMLFromRawArtefactsText(fileName, fileNameXml);
-            var artefacts = NumeneraXML.DeserializeArtefactsListFromXML(fileNameXml);
+            var deviceParser = new DevicesParser();
+            var artefacts = deviceParser.GetArtefactsListFromRawText(fileName, "Discovery");
 
             System.Diagnostics.Debug.WriteLine(artefacts[0].Name);
             artefacts.Should().BeEquivalentTo(ArtefactsExample.List);

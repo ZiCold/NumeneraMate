@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NumeneraMate.Libs.NumeneraObjects\NumeneraMate.Libs.NumeneraObjects.csproj" />
+    <ProjectReference Include="..\NumeneraMate.Support.Parsers\NumeneraMate.Support.Parsers.csproj" />
   </ItemGroup>
 
 </Project>

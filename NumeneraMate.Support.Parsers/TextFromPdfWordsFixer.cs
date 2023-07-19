@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NumeneraMate.Support.Parsers
+﻿namespace NumeneraMate.Support.Parsers
 {
 	/// <summary>
 	/// Clears strings obtained from file from broken words

@@ -1,4 +1,4 @@
-﻿using NumeneraMate.Apps.ConsoleAppDotNet.Parsers;
+﻿using NumeneraMate.Support.Parsers;
 using NumeneraMate.Libs.NumeneraObjects.Devices;
 using System.IO;
 using System.Text.Encodings.Web;

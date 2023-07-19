@@ -1,4 +1,4 @@
-﻿namespace NumeneraMate.Apps.ConsoleAppDotNet.Parsers
+﻿namespace NumeneraMate.Support.Parsers
 {
     public enum DeviceTypeEnum
     {
