@@ -29,7 +29,7 @@ namespace NumeneraMate.Support.NUnitTests
     <Effect>This device scans and records everything within short range for one round and then conveys the level and nature of all creatures, objects, and energy sources it scanned. This information can be accessed for 28 hours after the scan.</Effect>
     <Source>Compendium</Source>
   </Cypher>";
-            var d10cypher = NumeneraXML.DeserializeCypherFromXMLString(d10cypherXML);
+            var d10cypher = NumeneraDevicesXML.DeserializeCypherFromXMLString(d10cypherXML);
 
             var d10baseLevel = d10cypher.LevelBaseDice;
             Assert.AreEqual(10, d10baseLevel);
@@ -52,7 +52,7 @@ namespace NumeneraMate.Support.NUnitTests
     <Effect>Upon eating the parasite, the user chooses one stat and the GM chooses a different stat. The difficulty of any roll related to the user’s chosen stat is reduced by two steps, and the difficulty of any roll involving the GM’s chosen stat is increased by two steps. The parasite dies after 1d6 hours, and the effect ends when the user violently expels it from her body.</Effect>
     <Source>Compendium</Source>
   </Cypher>";
-            var d6cypher = NumeneraXML.DeserializeCypherFromXMLString(d6cypherXML);
+            var d6cypher = NumeneraDevicesXML.DeserializeCypherFromXMLString(d6cypherXML);
 
             var d6baseLevel = d6cypher.LevelBaseDice;
             Assert.AreEqual(6, d6baseLevel);
@@ -74,7 +74,7 @@ namespace NumeneraMate.Support.NUnitTests
     <Source>Discovery</Source>
     <Usable>Explosive device or ceramic sphere (thrown, short range) or handheld projector (long range)</Usable>
   </Cypher>";
-            var staticLevelCypher = NumeneraXML.DeserializeCypherFromXMLString(staticLevelCypherXML);
+            var staticLevelCypher = NumeneraDevicesXML.DeserializeCypherFromXMLString(staticLevelCypherXML);
 
             var staticLevel = staticLevelCypher.LevelBaseDice;
             Assert.AreEqual(0, staticLevel);

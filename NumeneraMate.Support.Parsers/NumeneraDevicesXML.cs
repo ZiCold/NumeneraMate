@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace NumeneraMate.Support.Parsers
 {
-    public static class NumeneraXML
+    public static class NumeneraDevicesXML
     {
         #region Deserialize
         /// <summary>
