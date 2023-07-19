@@ -92,6 +92,8 @@ namespace NumeneraMate.Libs.NumeneraObjects.Devices
         [JsonIgnore]
         public string TableAsString { get; set; }
 
+        public string Categories { get; set; }
+
         public string Source { get; set; }
 
         public override string ToString()
