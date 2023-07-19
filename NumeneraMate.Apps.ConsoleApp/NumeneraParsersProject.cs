@@ -23,40 +23,6 @@ namespace NumeneraMate.Apps.ConsoleApp
             //OdditiesCreateXMLTest();
         }
 
-        private static void ArtefactsCreateXML()
-        {
-            string dirPath = @"E:\Documents\Tabletop RPGs\Numenera\APPs\ArtefactsComparison\";
-            string keywordsFile = dirPath + "KEYWORDS_Artefacts.txt";
-            //string itemsFile = dirPath + "Artefacts_Test.txt";
-            //string itemsFile = dirPath + "RAW_Artefacts_Discovery.txt";
-            string itemsFile = dirPath + "RAW_Artefacts_Corebook.txt";
-            //string itemsFile = dirPath + "ArtefactsDiscoveryNew2.txt";
-
-            NumeneraItemsParser.ArtefactsParseFileToXML(itemsFile, "CorebookCleared");
-        }
-
-        private static void CyphersCreateXML()
-        {
-            string dirPath = @"E:\Documents\Tabletop RPGs\Numenera\APPs\CyphersComparison\";
-            //string itemsFile = dirPath + "CyphersFromHTML_Discovery.txt";
-            //string itemsFile = dirPath + "Cyphers - Discovery.txt";
-            string itemsFile = dirPath + "Cyphers - Corebook.txt";
-
-
-
-            NumeneraItemsParser.CyphersParseFileToXML(itemsFile, "CorebookCleared");
-            //NumeneraHelper.CyphersParseFileToXML("Test", itemsFile);
-        }
-
-        private static void OdditiesCreateXMLTest()
-        {
-            string dirPath = @"E:\Documents\Tabletop RPGs\Numenera\APPs\Oddities\";
-            var odditiesFilename = dirPath + "RAW_Oddities_Discovery.txt";
-
-            NumeneraItemsParser.OdditiesParseFileToXML("Discovery", odditiesFilename);
-        }
-
-
         static void FunWithCraftObjects()
         {
             string dirPath = @"E:\Documents\Tabletop RPGs\Numenera\APPs\";

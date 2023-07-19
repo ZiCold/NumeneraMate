@@ -1,4 +1,4 @@
-﻿using NumeneraMate.Libs.Craft;
+﻿using NumeneraMate.Libs.NumeneraObjects.Craft;
 using NUnit.Framework;
 
 namespace NumeneraMate.Support.NUnitTests

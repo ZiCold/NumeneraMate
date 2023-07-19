@@ -1,4 +1,4 @@
-﻿using NumeneraMate.Libs.Devices;
+﻿using NumeneraMate.Libs.NumeneraObjects.Devices;
 using System;
 using System.Collections.Generic;
 using System.Text;

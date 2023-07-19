@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using NumeneraMate.Support.Parsers;
-using NumeneraMate.Libs.Devices;
+using NumeneraMate.Libs.NumeneraObjects.Devices;
 using System.IO;
 using System.Collections.Generic;
 using FluentAssertions;

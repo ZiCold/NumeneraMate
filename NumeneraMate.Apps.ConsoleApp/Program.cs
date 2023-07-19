@@ -1,6 +1,4 @@
 ﻿using NPOI.SS.Formula.Functions;
-using NumeneraMate.Libs.Devices;
-using NumeneraMate.Libs.Creatures;
 using System;
 using System.Collections.Generic;
 using System.IO;

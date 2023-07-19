@@ -67,11 +67,7 @@
   <ItemGroup>
     <Compile Include="ExcelParsers\CreateJsonFromFocusesExcel.cs" />
     <Compile Include="ExcelParsers\Focus.cs" />
-    <Compile Include="ExcelParsers\XMLfromXLSXCreator.cs" />
-    <Compile Include="CreaturesParsers\CreaturesGenerator.cs" />
     <Compile Include="ExcelParsers\HTMLTableFromXLSXCreator.cs" />
-    <Compile Include="CreaturesParsers\CreaturesParser.cs" />
-    <Compile Include="GeneratorConsole.cs" />
     <Compile Include="NumeneraParsersProject.cs" />
     <Compile Include="PdfTextParsers\PDFTextXmlInfo.cs" />
     <Compile Include="PdfTextParsers\PDFTextXmlCreator.cs" />
@@ -90,14 +86,6 @@
     <ProjectReference Include="..\NumeneraMate.Libs.Craft\NumeneraMate.Libs.Craft.csproj">
       <Project>{81e6aaca-b0ef-446b-be74-6fb46e6067e3}</Project>
       <Name>NumeneraMate.Libs.Craft</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NumeneraMate.Libs.Creatures\NumeneraMate.Libs.Creatures.csproj">
-      <Project>{0f57dc1d-3e7e-4634-830e-506dbd838720}</Project>
-      <Name>NumeneraMate.Libs.Creatures</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NumeneraMate.Libs.Devices\NumeneraMate.Libs.Devices.csproj">
-      <Project>{a296f225-153b-4967-a52c-0526b81cb16f}</Project>
-      <Name>NumeneraMate.Libs.Devices</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
