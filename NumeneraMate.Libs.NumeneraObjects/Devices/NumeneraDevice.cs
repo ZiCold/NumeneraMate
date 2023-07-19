@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace NumeneraMate.Libs.NumeneraObjects.Devices
@@ -13,6 +14,7 @@ namespace NumeneraMate.Libs.NumeneraObjects.Devices
         /// Base dice for Level calculation
         /// </summary>
         [XmlIgnore]
+        [JsonIgnore]
         public int LevelBaseDice
         {
             get
@@ -45,6 +47,7 @@ namespace NumeneraMate.Libs.NumeneraObjects.Devices
         /// Number after "+" in level string
         /// </summary>
         [XmlIgnore]
+        [JsonIgnore]
         public int LevelIncrease
         {
             get
@@ -68,8 +71,10 @@ namespace NumeneraMate.Libs.NumeneraObjects.Devices
         /// random d6 + LevelIncrease
         /// </summary>
         [XmlIgnore]
+        [JsonIgnore]
         public int CurrentLevel { get; set; }
 
+        [JsonIgnore]
         public int MinimumCraftingLevel
         {
             get => LevelBaseDice != 0 ? 1 + LevelIncrease : LevelIncrease;
@@ -84,6 +89,7 @@ namespace NumeneraMate.Libs.NumeneraObjects.Devices
 
         public RollTable RollTable { get; set; }
         [XmlIgnore]
+        [JsonIgnore]
         public string TableAsString { get; set; }
 
         public string Source { get; set; }
