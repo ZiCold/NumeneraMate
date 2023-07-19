@@ -127,5 +127,25 @@ namespace NumeneraMate.Apps.ConsoleAppDotNet
             };
         }
 
+
+        public static void GeneratorBareBones()
+        {
+            var rand = new Random(Guid.NewGuid().GetHashCode());
+            int randomIndex = rand.Next(130);
+
+            var c = new ConsoleKeyInfo();
+            while (c.Key != ConsoleKey.Escape)
+            {
+                Console.WriteLine("******** Choose device to generate: 1 - Cypher; 2 - Artefact; 3 - Oddity;");
+                c = Console.ReadKey(true);
+                switch (c.KeyChar) 
+                {
+                    case '1':
+                        break;
+                    case '2':
+                        break;
+                }
+            }
+        }
     }
 }
