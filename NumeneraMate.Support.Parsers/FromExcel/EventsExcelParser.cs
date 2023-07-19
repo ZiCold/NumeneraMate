@@ -61,7 +61,8 @@ namespace NumeneraMate.Support.Parsers.FromExcel
                         Woods = sheet.Cells[i, 7].Text == "+",
                         Mountains = sheet.Cells[i, 8].Text == "+",
                         Swamp = sheet.Cells[i, 9].Text == "+",
-                        Water = sheet.Cells[i, 10].Text == "+"
+                        Dimensions = sheet.Cells[i, 10].Text == "+",
+                        Water = sheet.Cells[i, 11].Text == "+"
                     };
                     creaturesList.Add(creat);
                 }
