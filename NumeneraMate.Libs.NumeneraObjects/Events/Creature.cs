@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NumeneraMate.Libs.NumeneraObjects.Creatures
+namespace NumeneraMate.Libs.NumeneraObjects.Events
 {
     public class Creature
     {

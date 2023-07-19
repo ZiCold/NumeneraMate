@@ -10,11 +10,11 @@ namespace NumeneraMate.Libs.NumeneraObjects.Events
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public string PlainsHills { get; set; }
-        public string Desert { get; set; }
-        public string Woods { get; set; }
-        public string Mountains { get; set; }
-        public string Swamp { get; set; }
-        public string Camp { get; set; }
+        public bool PlainsHills { get; set; }
+        public bool Desert { get; set; }
+        public bool Woods { get; set; }
+        public bool Mountains { get; set; }
+        public bool Swamp { get; set; }
+        public bool Camp { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
+using NumeneraMate.Support.Parsers.FromExcel;
 
 namespace NumeneraMate.Apps.ConsoleAppDotNet
 {
@@ -11,8 +12,24 @@ namespace NumeneraMate.Apps.ConsoleAppDotNet
     {
         static void Main(string[] args)
         {
-            CombineAllArtefacts();
+            ParseEventsToJson();
             Console.WriteLine("Press anykey man");
+        }
+
+        /// <summary>
+        /// File "Creatures and Events Table.xlsx" to JSON on website
+        /// </summary>
+        private static void ParseEventsToJson()
+        {
+            var excelFileName = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\HexCampaign\Creatures and Events Table.xlsx";
+            var encountersFileName = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\zicold.github.io\events_system\encounters.json";
+            var creaturesFileName = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\zicold.github.io\events_system\creatures.json";
+            var parser = new EventsExcelParser();
+            var encounters = parser.GetEncounterList(excelFileName);
+            var creatures = parser.GetCreaturesList(excelFileName);
+
+            File.WriteAllText(encountersFileName, JsonSerializer.Serialize(encounters, GetJsonOptions()));
+            File.WriteAllText(creaturesFileName, JsonSerializer.Serialize(creatures, GetJsonOptions()));
         }
 
         #region Devices Parsing

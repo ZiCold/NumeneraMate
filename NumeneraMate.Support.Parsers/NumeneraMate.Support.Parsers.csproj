@@ -10,4 +10,8 @@
     <ProjectReference Include="..\NumeneraMate.Libs.NumeneraObjects\NumeneraMate.Libs.NumeneraObjects.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.2.7" />
+  </ItemGroup>
+
 </Project>
