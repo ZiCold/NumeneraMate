@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumeneraMate.Apps.ConsoleApp", "NumeneraMate.Apps.ConsoleApp\NumeneraMate.Apps.ConsoleApp.csproj", "{37A602B3-48CA-4681-B0E4-594752FA15C5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Support.NUnitTests", "NumeneraMate.Support.NUnitTests\NumeneraMate.Support.NUnitTests.csproj", "{30BFC4AE-3B2E-4BCF-BB8E-16124BCC06C2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Libs.Craft", "NumeneraMate.Libs.Craft\NumeneraMate.Libs.Craft.csproj", "{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumeneraMate.Apps.ConsoleAppDotNet", "NumeneraMate.Apps.ConsoleAppDotNet\NumeneraMate.Apps.ConsoleAppDotNet.csproj", "{5044D77B-3708-4B04-A268-80BE1B34B68C}"
 EndProject
@@ -21,18 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{37A602B3-48CA-4681-B0E4-594752FA15C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37A602B3-48CA-4681-B0E4-594752FA15C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37A602B3-48CA-4681-B0E4-594752FA15C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37A602B3-48CA-4681-B0E4-594752FA15C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30BFC4AE-3B2E-4BCF-BB8E-16124BCC06C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30BFC4AE-3B2E-4BCF-BB8E-16124BCC06C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30BFC4AE-3B2E-4BCF-BB8E-16124BCC06C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30BFC4AE-3B2E-4BCF-BB8E-16124BCC06C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81E6AACA-B0EF-446B-BE74-6FB46E6067E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5044D77B-3708-4B04-A268-80BE1B34B68C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5044D77B-3708-4B04-A268-80BE1B34B68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5044D77B-3708-4B04-A268-80BE1B34B68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
