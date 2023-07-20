@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using FluentAssertions;
 using System;
+using NumeneraMate.Support.Parsers.FromRawText;
 
 namespace NumeneraMate.Support.NUnitTests
 {
