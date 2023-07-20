@@ -12,8 +12,15 @@ namespace NumeneraMate.Apps.ConsoleAppDotNet
     {
         static void Main(string[] args)
         {
-            ParseEventsToJson();
+            ParseCraftingExcelToJson();
             Console.WriteLine("Press anykey man");
+        }
+
+        public static void ParseCraftingExcelToJson()
+        {
+            var craftingExcelPath = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\zicold.github.io\crafting\Excel Files\Endless Legend - Crafting Tables.xlsx";
+            var jsonPath = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\zicold.github.io\crafting\crafting_objects.json";
+            new CraftObjectsExcelToJsonParser().ParseExcelToJson(craftingExcelPath, jsonPath);
         }
 
         /// <summary>
@@ -24,7 +31,7 @@ namespace NumeneraMate.Apps.ConsoleAppDotNet
             var excelFileName = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\HexCampaign\Creatures and Events Table.xlsx";
             var encountersFileName = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\zicold.github.io\events_system\encounters.json";
             var creaturesFileName = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\zicold.github.io\events_system\creatures.json";
-            var parser = new EventsExcelParser();
+            var parser = new EventsExcelToJsonParser();
             var encounters = parser.GetEncounterList(excelFileName);
             var creatures = parser.GetCreaturesList(excelFileName);
 

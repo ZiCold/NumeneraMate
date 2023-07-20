@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Craft\" />
     <Folder Include="Devices\" />
   </ItemGroup>
 
