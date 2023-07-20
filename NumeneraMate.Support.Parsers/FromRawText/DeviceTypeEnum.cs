@@ -1,4 +1,4 @@
-﻿namespace NumeneraMate.Support.Parsers
+﻿namespace NumeneraMate.Support.Parsers.FromRawText
 {
     public enum DeviceTypeEnum
     {

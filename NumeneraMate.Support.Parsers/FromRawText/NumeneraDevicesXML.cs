@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace NumeneraMate.Support.Parsers
+namespace NumeneraMate.Support.Parsers.FromRawText
 {
     public static class NumeneraDevicesXML
     {

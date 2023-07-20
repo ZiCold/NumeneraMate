@@ -1,4 +1,4 @@
-﻿namespace NumeneraMate.Support.Parsers
+﻿namespace NumeneraMate.Support.Parsers.FromRawText
 {
 	/// <summary>
 	/// Clears strings obtained from file from broken words

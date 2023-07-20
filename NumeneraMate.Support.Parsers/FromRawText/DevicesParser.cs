@@ -1,6 +1,6 @@
 ﻿using NumeneraMate.Libs.NumeneraObjects.Devices;
 
-namespace NumeneraMate.Support.Parsers
+namespace NumeneraMate.Support.Parsers.FromRawText
 {
     /// <summary>
     /// Creates xml from text extracted from PDF
