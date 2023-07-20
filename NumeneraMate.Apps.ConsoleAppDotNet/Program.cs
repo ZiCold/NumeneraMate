@@ -5,6 +5,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 using NumeneraMate.Support.Parsers.FromExcel;
+using NumeneraMate.Support.Parsers.FromRawText;
 
 namespace NumeneraMate.Apps.ConsoleAppDotNet
 {
@@ -16,6 +17,9 @@ namespace NumeneraMate.Apps.ConsoleAppDotNet
             Console.WriteLine("Press anykey man");
         }
 
+        /// <summary>
+        /// File "Endless Legend - Crafting Tables.xlsx" to JSON website
+        /// </summary>
         public static void ParseCraftingExcelToJson()
         {
             var craftingExcelPath = @"C:\Users\ZiCold\YandexDisk\TRPGs - Numenera\zicold.github.io\crafting\Excel Files\Endless Legend - Crafting Tables.xlsx";
