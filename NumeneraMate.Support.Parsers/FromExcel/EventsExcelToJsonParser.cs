@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace NumeneraMate.Support.Parsers.FromExcel
 {
-    public class EventsExcelParser
+    public class EventsExcelToJsonParser
     {
-        public EventsExcelParser()
+        public EventsExcelToJsonParser()
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }

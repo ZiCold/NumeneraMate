@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NumeneraMate.Support.Parsers.FromExcel
 {
-    internal class CharactersAbilitiesParser
+    internal class CharactersAbilitiesExcelToJsonParser
     {
         public static List<Ability> GetAbilitiesList(string abilitiesText)
         {
